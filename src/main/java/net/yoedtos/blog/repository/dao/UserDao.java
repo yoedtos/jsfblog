@@ -3,14 +3,14 @@ package net.yoedtos.blog.repository.dao;
 import java.util.List;
 
 import net.yoedtos.blog.exception.DaoException;
-import net.yoedtos.blog.model.entity.Category;
+import net.yoedtos.blog.model.entity.User;
 import net.yoedtos.blog.repository.Repository;
 
 @SuppressWarnings("serial")
-public class CategoryDao extends AbstractDao<Category> implements Repository<Category>{
+public class UserDao extends AbstractDao<User> implements Repository<User> {
 
 	@Override
-	public void persist(Category category) throws DaoException {
+	public void persist(User t) throws DaoException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -20,23 +20,22 @@ public class CategoryDao extends AbstractDao<Category> implements Repository<Cat
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 	@Override
-	public Category merge(Category t) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public Category findById(Long id) throws DaoException {
+	public User merge(User t) throws DaoException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Category> findAll() throws DaoException {
+	public User findById(Long id) throws DaoException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public List<User> findAll() throws DaoException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
