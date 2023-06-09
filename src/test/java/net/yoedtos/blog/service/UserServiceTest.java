@@ -1,5 +1,14 @@
 package net.yoedtos.blog.service;
 
+import static net.yoedtos.blog.util.TestConstants.EMAIL;
+import static net.yoedtos.blog.util.TestConstants.ENCODED;
+import static net.yoedtos.blog.util.TestConstants.FULLNAME;
+import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
+import static net.yoedtos.blog.util.TestConstants.PASSWORD;
+import static net.yoedtos.blog.util.TestConstants.USERNAME;
+import static net.yoedtos.blog.util.TestConstants.USER_ID;
+import static net.yoedtos.blog.util.TestUtil.createUserDTO;
+import static net.yoedtos.blog.util.TestUtil.createUserOne;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -44,14 +53,6 @@ public class UserServiceTest {
 	@Captor
 	private ArgumentCaptor<?> captor;
 	
-	final static private long USER_ID = 1;
-	final static private String USERNAME = "userone";
-	final static private String FULLNAME = "User One";
-	final static private String EMAIL = "userone@domain.com";
-	final static private String PASSWORD = "password";
-	final static private String ENCODED = "drowssap";
-	final static private String HOST_ADDRESS= "127.0.0.1";
-	
 	private User userOne;
 	private UserDTO userDTO;
 	private Date today;
@@ -60,25 +61,8 @@ public class UserServiceTest {
 	public void init() {
 		today = new Date();
 		
-		userDTO = new UserDTO.Builder(USERNAME)
-				.fullname(FULLNAME)
-				.email(EMAIL)
-				.password(PASSWORD)
-				.hostAddress(HOST_ADDRESS)
-				.role(Role.MEMBER)
-				.active(true)
-				.createdAt(today)
-				.build();
-		
-		userOne = new User.Builder(USERNAME)
-				.userId(USER_ID)
-				.fullname(FULLNAME)
-				.email(EMAIL)
-				.hostAddress(HOST_ADDRESS)
-				.role(Role.MEMBER)
-				.active(true)
-				.createAt(today)
-				.build();
+		userDTO = createUserDTO(today); 
+		userOne = createUserOne(today);
 	}
 
 	@Test
