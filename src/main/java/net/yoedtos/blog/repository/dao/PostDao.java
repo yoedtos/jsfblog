@@ -3,14 +3,14 @@ package net.yoedtos.blog.repository.dao;
 import java.util.List;
 
 import net.yoedtos.blog.exception.DaoException;
-import net.yoedtos.blog.model.entity.User;
+import net.yoedtos.blog.model.entity.Post;
 import net.yoedtos.blog.repository.Repository;
 
 @SuppressWarnings("serial")
-public class UserDao extends AbstractDao<User> implements Repository<User> {
+public class PostDao extends AbstractDao<Post> implements Repository<Post> {
 
 	@Override
-	public void persist(User t) throws DaoException {
+	public void persist(Post t) throws DaoException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -22,24 +22,19 @@ public class UserDao extends AbstractDao<User> implements Repository<User> {
 	}
 
 	@Override
-	public User merge(User t) throws DaoException {
+	public Post merge(Post t) throws DaoException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User findById(Long id) throws DaoException {
+	public Post findById(Long id) throws DaoException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<User> findAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public User findByUsername(String author) {
+	public List<Post> findAll() throws DaoException {
 		// TODO Auto-generated method stub
 		return null;
 	}
