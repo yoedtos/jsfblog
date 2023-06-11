@@ -1,7 +1,10 @@
 package net.yoedtos.blog.util;
 
+import static net.yoedtos.blog.util.TestConstants.AUTHOR;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_ID;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_VALUE;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_ID;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_VALUE;
 import static net.yoedtos.blog.util.TestConstants.CONTENT;
 import static net.yoedtos.blog.util.TestConstants.EMAIL;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME;
@@ -18,9 +21,11 @@ import static net.yoedtos.blog.util.TestConstants.USER_ID;
 import java.util.Date;
 
 import net.yoedtos.blog.model.Role;
+import net.yoedtos.blog.model.dto.CommentDTO;
 import net.yoedtos.blog.model.dto.PostDTO;
 import net.yoedtos.blog.model.dto.UserDTO;
 import net.yoedtos.blog.model.entity.Category;
+import net.yoedtos.blog.model.entity.Comment;
 import net.yoedtos.blog.model.entity.Post;
 import net.yoedtos.blog.model.entity.User;
 
@@ -83,6 +88,28 @@ public class TestUtil {
 				.content(CONTENT)
 				.metaDesc(META_DESC)
 				.metaKey(META_KEY)
+				.build();
+	}
+	
+	public static CommentDTO createCommentDTO(Date createAt) {
+		return new CommentDTO.Builder(AUTHOR)
+				.commentId(COMMENT_ID)
+				.createAt(createAt)
+				.content(COMMENT_VALUE)
+				.email(EMAIL)
+				.hostAddress(HOST_ADDRESS)
+				.postId(POST_ID)
+				.build();
+	}
+	
+	public static Comment createCommentOne(Date createAt, Post post) {
+		return new Comment.Builder(AUTHOR)
+				.id(COMMENT_ID)
+				.createAt(createAt)
+				.content(COMMENT_VALUE)
+				.email(EMAIL)
+				.hostAddress(HOST_ADDRESS)
+				.post(post)
 				.build();
 	}
 }

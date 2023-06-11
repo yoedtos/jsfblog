@@ -27,5 +27,10 @@ public class TestConstants {
 	public final static String CONTENT_UPDATE = "Curabitur ullamcorper ultricies nisi. Nam eget dui."
 								+ "Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus,"
 								+ "sem quam semper libero";
-	
+
+	public final static long COMMENT_ID = 1;
+	public final static String AUTHOR = "Visitor One";
+	public final static String COMMENT_VALUE = "Nulla consequat massa quis enim. Donec pede justo,"
+			+ " fringilla vel, aliquet nec, vulputate eget, arcu";
 }
+
