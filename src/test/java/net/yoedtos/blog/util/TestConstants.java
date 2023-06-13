@@ -32,5 +32,10 @@ public class TestConstants {
 	public final static String AUTHOR = "Visitor One";
 	public final static String COMMENT_VALUE = "Nulla consequat massa quis enim. Donec pede justo,"
 			+ " fringilla vel, aliquet nec, vulputate eget, arcu";
+	
+	public final static long REPLY_ID = 1;
+	public final static String REPLY_VALUE = "Donec sodales sagittis magna. Sed consequat,"
+			+ " leo eget bibendum sodales, augue velit cursus nunc";
+	
 }
 

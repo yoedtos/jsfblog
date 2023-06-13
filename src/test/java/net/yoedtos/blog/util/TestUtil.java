@@ -14,6 +14,8 @@ import static net.yoedtos.blog.util.TestConstants.META_DESC;
 import static net.yoedtos.blog.util.TestConstants.META_KEY;
 import static net.yoedtos.blog.util.TestConstants.PASSWORD;
 import static net.yoedtos.blog.util.TestConstants.POST_ID;
+import static net.yoedtos.blog.util.TestConstants.REPLY_ID;
+import static net.yoedtos.blog.util.TestConstants.REPLY_VALUE;
 import static net.yoedtos.blog.util.TestConstants.TITLE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME;
 import static net.yoedtos.blog.util.TestConstants.USER_ID;
@@ -23,10 +25,12 @@ import java.util.Date;
 import net.yoedtos.blog.model.Role;
 import net.yoedtos.blog.model.dto.CommentDTO;
 import net.yoedtos.blog.model.dto.PostDTO;
+import net.yoedtos.blog.model.dto.ReplyDTO;
 import net.yoedtos.blog.model.dto.UserDTO;
 import net.yoedtos.blog.model.entity.Category;
 import net.yoedtos.blog.model.entity.Comment;
 import net.yoedtos.blog.model.entity.Post;
+import net.yoedtos.blog.model.entity.Reply;
 import net.yoedtos.blog.model.entity.User;
 
 public class TestUtil {
@@ -110,6 +114,27 @@ public class TestUtil {
 				.email(EMAIL)
 				.hostAddress(HOST_ADDRESS)
 				.post(post)
+				.build();
+	}
+	
+	public static ReplyDTO createReplyDTO(Date createAt) {
+		return new ReplyDTO.Builder(USERNAME)
+				.replyId(REPLY_ID)
+				.commentId(COMMENT_ID)
+				.createAt(createAt)
+				.content(REPLY_VALUE)
+				.hostAddress(HOST_ADDRESS)
+				.build();
+	}
+	
+	public static Reply createReplyOne(Date createAt, Comment comment, User author) {
+		return new Reply.Builder()
+				.id(REPLY_ID)
+				.createAt(createAt)
+				.content(REPLY_VALUE)
+				.hostAddress(HOST_ADDRESS)
+				.author(author)
+				.comment(comment)
 				.build();
 	}
 }
