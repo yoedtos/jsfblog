@@ -11,7 +11,7 @@ import static net.yoedtos.blog.util.TestUtil.createCommentDTO;
 import static net.yoedtos.blog.util.TestUtil.createCommentOne;
 import static net.yoedtos.blog.util.TestUtil.createPostOne;
 import static net.yoedtos.blog.util.TestUtil.createUserOne;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -80,13 +80,13 @@ public class CommentServiceTest {
 		verify(commentDaoMock).persist(captor.capture());
 		Comment comment = captor.getValue();
 
-		assertThat(comment.getId(), is(COMMENT_ID));
-		assertThat(comment.getCreateAt(), is(today));
-		assertThat(comment.getContent(), is(COMMENT_VALUE));
-		assertThat(comment.getAuthor(), is(AUTHOR));
-		assertThat(comment.getEmail(), is(EMAIL));
-		assertThat(comment.getHostAddress(), is(HOST_ADDRESS));
-		assertThat(comment.getPost(), is(post));
+		assertThat(comment.getId(), equalTo(COMMENT_ID));
+		assertThat(comment.getCreateAt(), equalTo(today));
+		assertThat(comment.getContent(), equalTo(COMMENT_VALUE));
+		assertThat(comment.getAuthor(), equalTo(AUTHOR));
+		assertThat(comment.getEmail(), equalTo(EMAIL));
+		assertThat(comment.getHostAddress(), equalTo(HOST_ADDRESS));
+		assertThat(comment.getPost(), equalTo(post));
 		
 		verify(postDao, times(1)).findById(POST_ID);
 		verify(commentDaoMock, times(1)).persist(comment);
@@ -144,13 +144,13 @@ public class CommentServiceTest {
 		
 		int index = 0;
 		for (CommentDTO commentDTO : commentDTOs) {
-			assertThat(commentDTO.getId(), is(comments.get(index).getId()));
-			assertThat(commentDTO.getCreateAt(), is(comments.get(index).getCreateAt()));
-			assertThat(commentDTO.getContent(), is(comments.get(index).getContent()));
-			assertThat(commentDTO.getAuthor(), is(comments.get(index).getAuthor()));
-			assertThat(commentDTO.getEmail(), is(comments.get(index).getEmail()));
-			assertThat(commentDTO.getHostAddress(), is(comments.get(index).getHostAddress()));
-			assertThat(commentDTO.getPostId(), is(comments.get(index).getPost().getId()));
+			assertThat(commentDTO.getId(), equalTo(comments.get(index).getId()));
+			assertThat(commentDTO.getCreateAt(), equalTo(comments.get(index).getCreateAt()));
+			assertThat(commentDTO.getContent(), equalTo(comments.get(index).getContent()));
+			assertThat(commentDTO.getAuthor(), equalTo(comments.get(index).getAuthor()));
+			assertThat(commentDTO.getEmail(), equalTo(comments.get(index).getEmail()));
+			assertThat(commentDTO.getHostAddress(), equalTo(comments.get(index).getHostAddress()));
+			assertThat(commentDTO.getPostId(), equalTo(comments.get(index).getPost().getId()));
 			index++;
 		}
 	}

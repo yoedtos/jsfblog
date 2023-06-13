@@ -1,6 +1,6 @@
 package net.yoedtos.blog.service;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -117,8 +117,8 @@ public class CategoryServiceTest {
 		
 		int index = 0;
 		for (CategoryDTO categoryDTO : categoryDTOs) {
-			assertThat(categoryDTO.getId(), is(categories.get(index).getId()));
-			assertThat(categoryDTO.getValue(), is(categories.get(index).getValue()));
+			assertThat(categoryDTO.getId(), equalTo(categories.get(index).getId()));
+			assertThat(categoryDTO.getValue(), equalTo(categories.get(index).getValue()));
 			index++;
 		}
 	}

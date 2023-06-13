@@ -9,7 +9,7 @@ import static net.yoedtos.blog.util.TestConstants.USERNAME;
 import static net.yoedtos.blog.util.TestConstants.USER_ID;
 import static net.yoedtos.blog.util.TestUtil.createUserDTO;
 import static net.yoedtos.blog.util.TestUtil.createUserOne;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doThrow;
@@ -72,14 +72,14 @@ public class UserServiceTest {
 		verify(userDaoMock).persist((User) captor.capture());
 		User user = (User) captor.getValue();
 		
-		assertThat(user.getUsername(), is(USERNAME));
-		assertThat(user.getFullname(), is(FULLNAME));
-		assertThat(user.getEmail(), is(EMAIL));
-		assertThat(user.getPassword(), is(ENCODED));
-		assertThat(user.getHostAddress(), is(HOST_ADDRESS));
-		assertThat(user.getRole(), is(Role.MEMBER));
-		assertThat(user.getActive(), is(true));
-		assertThat(user.getCreateAt(), is(today));
+		assertThat(user.getUsername(), equalTo(USERNAME));
+		assertThat(user.getFullname(), equalTo(FULLNAME));
+		assertThat(user.getEmail(), equalTo(EMAIL));
+		assertThat(user.getPassword(), equalTo(ENCODED));
+		assertThat(user.getHostAddress(), equalTo(HOST_ADDRESS));
+		assertThat(user.getRole(), equalTo(Role.MEMBER));
+		assertThat(user.getActive(), equalTo(true));
+		assertThat(user.getCreateAt(), equalTo(today));
 		
 		verify(userDaoMock, times(1)).persist(user);
 	}
@@ -111,15 +111,15 @@ public class UserServiceTest {
 		when(userDaoMock.findById(USER_ID)).thenReturn(userOne);
 		UserDTO userDTO = userService.get(USER_ID);
 		
-		assertThat(userDTO.getId(), is(userOne.getUserId()));
-		assertThat(userDTO.getUsername(), is(userOne.getUsername()));
-		assertThat(userDTO.getFullname(), is(userOne.getFullname()));
-		assertThat(userDTO.getEmail(), is(userOne.getEmail()));
-		assertThat(userDTO.getPassword(), is(Constants.PASS_MASK));
-		assertThat(userDTO.getHostAddress(), is(userOne.getHostAddress()));
-		assertThat(userDTO.getRole(), is(userOne.getRole()));
-		assertThat(userDTO.getActive(), is(userOne.getActive()));
-		assertThat(userDTO.getCreatedAt(), is(userOne.getCreateAt()));
+		assertThat(userDTO.getId(), equalTo(userOne.getUserId()));
+		assertThat(userDTO.getUsername(), equalTo(userOne.getUsername()));
+		assertThat(userDTO.getFullname(), equalTo(userOne.getFullname()));
+		assertThat(userDTO.getEmail(), equalTo(userOne.getEmail()));
+		assertThat(userDTO.getPassword(), equalTo(Constants.PASS_MASK));
+		assertThat(userDTO.getHostAddress(), equalTo(userOne.getHostAddress()));
+		assertThat(userDTO.getRole(), equalTo(userOne.getRole()));
+		assertThat(userDTO.getActive(), equalTo(userOne.getActive()));
+		assertThat(userDTO.getCreatedAt(), equalTo(userOne.getCreateAt()));
 		
 		verify(userDaoMock, times(1)).findById(USER_ID);
 	}
@@ -148,14 +148,14 @@ public class UserServiceTest {
 		
 		UserDTO updatedUserDTO = userService.update(userDTO);
 		
-		assertThat(updatedUserDTO.getId(), is(USER_ID));
-		assertThat(updatedUserDTO.getUsername(), is(USERNAME));
-		assertThat(updatedUserDTO.getFullname(), is(FULL_UPDATE));
-		assertThat(updatedUserDTO.getEmail(), is(EMAIL_UPDATE));
-		assertThat(updatedUserDTO.getPassword(), is(Constants.PASS_MASK));
-		assertThat(updatedUserDTO.getHostAddress(), is(HOST_ADDRESS));
-		assertThat(updatedUserDTO.getRole(), is(Role.MEMBER));
-		assertThat(updatedUserDTO.getActive(), is(true));
+		assertThat(updatedUserDTO.getId(), equalTo(USER_ID));
+		assertThat(updatedUserDTO.getUsername(), equalTo(USERNAME));
+		assertThat(updatedUserDTO.getFullname(), equalTo(FULL_UPDATE));
+		assertThat(updatedUserDTO.getEmail(), equalTo(EMAIL_UPDATE));
+		assertThat(updatedUserDTO.getPassword(), equalTo(Constants.PASS_MASK));
+		assertThat(updatedUserDTO.getHostAddress(), equalTo(HOST_ADDRESS));
+		assertThat(updatedUserDTO.getRole(), equalTo(Role.MEMBER));
+		assertThat(updatedUserDTO.getActive(), equalTo(true));
 		
 		verify(encryptorMock, times(1)).encrypt(PASS_UPDATE);
 		verify(userDaoMock, times(1)).merge(userOne);
@@ -185,14 +185,14 @@ public class UserServiceTest {
 		
 		int index = 0;
 		for (UserDTO userDTO : userDTOs) {
-			assertThat(userDTO.getId(), is(users.get(index).getUserId()));
-			assertThat(userDTO.getUsername(), is(users.get(index).getUsername()));
-			assertThat(userDTO.getFullname(), is(users.get(index).getFullname()));
-			assertThat(userDTO.getEmail(), is(users.get(index).getEmail()));
-			assertThat(userDTO.getPassword(), is(Constants.PASS_MASK));
-			assertThat(userDTO.getHostAddress(), is(users.get(index).getHostAddress()));
-			assertThat(userDTO.getRole(), is(users.get(index).getRole()));
-			assertThat(userDTO.getActive(), is(users.get(index).getActive()));
+			assertThat(userDTO.getId(), equalTo(users.get(index).getUserId()));
+			assertThat(userDTO.getUsername(), equalTo(users.get(index).getUsername()));
+			assertThat(userDTO.getFullname(), equalTo(users.get(index).getFullname()));
+			assertThat(userDTO.getEmail(), equalTo(users.get(index).getEmail()));
+			assertThat(userDTO.getPassword(), equalTo(Constants.PASS_MASK));
+			assertThat(userDTO.getHostAddress(), equalTo(users.get(index).getHostAddress()));
+			assertThat(userDTO.getRole(), equalTo(users.get(index).getRole()));
+			assertThat(userDTO.getActive(), equalTo(users.get(index).getActive()));
 			index++;
 		}
 	}

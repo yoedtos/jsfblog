@@ -15,7 +15,7 @@ import static net.yoedtos.blog.util.TestUtil.createCategory;
 import static net.yoedtos.blog.util.TestUtil.createPostDTO;
 import static net.yoedtos.blog.util.TestUtil.createPostOne;
 import static net.yoedtos.blog.util.TestUtil.createUserOne;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doThrow;
@@ -89,15 +89,15 @@ public class PostServiceTest {
 		verify(postDaoMock).persist((Post) captor.capture());
 		Post post = (Post) captor.getValue();
 
-		assertThat(post.getId(), is(POST_ID));
-		assertThat(post.getCreatedAt(), is(today));
-		assertThat(post.getTitle(), is(TITLE));
-		assertThat(post.getAuthor(), is(userOne));
-		assertThat(post.getCategory(), is(category));
-		assertThat(post.getIntro(), is(INTRO));
-		assertThat(post.getContent(), is(CONTENT));
-		assertThat(post.getMetaDesc(), is(META_DESC));
-		assertThat(post.getMetaKey(), is(META_KEY));
+		assertThat(post.getId(), equalTo(POST_ID));
+		assertThat(post.getCreatedAt(), equalTo(today));
+		assertThat(post.getTitle(), equalTo(TITLE));
+		assertThat(post.getAuthor(), equalTo(userOne));
+		assertThat(post.getCategory(), equalTo(category));
+		assertThat(post.getIntro(), equalTo(INTRO));
+		assertThat(post.getContent(), equalTo(CONTENT));
+		assertThat(post.getMetaDesc(), equalTo(META_DESC));
+		assertThat(post.getMetaKey(), equalTo(META_KEY));
 		
 		verify(categoryDao, times(1)).findById(CATEGORY_ID);
 		verify(userDao, times(1)).findByUsername(USERNAME);
@@ -131,15 +131,15 @@ public class PostServiceTest {
 		when(postDaoMock.findById(POST_ID)).thenReturn(postOne);
 		PostDTO postDTO = postService.get(POST_ID);
 		
-		assertThat(postDTO.getId(), is(postOne.getId()));
-		assertThat(postDTO.getCreatedAt(), is(postOne.getCreatedAt()));
-		assertThat(postDTO.getTitle(), is(postOne.getTitle()));
-		assertThat(postDTO.getAuthor(), is(postOne.getAuthor().getUsername()));
-		assertThat(postDTO.getCategoryId(), is(postOne.getCategory().getId()));
-		assertThat(postDTO.getIntro(), is(postOne.getIntro()));
-		assertThat(postDTO.getContent(), is(postOne.getContent()));
-		assertThat(postDTO.getMetaDesc(), is(postOne.getMetaDesc()));
-		assertThat(postDTO.getMetaKey(), is(postOne.getMetaKey()));
+		assertThat(postDTO.getId(), equalTo(postOne.getId()));
+		assertThat(postDTO.getCreatedAt(), equalTo(postOne.getCreatedAt()));
+		assertThat(postDTO.getTitle(), equalTo(postOne.getTitle()));
+		assertThat(postDTO.getAuthor(), equalTo(postOne.getAuthor().getUsername()));
+		assertThat(postDTO.getCategoryId(), equalTo(postOne.getCategory().getId()));
+		assertThat(postDTO.getIntro(), equalTo(postOne.getIntro()));
+		assertThat(postDTO.getContent(), equalTo(postOne.getContent()));
+		assertThat(postDTO.getMetaDesc(), equalTo(postOne.getMetaDesc()));
+		assertThat(postDTO.getMetaKey(), equalTo(postOne.getMetaKey()));
 		
 		verify(postDaoMock, times(1)).findById(POST_ID);
 	}
@@ -173,15 +173,15 @@ public class PostServiceTest {
 
 		PostDTO dbPostDTO = postService.update(postDTO);
 
-		assertThat(dbPostDTO.getId(), is(POST_ID));
-		assertThat(dbPostDTO.getCreatedAt(), is(today));
-		assertThat(dbPostDTO.getTitle(), is(TITLE_UPDATE));
-		assertThat(dbPostDTO.getAuthor(), is(USERNAME));
-		assertThat(dbPostDTO.getCategoryId(), is(CATEGORY_ID));
-		assertThat(dbPostDTO.getIntro(), is(INTRO_UPDATE));
-		assertThat(dbPostDTO.getContent(), is(CONTENT_UPDATE));
-		assertThat(dbPostDTO.getMetaDesc(), is(META_DESC));
-		assertThat(dbPostDTO.getMetaKey(), is(META_KEY));
+		assertThat(dbPostDTO.getId(), equalTo(POST_ID));
+		assertThat(dbPostDTO.getCreatedAt(), equalTo(today));
+		assertThat(dbPostDTO.getTitle(), equalTo(TITLE_UPDATE));
+		assertThat(dbPostDTO.getAuthor(), equalTo(USERNAME));
+		assertThat(dbPostDTO.getCategoryId(), equalTo(CATEGORY_ID));
+		assertThat(dbPostDTO.getIntro(), equalTo(INTRO_UPDATE));
+		assertThat(dbPostDTO.getContent(), equalTo(CONTENT_UPDATE));
+		assertThat(dbPostDTO.getMetaDesc(), equalTo(META_DESC));
+		assertThat(dbPostDTO.getMetaKey(), equalTo(META_KEY));
 
 		verify(postDaoMock, times(1)).findById(postDTO.getId());
 		verify(postDaoMock, times(1)).merge(postOne);
@@ -215,15 +215,15 @@ public class PostServiceTest {
 
 		int index = 0;
 		for (PostDTO postDTO : postDTOs) {
-			assertThat(postDTO.getId(), is(posts.get(index).getId()));
-			assertThat(postDTO.getCreatedAt(), is(posts.get(index).getCreatedAt()));
-			assertThat(postDTO.getTitle(), is(posts.get(index).getTitle()));
-			assertThat(postDTO.getAuthor(), is(posts.get(index).getAuthor().getUsername()));
-			assertThat(postDTO.getCategoryId(), is(posts.get(index).getCategory().getId()));
-			assertThat(postDTO.getIntro(), is(posts.get(index).getIntro()));
-			assertThat(postDTO.getContent(), is(posts.get(index).getContent()));
-			assertThat(postDTO.getMetaDesc(), is(posts.get(index).getMetaDesc()));
-			assertThat(postDTO.getMetaKey(), is(posts.get(index).getMetaKey()));
+			assertThat(postDTO.getId(), equalTo(posts.get(index).getId()));
+			assertThat(postDTO.getCreatedAt(), equalTo(posts.get(index).getCreatedAt()));
+			assertThat(postDTO.getTitle(), equalTo(posts.get(index).getTitle()));
+			assertThat(postDTO.getAuthor(), equalTo(posts.get(index).getAuthor().getUsername()));
+			assertThat(postDTO.getCategoryId(), equalTo(posts.get(index).getCategory().getId()));
+			assertThat(postDTO.getIntro(), equalTo(posts.get(index).getIntro()));
+			assertThat(postDTO.getContent(), equalTo(posts.get(index).getContent()));
+			assertThat(postDTO.getMetaDesc(), equalTo(posts.get(index).getMetaDesc()));
+			assertThat(postDTO.getMetaKey(), equalTo(posts.get(index).getMetaKey()));
 			index++;
 		}
 	}
