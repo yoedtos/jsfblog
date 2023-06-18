@@ -1,12 +1,18 @@
 package net.yoedtos.blog.service;
 
-import static net.yoedtos.blog.util.TestConstants.EMAIL;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.ENCODED;
-import static net.yoedtos.blog.util.TestConstants.FULLNAME;
+import static net.yoedtos.blog.util.TestConstants.FULLNAME_ONE;
+import static net.yoedtos.blog.util.TestConstants.FULLNAME_TWO;
+import static net.yoedtos.blog.util.TestConstants.FULL_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.PASSWORD;
-import static net.yoedtos.blog.util.TestConstants.USERNAME;
-import static net.yoedtos.blog.util.TestConstants.USER_ID;
+import static net.yoedtos.blog.util.TestConstants.PASS_UPDATE;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
+import static net.yoedtos.blog.util.TestConstants.USER_ONE_ID;
 import static net.yoedtos.blog.util.TestUtil.createUserDTO;
 import static net.yoedtos.blog.util.TestUtil.createUserOne;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -72,9 +78,9 @@ public class UserServiceTest {
 		verify(userDaoMock).persist((User) captor.capture());
 		User user = (User) captor.getValue();
 		
-		assertThat(user.getUsername(), equalTo(USERNAME));
-		assertThat(user.getFullname(), equalTo(FULLNAME));
-		assertThat(user.getEmail(), equalTo(EMAIL));
+		assertThat(user.getUsername(), equalTo(USERNAME_ONE));
+		assertThat(user.getFullname(), equalTo(FULLNAME_ONE));
+		assertThat(user.getEmail(), equalTo(EMAIL_ONE));
 		assertThat(user.getPassword(), equalTo(ENCODED));
 		assertThat(user.getHostAddress(), equalTo(HOST_ADDRESS));
 		assertThat(user.getRole(), equalTo(Role.MEMBER));
@@ -86,10 +92,10 @@ public class UserServiceTest {
 	
 	@Test
 	public void whenRemoveShouldRemoveOnce() throws DaoException, ServiceException {
-		userService.remove(USER_ID);
+		userService.remove(USER_ONE_ID);
 		verify(userDaoMock).remove((Long) captor.capture());
-		assertEquals(USER_ID, ((Long) captor.getValue()).intValue());
-		verify(userDaoMock, times(1)).remove(USER_ID);
+		assertEquals(USER_ONE_ID, ((Long) captor.getValue()).intValue());
+		verify(userDaoMock, times(1)).remove(USER_ONE_ID);
 	}
 	
 	@Test(expected = ServiceException.class)
@@ -101,15 +107,15 @@ public class UserServiceTest {
 	
 	@Test(expected = ServiceException.class)
 	public void whenRemoveShouldThrowsException() throws DaoException, ServiceException {
-		doThrow(new DaoException()).when(userDaoMock).remove(USER_ID);
-		userService.remove(USER_ID);
-		verify(userDaoMock, times(1)).remove(USER_ID);
+		doThrow(new DaoException()).when(userDaoMock).remove(USER_ONE_ID);
+		userService.remove(USER_ONE_ID);
+		verify(userDaoMock, times(1)).remove(USER_ONE_ID);
 	}
 	
 	@Test
 	public void whenGetShouldReturnUserDTO() throws DaoException, ServiceException {
-		when(userDaoMock.findById(USER_ID)).thenReturn(userOne);
-		UserDTO userDTO = userService.get(USER_ID);
+		when(userDaoMock.findById(USER_ONE_ID)).thenReturn(userOne);
+		UserDTO userDTO = userService.get(USER_ONE_ID);
 		
 		assertThat(userDTO.getId(), equalTo(userOne.getUserId()));
 		assertThat(userDTO.getUsername(), equalTo(userOne.getUsername()));
@@ -121,15 +127,11 @@ public class UserServiceTest {
 		assertThat(userDTO.getActive(), equalTo(userOne.getActive()));
 		assertThat(userDTO.getCreatedAt(), equalTo(userOne.getCreateAt()));
 		
-		verify(userDaoMock, times(1)).findById(USER_ID);
+		verify(userDaoMock, times(1)).findById(USER_ONE_ID);
 	}
 	
 	@Test
 	public void whenUpdateShouldReturnUserUpdated() throws DaoException, ServiceException {
-		final String FULL_UPDATE = "User One Update";
-		final String EMAIL_UPDATE = "user-one@domain.com";
-		final String PASS_UPDATE = "password1";
-		
 		userDTO = new UserDTO.Builder(userDTO.getUsername())
 				.id(userDTO.getId())
 				.fullname(FULL_UPDATE)
@@ -148,8 +150,8 @@ public class UserServiceTest {
 		
 		UserDTO updatedUserDTO = userService.update(userDTO);
 		
-		assertThat(updatedUserDTO.getId(), equalTo(USER_ID));
-		assertThat(updatedUserDTO.getUsername(), equalTo(USERNAME));
+		assertThat(updatedUserDTO.getId(), equalTo(USER_ONE_ID));
+		assertThat(updatedUserDTO.getUsername(), equalTo(USERNAME_ONE));
 		assertThat(updatedUserDTO.getFullname(), equalTo(FULL_UPDATE));
 		assertThat(updatedUserDTO.getEmail(), equalTo(EMAIL_UPDATE));
 		assertThat(updatedUserDTO.getPassword(), equalTo(Constants.PASS_MASK));
@@ -170,10 +172,10 @@ public class UserServiceTest {
 	
 	@Test
 	public void whenGetAllShouldReturnTwoUsers() throws ServiceException, DaoException {
-		User userTwo = new User.Builder("usertwo")
-				.fullname("User Two")
-				.email("usertwo@domain.com")
-				.hostAddress("127.0.0.1")
+		User userTwo = new User.Builder(USERNAME_TWO)
+				.fullname(FULLNAME_TWO)
+				.email(EMAIL_TWO)
+				.hostAddress(HOST_ADDRESS)
 				.role(Role.MEMBER)
 				.active(true)
 				.build();

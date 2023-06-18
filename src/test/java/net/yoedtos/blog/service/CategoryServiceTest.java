@@ -1,5 +1,9 @@
 package net.yoedtos.blog.service;
 
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE;
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_TWO;
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_TWO_ID;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -38,10 +42,7 @@ public class CategoryServiceTest {
 
 	@Captor
 	private ArgumentCaptor<?> captor;
-	
-	final static private long CATEGORY_ID = 1;
-	final static private String CATEGORY_ONE= "One";
-	
+
 	private Category categoryOne;
 	private CategoryDTO categoryDTO;
 	
@@ -50,7 +51,7 @@ public class CategoryServiceTest {
 		categoryDTO = new CategoryDTO(CATEGORY_ONE);
 		
 		categoryOne = new Category();
-		categoryOne.setId(CATEGORY_ID);
+		categoryOne.setId(CATEGORY_ONE_ID);
 		categoryOne.setValue(CATEGORY_ONE);
 	}
 
@@ -65,10 +66,10 @@ public class CategoryServiceTest {
 	
 	@Test
 	public void whenRemoveShouldRemoveOnce() throws DaoException, ServiceException {
-		categoryService.remove(CATEGORY_ID);
+		categoryService.remove(CATEGORY_ONE_ID);
 		verify(categoryDaoMock).remove((Long) captor.capture());
-		assertEquals(CATEGORY_ID, ((Long) captor.getValue()).intValue());
-		verify(categoryDaoMock, times(1)).remove(CATEGORY_ID);
+		assertEquals(CATEGORY_ONE_ID, ((Long) captor.getValue()).intValue());
+		verify(categoryDaoMock, times(1)).remove(CATEGORY_ONE_ID);
 	}
 	
 	@Test(expected = ServiceException.class)
@@ -80,14 +81,14 @@ public class CategoryServiceTest {
 	
 	@Test(expected = ServiceException.class)
 	public void whenRemoveShouldThrowsException() throws DaoException, ServiceException {
-		doThrow(new DaoException()).when(categoryDaoMock).remove(CATEGORY_ID);
-		categoryService.remove(CATEGORY_ID);
-		verify(categoryDaoMock, times(1)).remove(CATEGORY_ID);
+		doThrow(new DaoException()).when(categoryDaoMock).remove(CATEGORY_ONE_ID);
+		categoryService.remove(CATEGORY_ONE_ID);
+		verify(categoryDaoMock, times(1)).remove(CATEGORY_ONE_ID);
 	}
 	
 	@Test
 	public void whenGetShouldReturnNull() throws ServiceException {
-		CategoryDTO nullCategoryDTO = categoryService.get(CATEGORY_ID);
+		CategoryDTO nullCategoryDTO = categoryService.get(CATEGORY_ONE_ID);
 		assertNull(nullCategoryDTO);
 	}
 	
@@ -107,8 +108,8 @@ public class CategoryServiceTest {
 	@Test
 	public void whenGetAllShouldReturnTwoCategories() throws ServiceException, DaoException {
 		Category categoryTwo = new Category();
-		categoryTwo.setId(2L);
-		categoryTwo.setValue("Two");
+		categoryTwo.setId(CATEGORY_TWO_ID);
+		categoryTwo.setValue(CATEGORY_TWO);
 		
 		List<Category> categories = Arrays.asList(categoryOne, categoryTwo);
 		when(categoryDaoMock.findAll()).thenReturn(categories);

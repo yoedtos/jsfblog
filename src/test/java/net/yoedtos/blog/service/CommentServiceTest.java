@@ -1,11 +1,15 @@
 package net.yoedtos.blog.service;
 
-import static net.yoedtos.blog.util.TestConstants.AUTHOR;
-import static net.yoedtos.blog.util.TestConstants.COMMENT_ID;
-import static net.yoedtos.blog.util.TestConstants.COMMENT_VALUE;
-import static net.yoedtos.blog.util.TestConstants.EMAIL;
+import static net.yoedtos.blog.util.TestConstants.AUTHOR_ONE;
+import static net.yoedtos.blog.util.TestConstants.AUTHOR_TWO;
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_TWO_ID;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_TWO;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
-import static net.yoedtos.blog.util.TestConstants.POST_ID;
+import static net.yoedtos.blog.util.TestConstants.POST_ONE_ID;
 import static net.yoedtos.blog.util.TestUtil.createCategory;
 import static net.yoedtos.blog.util.TestUtil.createCommentDTO;
 import static net.yoedtos.blog.util.TestUtil.createCommentOne;
@@ -75,20 +79,20 @@ public class CommentServiceTest {
 
 	@Test
 	public void whenCreateShouldCreateOnce() throws ServiceException, DaoException {
-		when(postDao.findById(POST_ID)).thenReturn(post);
+		when(postDao.findById(POST_ONE_ID)).thenReturn(post);
 		commentService.create(commentDTO);
 		verify(commentDaoMock).persist(captor.capture());
 		Comment comment = captor.getValue();
 
-		assertThat(comment.getId(), equalTo(COMMENT_ID));
+		assertThat(comment.getId(), equalTo(COMMENT_ONE_ID));
 		assertThat(comment.getCreateAt(), equalTo(today));
-		assertThat(comment.getContent(), equalTo(COMMENT_VALUE));
-		assertThat(comment.getAuthor(), equalTo(AUTHOR));
-		assertThat(comment.getEmail(), equalTo(EMAIL));
+		assertThat(comment.getContent(), equalTo(COMMENT_ONE));
+		assertThat(comment.getAuthor(), equalTo(AUTHOR_ONE));
+		assertThat(comment.getEmail(), equalTo(EMAIL_ONE));
 		assertThat(comment.getHostAddress(), equalTo(HOST_ADDRESS));
 		assertThat(comment.getPost(), equalTo(post));
 		
-		verify(postDao, times(1)).findById(POST_ID);
+		verify(postDao, times(1)).findById(POST_ONE_ID);
 		verify(commentDaoMock, times(1)).persist(comment);
 	}
 
@@ -101,12 +105,12 @@ public class CommentServiceTest {
 
 	@Test(expected = ServiceException.class)
 	public void whenRemoveShouldThrowsException() throws ServiceException {
-		commentService.remove(COMMENT_ID);
+		commentService.remove(COMMENT_ONE_ID);
 	}
 
 	@Test
 	public void whenGetShouldReturnNull() throws ServiceException {
-		CommentDTO nullCommentDTO = commentService.get(COMMENT_ID);
+		CommentDTO nullCommentDTO = commentService.get(COMMENT_ONE_ID);
 		assertNull(nullCommentDTO);
 	}
 
@@ -125,14 +129,12 @@ public class CommentServiceTest {
 
 	@Test
 	public void whenGetAllShouldReturnTwoComments() throws ServiceException, DaoException {
-		final String COMMENT_TWO = " Donec vitae sapien ut libero venenatis faucibus."
-				+ "Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.";
 		
-		Comment commentTwo = new Comment.Builder("Vistor Two")
-				.id(2L)
+		Comment commentTwo = new Comment.Builder(AUTHOR_TWO)
+				.id(CATEGORY_TWO_ID)
 				.createAt(today)
 				.content(COMMENT_TWO)
-				.email("visitor2@domain.com")
+				.email(EMAIL_TWO)
 				.hostAddress(HOST_ADDRESS)
 				.post(post)
 				.build();

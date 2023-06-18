@@ -1,10 +1,12 @@
 package net.yoedtos.blog.service;
 
-import static net.yoedtos.blog.util.TestConstants.COMMENT_ID;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
-import static net.yoedtos.blog.util.TestConstants.REPLY_ID;
-import static net.yoedtos.blog.util.TestConstants.REPLY_VALUE;
-import static net.yoedtos.blog.util.TestConstants.USERNAME;
+import static net.yoedtos.blog.util.TestConstants.REPLY_ONE;
+import static net.yoedtos.blog.util.TestConstants.REPLY_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.REPLY_TWO;
+import static net.yoedtos.blog.util.TestConstants.REPLY_TWO_ID;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestUtil.createCommentOne;
 import static net.yoedtos.blog.util.TestUtil.createReplyDTO;
 import static net.yoedtos.blog.util.TestUtil.createReplyOne;
@@ -79,20 +81,20 @@ public class ReplyServiceTest {
 
 	@Test
 	public void whenCreateShouldCreateOnce() throws ServiceException, DaoException {
-		when(userDao.findByUsername(USERNAME)).thenReturn(user);
-		when(commentDao.findById(COMMENT_ID)).thenReturn(comment);
+		when(userDao.findByUsername(USERNAME_ONE)).thenReturn(user);
+		when(commentDao.findById(COMMENT_ONE_ID)).thenReturn(comment);
 		replyService.create(replyDTO);
 		verify(replyDaoMock).persist(captor.capture());
 		Reply reply = captor.getValue();
 
-		assertThat(reply.getId(), equalTo(REPLY_ID));
+		assertThat(reply.getId(), equalTo(REPLY_ONE_ID));
 		assertThat(reply.getCreateAt(), equalTo(today));
-		assertThat(reply.getContent(), equalTo(REPLY_VALUE));
+		assertThat(reply.getContent(), equalTo(REPLY_ONE));
 		assertThat(reply.getAuthor(), equalTo(user));
 		assertThat(reply.getHostAddress(), equalTo(HOST_ADDRESS));
 		assertThat(reply.getComment(), equalTo(comment));
 		
-		verify(commentDao, times(1)).findById(COMMENT_ID);
+		verify(commentDao, times(1)).findById(COMMENT_ONE_ID);
 		verify(replyDaoMock, times(1)).persist(reply);
 	}
 
@@ -105,12 +107,12 @@ public class ReplyServiceTest {
 
 	@Test(expected = ServiceException.class)
 	public void whenRemoveShouldThrowsException() throws ServiceException {
-		replyService.remove(REPLY_ID);
+		replyService.remove(REPLY_ONE_ID);
 	}
 
 	@Test
 	public void whenGetShouldReturnNull() throws ServiceException {
-		ReplyDTO nullReplyDTO = replyService.get(REPLY_ID);
+		ReplyDTO nullReplyDTO = replyService.get(REPLY_ONE_ID);
 		assertNull(nullReplyDTO);
 	}
 
@@ -128,18 +130,16 @@ public class ReplyServiceTest {
 	
 	@Test(expected = ServiceException.class)
 	public void whenGetAllByCommentShouldThrowsException() throws DaoException, ServiceException {
-		doThrow(new DaoException()).when(replyDaoMock).findAllByCommentId(COMMENT_ID);
-		replyService.getAllByComment(COMMENT_ID);
-		verify(replyDaoMock, times(1)).findAllByCommentId(COMMENT_ID);
+		doThrow(new DaoException()).when(replyDaoMock).findAllByCommentId(COMMENT_ONE_ID);
+		replyService.getAllByComment(COMMENT_ONE_ID);
+		verify(replyDaoMock, times(1)).findAllByCommentId(COMMENT_ONE_ID);
 	}
 
 	@Test
 	public void whenGetAllByCommentShouldReturnTwoComments() throws ServiceException, DaoException {
-		final String REPLY_TWO = " Donec vitae sapien ut libero venenatis faucibus."
-				+ "Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.";
 		
 		Reply replyTwo = new Reply.Builder()
-				.id(2L)
+				.id(REPLY_TWO_ID)
 				.createAt(today)
 				.content(REPLY_TWO)
 				.hostAddress(HOST_ADDRESS)
@@ -148,8 +148,8 @@ public class ReplyServiceTest {
 				.build();
 
 		List<Reply> replys = Arrays.asList(replyOne, replyTwo);
-		when(replyDaoMock.findAllByCommentId(COMMENT_ID)).thenReturn(replys);
-		List<ReplyDTO> replyDTOs = replyService.getAllByComment(COMMENT_ID);
+		when(replyDaoMock.findAllByCommentId(COMMENT_ONE_ID)).thenReturn(replys);
+		List<ReplyDTO> replyDTOs = replyService.getAllByComment(COMMENT_ONE_ID);
 		assertEquals(2, replyDTOs.size());
 		
 		int index = 0;

@@ -1,16 +1,19 @@
 package net.yoedtos.blog.service;
 
-import static net.yoedtos.blog.util.TestConstants.CATEGORY_ID;
-import static net.yoedtos.blog.util.TestConstants.CONTENT;
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.CONTENT_ONE;
+import static net.yoedtos.blog.util.TestConstants.CONTENT_TWO;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_UPDATE;
-import static net.yoedtos.blog.util.TestConstants.INTRO;
+import static net.yoedtos.blog.util.TestConstants.INTRO_ONE;
+import static net.yoedtos.blog.util.TestConstants.INTRO_TWO;
 import static net.yoedtos.blog.util.TestConstants.INTRO_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.META_DESC;
 import static net.yoedtos.blog.util.TestConstants.META_KEY;
-import static net.yoedtos.blog.util.TestConstants.POST_ID;
-import static net.yoedtos.blog.util.TestConstants.TITLE;
+import static net.yoedtos.blog.util.TestConstants.POST_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.TITLE_ONE;
+import static net.yoedtos.blog.util.TestConstants.TITLE_TWO;
 import static net.yoedtos.blog.util.TestConstants.TITLE_UPDATE;
-import static net.yoedtos.blog.util.TestConstants.USERNAME;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestUtil.createCategory;
 import static net.yoedtos.blog.util.TestUtil.createPostDTO;
 import static net.yoedtos.blog.util.TestUtil.createPostOne;
@@ -82,34 +85,34 @@ public class PostServiceTest {
 
 	@Test
 	public void whenCreateShouldCreateOnce() throws ServiceException, DaoException {
-		when(categoryDao.findById(CATEGORY_ID)).thenReturn(category);
+		when(categoryDao.findById(CATEGORY_ONE_ID)).thenReturn(category);
 		when(userDao.findByUsername(postDTO.getAuthor())).thenReturn(userOne);
 		
 		postService.create(postDTO);
 		verify(postDaoMock).persist((Post) captor.capture());
 		Post post = (Post) captor.getValue();
 
-		assertThat(post.getId(), equalTo(POST_ID));
+		assertThat(post.getId(), equalTo(POST_ONE_ID));
 		assertThat(post.getCreatedAt(), equalTo(today));
-		assertThat(post.getTitle(), equalTo(TITLE));
+		assertThat(post.getTitle(), equalTo(TITLE_ONE));
 		assertThat(post.getAuthor(), equalTo(userOne));
 		assertThat(post.getCategory(), equalTo(category));
-		assertThat(post.getIntro(), equalTo(INTRO));
-		assertThat(post.getContent(), equalTo(CONTENT));
+		assertThat(post.getIntro(), equalTo(INTRO_ONE));
+		assertThat(post.getContent(), equalTo(CONTENT_ONE));
 		assertThat(post.getMetaDesc(), equalTo(META_DESC));
 		assertThat(post.getMetaKey(), equalTo(META_KEY));
 		
-		verify(categoryDao, times(1)).findById(CATEGORY_ID);
-		verify(userDao, times(1)).findByUsername(USERNAME);
+		verify(categoryDao, times(1)).findById(CATEGORY_ONE_ID);
+		verify(userDao, times(1)).findByUsername(USERNAME_ONE);
 		verify(postDaoMock, times(1)).persist(post);
 	}
 
 	@Test
 	public void whenRemoveShouldRemoveOnce() throws DaoException, ServiceException {
-		postService.remove(POST_ID);
+		postService.remove(POST_ONE_ID);
 		verify(postDaoMock).remove((Long) captor.capture());
-		assertEquals(POST_ID, ((Long) captor.getValue()).intValue());
-		verify(postDaoMock, times(1)).remove(POST_ID);
+		assertEquals(POST_ONE_ID, ((Long) captor.getValue()).intValue());
+		verify(postDaoMock, times(1)).remove(POST_ONE_ID);
 	}
 
 	@Test(expected = ServiceException.class)
@@ -121,15 +124,15 @@ public class PostServiceTest {
 
 	@Test(expected = ServiceException.class)
 	public void whenRemoveShouldThrowsException() throws DaoException, ServiceException {
-		doThrow(new DaoException()).when(postDaoMock).remove(POST_ID);
-		postService.remove(POST_ID);
-		verify(postDaoMock, times(1)).remove(POST_ID);
+		doThrow(new DaoException()).when(postDaoMock).remove(POST_ONE_ID);
+		postService.remove(POST_ONE_ID);
+		verify(postDaoMock, times(1)).remove(POST_ONE_ID);
 	}
 
 	@Test
 	public void whenGetShouldReturnPostDTO() throws DaoException, ServiceException {
-		when(postDaoMock.findById(POST_ID)).thenReturn(postOne);
-		PostDTO postDTO = postService.get(POST_ID);
+		when(postDaoMock.findById(POST_ONE_ID)).thenReturn(postOne);
+		PostDTO postDTO = postService.get(POST_ONE_ID);
 		
 		assertThat(postDTO.getId(), equalTo(postOne.getId()));
 		assertThat(postDTO.getCreatedAt(), equalTo(postOne.getCreatedAt()));
@@ -141,13 +144,13 @@ public class PostServiceTest {
 		assertThat(postDTO.getMetaDesc(), equalTo(postOne.getMetaDesc()));
 		assertThat(postDTO.getMetaKey(), equalTo(postOne.getMetaKey()));
 		
-		verify(postDaoMock, times(1)).findById(POST_ID);
+		verify(postDaoMock, times(1)).findById(POST_ONE_ID);
 	}
 
 	@Test
 	public void whenUpdateShouldReturnPostUpdated() throws DaoException, ServiceException {
 		Post postUpdate = new Post.Builder()
-				.id(POST_ID)
+				.id(POST_ONE_ID)
 				.createdAt(today)
 				.title(TITLE_UPDATE)
 				.author(userOne)
@@ -173,11 +176,11 @@ public class PostServiceTest {
 
 		PostDTO dbPostDTO = postService.update(postDTO);
 
-		assertThat(dbPostDTO.getId(), equalTo(POST_ID));
+		assertThat(dbPostDTO.getId(), equalTo(POST_ONE_ID));
 		assertThat(dbPostDTO.getCreatedAt(), equalTo(today));
 		assertThat(dbPostDTO.getTitle(), equalTo(TITLE_UPDATE));
-		assertThat(dbPostDTO.getAuthor(), equalTo(USERNAME));
-		assertThat(dbPostDTO.getCategoryId(), equalTo(CATEGORY_ID));
+		assertThat(dbPostDTO.getAuthor(), equalTo(USERNAME_ONE));
+		assertThat(dbPostDTO.getCategoryId(), equalTo(CATEGORY_ONE_ID));
 		assertThat(dbPostDTO.getIntro(), equalTo(INTRO_UPDATE));
 		assertThat(dbPostDTO.getContent(), equalTo(CONTENT_UPDATE));
 		assertThat(dbPostDTO.getMetaDesc(), equalTo(META_DESC));
@@ -199,11 +202,11 @@ public class PostServiceTest {
 		Post postTwo = new Post.Builder()
 				.id(2L)
 				.createdAt(today)
-				.title(TITLE_UPDATE)
+				.title(TITLE_TWO)
 				.author(userOne)
 				.category(category)
-				.intro(INTRO_UPDATE)
-				.content(CONTENT_UPDATE)
+				.intro(INTRO_TWO)
+				.content(CONTENT_TWO)
 				.metaDesc(META_DESC)
 				.metaKey(META_KEY)
 				.build();
