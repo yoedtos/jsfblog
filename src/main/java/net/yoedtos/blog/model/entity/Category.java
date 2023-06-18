@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+
 import net.yoedtos.blog.model.dto.CategoryDTO;
 
 /**
@@ -17,6 +19,7 @@ import net.yoedtos.blog.model.dto.CategoryDTO;
  */
 @SuppressWarnings("serial")
 @Entity
+@NamedQuery(name="Category.loadAll", query="SELECT c FROM Category c")
 public class Category implements Serializable {
 	
 	@Id
