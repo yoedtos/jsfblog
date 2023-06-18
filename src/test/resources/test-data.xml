@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<CATEGORY category_id="1" value="Lorem" />
+	<CATEGORY category_id="2" value="Nullam" />
+
+	<USER 
+		user_id="1" 
+		username="userone" 
+		password="drowssap" 
+		fullname="User One" 
+		email="userone@domain.com" 
+		hostaddress="127.0.0.1" 
+		role="0" 
+		active="true" 
+		createat="2012-09-01 18:29:33.633"/>
+	<USER 
+		user_id="2" 
+		username="usertwo" 
+		password="drowssap" 
+		fullname="User Two" 
+		email="usertwo@domain.com" 
+		hostaddress="127.0.0.1"
+		role="0" 
+		active="true" 
+		createat="2012-09-01 20:31:39.94"/>
+
+	<POST
+		post_id="1"
+		createdat="2012-09-01 18:29:33.633"
+		title="Etiam sit amet orci"
+		category_category_id="1"
+		intro="Dolor sit amet, consectetuer adipiscing elit. Aenean commodo"
+		content="Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis"
+		metadesc="Lorem ipsum dolor sit amet, consectetuer"
+		metakey="Lorem, Ipsum"
+		author_user_id="1"/>
+	<POST
+		post_id="2"
+		createdat="2012-09-01 20:31:39.94"
+		title="Vivamus elementum semper"
+		category_category_id="2"
+		intro="Nulla consequat massa quis enim. Donec pede justo"
+		content="Curabitur ullamcorper ultricies nisi. Nam eget dui."
+		metadesc="Lorem ipsum dolor sit amet, consectetuer"
+		metakey="Lorem, Ipsum"
+		author_user_id="2"/>
+
+	<COMMENT
+		comment_id="1" 
+		createat="2012-09-01 18:29:33.633"
+		author="Visitor One" 
+		content="Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu" 
+		email="userone@domain.com" 
+		hostaddress="127.0.0.1" 
+		post_id="1"/>
+	<COMMENT 
+		comment_id="2" 
+		createat="2012-09-01 20:31:39.94" 
+		author="Vistor Two" 
+		content=" Donec vitae sapien ut libero venenatis faucibus.Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt." 
+		email="visitor2@domain.com" 
+		hostaddress="127.0.0.1" 
+		post_id="1"/>
+
+	<REPLY 
+		reply_id="1" 
+		createat="2012-09-01 18:29:33.633"
+		content="Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc" 
+		hostaddress="127.0.0.1" 
+		author_user_id="1" 
+		comment_id="1"/>
+	<REPLY 
+		reply_id="2" 
+		createat="2012-09-01 20:31:39.94" 
+		content=" Donec vitae sapien ut libero venenatis faucibus.Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt." 
+		hostaddress="127.0.0.1" 
+		author_user_id="1" 
+		comment_id="2"/>
+</dataset>

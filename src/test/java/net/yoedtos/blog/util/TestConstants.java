@@ -4,6 +4,8 @@ public class TestConstants {
 	
 	private TestConstants() {}
 	
+	public final static String DATA_SET = "test-data.xml";
+	
 	public final static long USER_ONE_ID = 1;
 	public final static long USER_TWO_ID = 1;
 	public final static String USERNAME_ONE = "userone";
