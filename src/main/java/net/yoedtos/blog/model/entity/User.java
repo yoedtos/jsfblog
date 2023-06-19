@@ -13,6 +13,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 import net.yoedtos.blog.model.Role;
@@ -24,6 +26,10 @@ import net.yoedtos.blog.model.dto.UserDTO;
  */
 @SuppressWarnings("serial")
 @Entity
+@NamedQueries({
+	@NamedQuery(name="User.loadAll", query="SELECT u FROM User u"),
+	@NamedQuery(name="User.findByUsername", query="SELECT u FROM User u WHERE u.username = :user"),
+})
 public class User implements Serializable {
 	
 	@Id
@@ -33,7 +39,7 @@ public class User implements Serializable {
 	@Column(unique = true, length = 20)
 	private String username;
 	private String password;
-	@Column(unique = true, length = 40)
+	@Column(length = 40)
 	private String fullname;
 	@Column(unique = true, length = 50)
 	private String email;
