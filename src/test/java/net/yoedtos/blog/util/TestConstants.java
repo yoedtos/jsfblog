@@ -6,17 +6,24 @@ public class TestConstants {
 	
 	public final static String DATA_SET = "test-data.xml";
 	
-	public final static long USER_ONE_ID = 1;
-	public final static long USER_TWO_ID = 1;
+	public final static long USER_ONE_ID = 1L;
+	public final static long USER_TWO_ID = 2L;
+	public final static long USER_NEW_ID = 3L;
 	public final static String USERNAME_ONE = "userone";
 	public final static String FULLNAME_ONE = "User One";
 	public final static String EMAIL_ONE = "userone@domain.com";
 	public final static String USERNAME_TWO = "usertwo";
 	public final static String FULLNAME_TWO = "User Two";
 	public final static String EMAIL_TWO = "usertwo@domain.com";
+	public final static String USERNAME_NEW = "newuser";
+	public final static String FULLNAME_NEW = "New User";
+	public final static String EMAIL_NEW = "newuser@domain.com";
 	public final static String FULL_UPDATE = "User One Update";
 	public final static String EMAIL_UPDATE = "user-one@domain.com";
 	public final static String PASS_UPDATE = "password1";
+
+	public final static String CREATE_ONE = "2012-09-01 18:29:33.633";
+	public final static String CREATE_TWO = "2012-09-01 20:31:39.94";
 	
 	public final static String PASSWORD = "password";
 	public final static String ENCODED = "drowssap";

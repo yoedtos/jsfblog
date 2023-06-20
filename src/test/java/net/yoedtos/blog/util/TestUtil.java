@@ -1,26 +1,33 @@
 package net.yoedtos.blog.util;
 
 import static net.yoedtos.blog.util.TestConstants.AUTHOR_ONE;
-import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE;
-import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_ONE;
+import static net.yoedtos.blog.util.TestConstants.FULLNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.INTRO_ONE;
 import static net.yoedtos.blog.util.TestConstants.META_DESC;
 import static net.yoedtos.blog.util.TestConstants.META_KEY;
 import static net.yoedtos.blog.util.TestConstants.PASSWORD;
 import static net.yoedtos.blog.util.TestConstants.POST_ONE_ID;
-import static net.yoedtos.blog.util.TestConstants.REPLY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.REPLY_ONE;
+import static net.yoedtos.blog.util.TestConstants.REPLY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.TITLE_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.USER_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.USER_TWO_ID;
 
+import java.text.ParseException;
 import java.util.Date;
+
+import org.apache.commons.lang3.time.DateUtils;
 
 import net.yoedtos.blog.model.Role;
 import net.yoedtos.blog.model.dto.CommentDTO;
@@ -59,6 +66,18 @@ public class TestUtil {
 				.active(true)
 				.createAt(createAt)
 				.build();
+	}
+	
+	public static User createUserTwo(Date createAt) {
+		return new User.Builder(USERNAME_TWO)
+			.userId(USER_TWO_ID)
+			.fullname(FULLNAME_TWO)
+			.email(EMAIL_TWO)
+			.hostAddress(HOST_ADDRESS)
+			.role(Role.MEMBER)
+			.active(true)
+			.createAt(createAt)
+			.build();
 	}
 	
 	public static PostDTO createPostDTO(Date createAt) {
@@ -136,5 +155,15 @@ public class TestUtil {
 				.author(author)
 				.comment(comment)
 				.build();
+	}
+	
+	public static Date createDate(String dateStr) {
+		Date date;
+		try {
+			date = DateUtils.parseDate(dateStr, new String[]{"yyyy-MM-dd HH:mm:ss.SSS"});
+		} catch (ParseException e) {
+			throw new RuntimeException(e.getMessage());
+		}
+		return date;
 	}
 }

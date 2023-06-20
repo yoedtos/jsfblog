@@ -10,7 +10,7 @@
 		fullname="User One" 
 		email="userone@domain.com" 
 		hostaddress="127.0.0.1" 
-		role="0" 
+		role="MEMBER" 
 		active="true" 
 		createat="2012-09-01 18:29:33.633"/>
 	<USER 
@@ -20,7 +20,7 @@
 		fullname="User Two" 
 		email="usertwo@domain.com" 
 		hostaddress="127.0.0.1"
-		role="0" 
+		role="MEMBER" 
 		active="true" 
 		createat="2012-09-01 20:31:39.94"/>
 
