@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 import net.yoedtos.blog.model.dto.CommentDTO;
@@ -24,6 +26,9 @@ import net.yoedtos.blog.model.dto.CommentDTO;
  */
 @SuppressWarnings("serial")
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Comment.loadAll", query="SELECT c FROM Comment c"),
+})
 public class Comment implements Serializable {
 	
 	@Id
