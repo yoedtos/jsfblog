@@ -63,13 +63,18 @@ public class TestConstants {
 	
 	public final static long COMMENT_ONE_ID = 1L;
 	public final static long COMMENT_TWO_ID = 2L;
+	public final static long COMMENT_NEW_ID = 3L;
 	public final static String AUTHOR_ONE = "Visitor One";
 	public final static String AUTHOR_TWO = "Visitor Two";
+	public final static String AUTHOR_NEW = "Visitor New";
 	public final static String COMMENT_ONE = "Nulla consequat massa quis enim. Donec pede justo,"
 			+ " fringilla vel, aliquet nec, vulputate eget, arcu";
 	
 	public final static String COMMENT_TWO = " Donec vitae sapien ut libero venenatis faucibus."
 			+ "Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.";
+	
+	public final static String COMMENT_NEW = "Curabitur at lacus ac velit ornare lobortis."
+			+ " Curabitur a felis in nunc fringilla tristique amet orci eget eros.";
 	
 	public final static long REPLY_ONE_ID = 1L;
 	public final static long REPLY_TWO_ID = 2L;
