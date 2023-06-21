@@ -38,6 +38,7 @@ public class TestConstants {
 	
 	public final static long POST_ONE_ID = 1L;
 	public final static long POST_TWO_ID = 2L;
+	public final static long POST_NEW_ID = 3L;
 	public final static String TITLE_ONE = "Etiam sit amet orci";
 	public final static String INTRO_ONE = "Dolor sit amet, consectetuer adipiscing elit. Aenean commodo";
 	public final static String CONTENT_ONE = "Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis "
@@ -46,6 +47,10 @@ public class TestConstants {
 	public final static String TITLE_TWO = "Vivamus elementum semper";
 	public final static String INTRO_TWO = "Nulla consequat massa quis enim. Donec pede justo";
 	public final static String CONTENT_TWO = "Curabitur ullamcorper ultricies nisi. Nam eget dui.";
+	
+	public final static String TITLE_NEW = "Vestibulum ante ipsum primis";
+	public final static String INTRO_NEW = "Curae; In ac dui quis mi consectetuer lacinia";
+	public final static String CONTENT_NEW = "Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum.";
 	
 	public final static String TITLE_UPDATE = "Vivamus elementum semper";
 	public final static String INTRO_UPDATE = "Nulla consequat massa quis enim. Donec pede justo";
