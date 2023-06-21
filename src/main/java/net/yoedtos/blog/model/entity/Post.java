@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -23,6 +25,9 @@ import net.yoedtos.blog.model.dto.PostDTO;
  */
 @SuppressWarnings("serial")
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Post.loadAll", query="SELECT p FROM Post p"),
+})
 public class Post implements Serializable {
 	
 	@Id
