@@ -78,10 +78,14 @@ public class TestConstants {
 	
 	public final static long REPLY_ONE_ID = 1L;
 	public final static long REPLY_TWO_ID = 2L;
+	public final static long REPLY_NEW_ID = 3L;
 	public final static String REPLY_ONE = "Donec sodales sagittis magna. Sed consequat,"
 			+ " leo eget bibendum sodales, augue velit cursus nunc";
 	
 	public final static String REPLY_TWO = " Donec vitae sapien ut libero venenatis faucibus."
 			+ "Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.";
+	
+	public final static String REPLY_NEW = "Pellentesque habitant morbi tristique senectus"
+			+ " et netus et malesuada fames ac turpis egestas. Nullam quis ante.";
 }
 
