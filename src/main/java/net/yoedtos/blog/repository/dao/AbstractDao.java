@@ -84,6 +84,23 @@ public abstract class AbstractDao<T> implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
+	protected List<T> loadByQuery(String namedQuery, QueryKey key, Object param) throws Exception {
+		EntityManager manager = DaoHandler.getEntityManager();
+		
+		List<T> listT;
+		try {
+			Query query = manager.createNamedQuery(namedQuery);
+			query.setParameter(key.getValue(), param);
+			listT = query.getResultList();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			manager.close();
+		}
+		return listT;
+	}
+	
+	@SuppressWarnings("unchecked")
 	protected T loadOneByQuery(String namedQuery, QueryKey key, String param) throws Exception {
 		EntityManager manager = DaoHandler.getEntityManager();
 		T t;

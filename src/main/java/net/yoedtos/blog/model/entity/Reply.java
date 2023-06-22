@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -25,6 +27,10 @@ import net.yoedtos.blog.model.dto.ReplyDTO;
  */
 @SuppressWarnings("serial")
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Reply.loadAll", query="SELECT r FROM Reply r"),
+	@NamedQuery(name="Reply.findAllByCommentId", query="SELECT r FROM Reply r WHERE r.comment.id = :commentId"),
+})
 public class Reply implements Serializable {
 
 	@Id

@@ -1,7 +1,8 @@
 package net.yoedtos.blog.repository.dao;
 
 public enum QueryKey {
-	USERNAME("user");
+	USERNAME("user"),
+	COMMENT_ID("commentId");
 	
 	private String value;
 	
