@@ -5,5 +5,7 @@ public class Constants {
 	
 	public static final String PASS_MASK = "*******";
 	public static final String PERSIST_UNIT = "blogdb";
+	public static final String PROPERTY_FILE_NAME = "jsfblog.properties";
+	public static final String PROPERTY_FILE_HEADER = "jsfblog settings";
 
 }
