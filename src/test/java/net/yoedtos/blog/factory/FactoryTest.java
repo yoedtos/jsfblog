@@ -6,7 +6,9 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 import net.yoedtos.blog.repository.Repository;
+import net.yoedtos.blog.repository.Storage;
 import net.yoedtos.blog.repository.dao.CategoryDao;
+import net.yoedtos.blog.repository.fs.SettingProps;
 import net.yoedtos.blog.service.CategoryService;
 import net.yoedtos.blog.service.Service;
 
@@ -24,5 +26,12 @@ public class FactoryTest {
 		CategoryDao categoryDao = RepositoryFactory.create(CategoryDao.class);
 		assertThat(categoryDao, instanceOf(CategoryDao.class));
 		assertThat(categoryDao, instanceOf(Repository.class));
+	}
+	
+	@Test
+	public void storageCreationTest() {
+		SettingProps settingProps = StorageFactory.create(SettingProps.class);
+		assertThat(settingProps, instanceOf(SettingProps.class));
+		assertThat(settingProps, instanceOf(Storage.class));
 	}
 }
