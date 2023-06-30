@@ -12,12 +12,23 @@ import static net.yoedtos.blog.util.TestConstants.FULLNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.INTRO_ONE;
+import static net.yoedtos.blog.util.TestConstants.LANGUAGE;
 import static net.yoedtos.blog.util.TestConstants.META_DESC;
 import static net.yoedtos.blog.util.TestConstants.META_KEY;
 import static net.yoedtos.blog.util.TestConstants.PASSWORD;
 import static net.yoedtos.blog.util.TestConstants.POST_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.REPLY_ONE;
 import static net.yoedtos.blog.util.TestConstants.REPLY_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.SITE_ADDRESS;
+import static net.yoedtos.blog.util.TestConstants.SITE_EMAIL;
+import static net.yoedtos.blog.util.TestConstants.SITE_META_DESC;
+import static net.yoedtos.blog.util.TestConstants.SITE_META_KEY;
+import static net.yoedtos.blog.util.TestConstants.SITE_NAME;
+import static net.yoedtos.blog.util.TestConstants.SMTP_PASSWORD;
+import static net.yoedtos.blog.util.TestConstants.SMTP_PORT;
+import static net.yoedtos.blog.util.TestConstants.SMTP_SERVER;
+import static net.yoedtos.blog.util.TestConstants.SMTP_USER;
+import static net.yoedtos.blog.util.TestConstants.SMTP_USE_TLS;
 import static net.yoedtos.blog.util.TestConstants.TITLE_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
@@ -26,6 +37,7 @@ import static net.yoedtos.blog.util.TestConstants.USER_TWO_ID;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Properties;
 
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -33,12 +45,15 @@ import net.yoedtos.blog.model.Role;
 import net.yoedtos.blog.model.dto.CommentDTO;
 import net.yoedtos.blog.model.dto.PostDTO;
 import net.yoedtos.blog.model.dto.ReplyDTO;
+import net.yoedtos.blog.model.dto.SettingDTO;
 import net.yoedtos.blog.model.dto.UserDTO;
 import net.yoedtos.blog.model.entity.Category;
 import net.yoedtos.blog.model.entity.Comment;
 import net.yoedtos.blog.model.entity.Post;
 import net.yoedtos.blog.model.entity.Reply;
 import net.yoedtos.blog.model.entity.User;
+import net.yoedtos.blog.repository.fs.PropsKey;
+import net.yoedtos.blog.view.i18n.Language;
 
 public class TestUtil {
 
@@ -165,5 +180,38 @@ public class TestUtil {
 			throw new RuntimeException(e.getMessage());
 		}
 		return date;
+	}
+	
+	public static SettingDTO createSettingDTO() {
+		return new SettingDTO.Builder()
+				.language(LANGUAGE)
+				.siteName(SITE_NAME)
+				.siteAddress(SITE_ADDRESS)
+				.siteEmail(SITE_EMAIL)
+				.siteMetaDesc(SITE_META_DESC)
+				.siteMetaKey(SITE_META_KEY)
+				.smtpServer(SMTP_SERVER)
+				.smtpPort(SMTP_PORT)
+				.useTLS(SMTP_USE_TLS)
+				.smtpUser(SMTP_USER)
+				.smtpPassword(SMTP_PASSWORD)
+				.build();
+	}
+	
+	public static Properties createSettings() {
+		Properties settings = new Properties();
+		settings.setProperty(PropsKey.LANGUAGE, Language.EN.name());
+		settings.setProperty(PropsKey.SITE_NAME, SITE_NAME);
+		settings.setProperty(PropsKey.SITE_ADDRESS, SITE_ADDRESS);
+		settings.setProperty(PropsKey.SITE_EMAIL, SITE_EMAIL);
+		settings.setProperty(PropsKey.SITE_META_DESC, SITE_META_DESC);
+		settings.setProperty(PropsKey.SITE_META_KEY, SITE_META_KEY);
+		settings.setProperty(PropsKey.SMTP_SERVER, SMTP_SERVER);
+		settings.setProperty(PropsKey.SMTP_PORT, SMTP_PORT);
+		settings.setProperty(PropsKey.SMTP_USE_TLS, Boolean.toString(SMTP_USE_TLS));
+		settings.setProperty(PropsKey.SMTP_USER, SMTP_USER);
+		settings.setProperty(PropsKey.SMTP_PASSWORD, SMTP_PASSWORD);
+		
+		return settings;
 	}
 }

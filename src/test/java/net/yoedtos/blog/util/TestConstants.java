@@ -1,5 +1,7 @@
 package net.yoedtos.blog.util;
 
+import net.yoedtos.blog.view.i18n.Language;
+
 public class TestConstants {
 	
 	private TestConstants() {}
@@ -87,5 +89,18 @@ public class TestConstants {
 	
 	public final static String REPLY_NEW = "Pellentesque habitant morbi tristique senectus"
 			+ " et netus et malesuada fames ac turpis egestas. Nullam quis ante.";
+	
+	public final static Language LANGUAGE = Language.EN;
+	public final static String SITE_NAME = "Web Blog App";
+	public final static String SITE_ADDRESS = "https://blogapp.com";
+	public final static String SITE_EMAIL = "master@blogapp.com";
+	public final static String SITE_META_DESC = "Web blog with cool stuffs";
+	public final static String SITE_META_KEY = "Tecnology, Computer";
+	public final static String SMTP_SERVER = "smtp.blogapp.com";
+	public final static String SMTP_PORT = "25";
+	public final static boolean SMTP_USE_TLS = true;
+	public final static String SMTP_USER = "blogapp";
+	public final static String SMTP_PASSWORD = "secret";
+	public final static String SMTP_PASSWORD_UPDATE = "#secret#";
 }
 
