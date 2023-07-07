@@ -1,5 +1,6 @@
 package net.yoedtos.blog.util;
 
+import net.yoedtos.blog.model.Type;
 import net.yoedtos.blog.view.i18n.Language;
 
 public class TestConstants {
@@ -102,5 +103,30 @@ public class TestConstants {
 	public final static String SMTP_USER = "blogapp";
 	public final static String SMTP_PASSWORD = "secret";
 	public final static String SMTP_PASSWORD_UPDATE = "#secret#";
+	
+	public final static long MEDIA_ONE_ID = 1L;
+	public final static long MEDIA_TWO_ID = 2L;
+	
+	public final static String MEDIA_ONE_NAME = "bestblogs.zip";
+	public final static String MEDIA_TWO_NAME = "wallpaper.png";
+	
+	public final static String MEDIA_ONE_DESC = "List of best blogs in 2012";
+	public final static String MEDIA_TWO_DESC = "Amazing nature wallpaper";
+	
+	public final static String MEDIA_ONE_URN = "/files/2012/9/bestblogs.zip";
+	public final static String MEDIA_TWO_URN = "/images/2012/10/wallpaper.png";
+	
+	public final static String MEDIA_ONE_SURN = "/" + MEDIA_ONE_ID + "-" + MEDIA_ONE_NAME;
+	public final static String MEDIA_TWO_SURN = "/" + MEDIA_TWO_ID + "-" + MEDIA_TWO_NAME;
+	
+	public final static byte[] MEDIA_ONE_BIN = new byte[] {56, 88, 98, 38, 12, 98, 74, 61};
+	public final static byte[] MEDIA_TWO_BIN = new byte[] {46, 68, 28, 18, 82, 58, 44, 79};
+	
+	public final static Type MEDIA_ONE_TYPE = Type.ZIP;
+	public final static Type MEDIA_TWO_TYPE = Type.IMG;
+	
+	public final static String CONTENT_TYPE_ONE = "application/zip";
+	public final static String CONTENT_TYPE_TWO = "image/png";
+	
 }
 

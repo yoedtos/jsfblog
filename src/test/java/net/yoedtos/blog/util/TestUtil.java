@@ -6,6 +6,7 @@ import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE;
 import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_ONE;
+import static net.yoedtos.blog.util.TestConstants.CONTENT_TYPE_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_ONE;
@@ -13,6 +14,11 @@ import static net.yoedtos.blog.util.TestConstants.FULLNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.INTRO_ONE;
 import static net.yoedtos.blog.util.TestConstants.LANGUAGE;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_DESC;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_NAME;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_TYPE;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_URN;
 import static net.yoedtos.blog.util.TestConstants.META_DESC;
 import static net.yoedtos.blog.util.TestConstants.META_KEY;
 import static net.yoedtos.blog.util.TestConstants.PASSWORD;
@@ -34,7 +40,6 @@ import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.USER_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.USER_TWO_ID;
-
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Properties;
@@ -43,12 +48,14 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import net.yoedtos.blog.model.Role;
 import net.yoedtos.blog.model.dto.CommentDTO;
+import net.yoedtos.blog.model.dto.MediaDTO;
 import net.yoedtos.blog.model.dto.PostDTO;
 import net.yoedtos.blog.model.dto.ReplyDTO;
 import net.yoedtos.blog.model.dto.SettingDTO;
 import net.yoedtos.blog.model.dto.UserDTO;
 import net.yoedtos.blog.model.entity.Category;
 import net.yoedtos.blog.model.entity.Comment;
+import net.yoedtos.blog.model.entity.Media;
 import net.yoedtos.blog.model.entity.Post;
 import net.yoedtos.blog.model.entity.Reply;
 import net.yoedtos.blog.model.entity.User;
@@ -213,5 +220,39 @@ public class TestUtil {
 		settings.setProperty(PropsKey.SMTP_PASSWORD, SMTP_PASSWORD);
 		
 		return settings;
+	}
+	
+	public static MediaDTO createMediaDTO(Date dateOne) {
+		return new MediaDTO.Builder()
+				.createAt(dateOne)
+				.owner(USERNAME_ONE)
+				.name(MEDIA_ONE_NAME)
+				.description(MEDIA_ONE_DESC)
+				.contentType(CONTENT_TYPE_ONE)
+				.type(MEDIA_ONE_TYPE)
+				.build();
+	}
+	
+	public static Media createMediaOne(Date dateOne) {
+		return new Media.Builder()
+				.id(MEDIA_ONE_ID)
+				.createAt(dateOne)
+				.owner(createUserOne(dateOne))
+				.name(MEDIA_ONE_NAME)
+				.description(MEDIA_ONE_DESC)
+				.contentType(CONTENT_TYPE_ONE)
+				.urn(MEDIA_ONE_URN)
+				.build();
+	}
+	
+	public static Media createMedia(Date dateOne) {
+		return new Media.Builder()
+				.createAt(dateOne)
+				.owner(createUserOne(dateOne))
+				.name(MEDIA_ONE_NAME)
+				.description(MEDIA_ONE_DESC)
+				.contentType(CONTENT_TYPE_ONE)
+				.urn(MEDIA_ONE_URN)
+				.build();
 	}
 }
