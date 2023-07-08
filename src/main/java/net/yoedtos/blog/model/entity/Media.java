@@ -173,10 +173,11 @@ public class Media implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Media other = (Media) obj;
-		return Objects.equals(contentType, other.contentType) && Objects.equals(createAt, other.createAt)
+		return Objects.equals(contentType, other.contentType) 
+				&& Objects.equals(createAt.getTime(), other.createAt.getTime())
 				&& Objects.equals(description, other.description) && Objects.equals(id, other.id)
 				&& Objects.equals(name, other.name) && Objects.equals(owner, other.owner)
 				&& Objects.equals(urn, other.urn);
-	}
+	}	
 }
 
