@@ -26,7 +26,7 @@ public class TestConstants {
 	public final static String PASS_UPDATE = "password1";
 
 	public final static String CREATE_ONE = "2012-09-01 18:29:33.633";
-	public final static String CREATE_TWO = "2012-09-01 20:31:39.94";
+	public final static String CREATE_TWO = "2012-09-01 20:31:39.944";
 	
 	public final static String PASSWORD = "password";
 	public final static String ENCODED = "drowssap";
@@ -106,15 +106,20 @@ public class TestConstants {
 	
 	public final static long MEDIA_ONE_ID = 1L;
 	public final static long MEDIA_TWO_ID = 2L;
+	public final static long MEDIA_NEW_ID = 3L;
+	public final static long MEDIA_OUT_ID = 4L;
 	
 	public final static String MEDIA_ONE_NAME = "bestblogs.zip";
 	public final static String MEDIA_TWO_NAME = "wallpaper.png";
+	public final static String MEDIA_NEW_NAME = "bookslist.zip";
 	
 	public final static String MEDIA_ONE_DESC = "List of best blogs in 2012";
 	public final static String MEDIA_TWO_DESC = "Amazing nature wallpaper";
+	public final static String MEDIA_NEW_DESC = "List of books to read";
 	
 	public final static String MEDIA_ONE_URN = "/files/2012/9/bestblogs.zip";
-	public final static String MEDIA_TWO_URN = "/images/2012/10/wallpaper.png";
+	public final static String MEDIA_TWO_URN = "/images/2012/9/wallpaper.png";
+	public final static String MEDIA_NEW_URN = "/files/2012/9/bookslist.zip";
 	
 	public final static String MEDIA_ONE_SURN = "/" + MEDIA_ONE_ID + "-" + MEDIA_ONE_NAME;
 	public final static String MEDIA_TWO_SURN = "/" + MEDIA_TWO_ID + "-" + MEDIA_TWO_NAME;

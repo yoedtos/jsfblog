@@ -76,4 +76,20 @@
 		hostaddress="127.0.0.1" 
 		author_user_id="1" 
 		comment_id="2"/>
+	<MEDIA 
+		media_id="1" 
+		createat="2012-09-01 18:29:33.633"
+		owner_user_id="1"
+		name="bestblogs.zip"
+		description="List of best blogs in 2012"
+		contenttype="application/zip"
+		urn="/files/2012/9/bestblogs.zip"/>
+	<MEDIA 
+		media_id="2" 
+		createat="2012-09-01 20:31:39.944"
+		owner_user_id="2"
+		name="wallpaper.png"
+		description="Amazing nature wallpaper"
+		contenttype="image/png"
+		urn="/images/2012/9/wallpaper.png"/>
 </dataset>
