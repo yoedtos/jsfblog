@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<ui:insert name="meta" />
+
+	<link rel="shortcut icon" type="image/x-icon" href="#{resource['images:favicon.ico']}" />
+
+	<title><ui:insert name="windowTitle" /></title>
+
+	<h:outputScript library="js" name="general.js" target="head" />
+
+	<h:outputStylesheet library="css" name="w3.css" />
+	<h:outputStylesheet library="css" name="layout.css" />
+	<h:outputStylesheet library="css" name="comments.css" />
+	<h:outputStylesheet library="css" name="classes.css" />
+</h:head>
+
+<h:body>
+	<div class="w3-container">
+		<noscript>
+			<div id="nojsview">
+				<span>#{text['msg.nojscode']}</span>
+			</div>
+		</noscript>
+		<ui:include src="/WEB-INF/pages/header.xhtml" />
+		<div class="w3-container">
+			<p:growl id="growlMsg" showDetail="true" />
+			<ui:insert name="menuView" />
+			<ui:insert name="contentView" />
+		</div>
+		<ui:include src="/WEB-INF/pages/footer.xhtml" />
+	</div>
+</h:body>
+
+</html>

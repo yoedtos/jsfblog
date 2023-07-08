@@ -1,0 +1,57 @@
+/* header styles  */
+div#header {
+	width: auto;
+	height: 100px;
+	margin: 0px auto 10px auto;
+ 	border-bottom: 1px solid #D0D0D0; 
+	background-image: url("#{resource['images:hgrad.png']}");
+	background-repeat: repeat-x;
+}
+
+div#header img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 15px;
+}
+
+div#nojsview {
+	margin: auto;
+	padding: 10px;
+	color: red;
+	background-color: white;
+	border: 1px solid red;
+	font: bold 20px Georgia, serif;
+	text-align: center;
+}
+
+/* footer styles */
+div#footer {
+	width: auto;
+	height: 100px;
+	margin: 10px auto 0px auto;
+	border-top: 1px solid #D0D0D0;
+	background-image: url("#{resource['images:fgrad.png']}");
+	background-repeat: repeat-x;
+}
+
+div#footer h6 {
+	margin: 0;
+	padding-top: 8px;
+	line-height: normal;
+	text-align: center;
+	color: black;
+	word-spacing: 5px;
+	font-size: 12px;
+}
+
+div#footer a {
+	color: blue;
+}
+
+div#footer img {
+	display: inline;
+	margin: 10px 10px 3px;
+}

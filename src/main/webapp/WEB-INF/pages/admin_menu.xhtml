@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:p="http://primefaces.org/ui">
+
+	<div class="w3-bar w3-light-green w3-small">
+	    <a href="#{request.contextPath}/admin/home.jsf"
+	    	class="w3-bar-item w3-button #{view.viewId == '/admin/home.xhtml' ? 'w3-gray' : ''}">
+	    		#{text['lb.admin']}
+	    </a>
+	    <a href="#{request.contextPath}/admin/setting.jsf"
+	    	class="w3-bar-item w3-button #{view.viewId == '/admin/setting.xhtml' ? 'w3-gray' : ''}">
+	    		#{text['lb.setting']}
+	    </a>
+	    <a href="#{request.contextPath}/admin/category.jsf"
+	    	class="w3-bar-item w3-button #{view.viewId == '/admin/category.xhtml' ? 'w3-gray' : ''}">
+	    		#{text['lb.category']}
+	    </a>
+	    <a href="#{request.contextPath}/admin/users.jsf"
+	    	class="w3-bar-item w3-button #{view.viewId == '/admin/users.xhtml' ? 'w3-gray' : ''}">
+	    		#{text['lb.users']}
+	    </a>
+	    <a href="#{request.contextPath}/home/home.jsf"
+	    	class="w3-bar-item w3-button #{view.viewId == '/home/home.xhtml' ? 'w3-gray' : ''}">
+	    		#{text['lb.user']}
+	    </a>
+	</div>
+</ui:composition>

@@ -1,0 +1,144 @@
+.alert {
+	color: red;
+	font-size: 14px;
+}
+
+.pagerIcon {
+	width: 20px;
+	height: auto;
+}
+
+.pagerIndex {
+	padding: 6px 12px;
+	text-shadow:1px 1px 0 #444;
+}
+
+/* contents */
+.listTable {
+	border: 1px solid #D0D0D0;
+	width: 100%;	
+}
+
+.listTable-header {
+	text-align: center;
+	font: 14px Arial, sans-serif;
+	font-weight: bold;
+	color: Snow;
+	background: #008B45;
+}
+
+.listTable-oddRow {
+	text-align: center;
+	font: 14px Arial, sans-serif;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.listTable-evenRow {
+	text-align:center;
+	font: 14px Arial, sans-serif;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;	
+}
+
+/* New classes created  */
+
+.button-color {
+	border: 1px solid #BFBFBF;
+	background: #CCE6FF;
+}
+
+.custom-input input[type="file"] {
+	display: none;
+}
+
+.custom-input {
+	margin: 10px 20px 10px 1px;
+	background: #CCE6FF;
+	border: 1px solid #ccc;
+	display: inline-block;
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+.frontTitle a:visited, .frontTitle a:link {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #98bf21;
+	text-align: center;
+	padding: 10px;	
+}
+
+.frontContent {
+	height: 200px;
+	overflow-y: scroll;
+	border: 1px solid #ccc;
+	border-top: none;
+	padding: 10px 20px;
+}
+
+/* a horizontal rule  */
+.hr-thin {
+	border-top: 1px solid #D0D0D0;
+}
+
+.id-holder {
+	display: none;
+}
+
+.input-form {
+	max-width: 600px;
+	margin: auto;	
+}
+
+.icons {
+	margin-right: 5px;	
+}
+
+.icon-size {
+	width: 16px;
+	height: 16px;
+}
+
+.postTitle {
+	font-size: 18px;
+	font-weight: bold;
+	padding: 20px 10px;
+}
+
+.remember {
+	padding-left: 15px;
+}
+
+.search-icon {
+	background: white
+				url("#{resource['images:icons/search.gif']}") 
+				no-repeat 1px 15px;
+} 
+
+.searchTitle a:visited, .searchTitle a:link {
+	display: block;
+	color: #6495ED;
+	font-size: 15px;
+	font-weight: bold;
+	padding-top: 10px;
+	text-decoration: none;	
+}
+
+.searchTitle a:hover {
+	text-decoration: underline;
+}
+
+.selectType {
+	padding:8px 1px;
+	border: 1px solid #BFBFBF;
+	background: #CCE6FF;
+	margin-right: 20px;
+}
+
+.selectLabel {
+	margin-right:5px;	
+}
+
