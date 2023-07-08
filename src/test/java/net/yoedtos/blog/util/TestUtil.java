@@ -41,6 +41,7 @@ import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.USER_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.USER_TWO_ID;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
@@ -254,5 +255,13 @@ public class TestUtil {
 				.contentType(CONTENT_TYPE_ONE)
 				.urn(MEDIA_ONE_URN)
 				.build();
+	}
+	
+	public static String createUrnOne(String mediaName) {
+		Calendar today = Calendar.getInstance();
+		return "/" + Constants.FILES + "/" 
+				+ today.get(Calendar.YEAR) 
+				+ "/" + (today.get(Calendar.MONTH) + 1) 
+				+ "/" + mediaName;
 	}
 }
