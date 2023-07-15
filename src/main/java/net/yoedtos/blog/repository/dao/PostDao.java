@@ -74,12 +74,22 @@ public class PostDao extends AbstractDao<Post> implements Repository<Post> {
 	}
 
 	public List<Post> getLatestBetween(long begin, int maxPages) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Post> posts;
+		try {
+			posts = loadByQuery("Post.loadLastBetween", begin, maxPages);
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			throw new DaoException(e.getMessage());
+		}
+		return posts;
 	}
 
 	public Long getTotalPosts() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return (Long) loadOneByQuery("Post.loadPostTotal");
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			throw new DaoException(e.getMessage());
+		}
 	}
 }
