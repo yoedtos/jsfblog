@@ -133,5 +133,12 @@ public class TestConstants {
 	public final static String CONTENT_TYPE_ONE = "application/zip";
 	public final static String CONTENT_TYPE_TWO = "image/png";
 	
+	public final static long TOTAL_POSTS = 10;
+	public final static long PAGE_TWO = 2;
+	public final static long PAGE_NG = 4;
+	public final static long BEGIN_ZERO = 0;
+	public final static long BEGIN_FOUR = 4;
+	public final static long BEGIN_NG = 12;
+	public final static int MAX_PAGES = 4;
 }
 

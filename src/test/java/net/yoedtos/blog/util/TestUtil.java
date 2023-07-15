@@ -6,13 +6,16 @@ import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE;
 import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_ONE;
+import static net.yoedtos.blog.util.TestConstants.CONTENT_TWO;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_TYPE_ONE;
+import static net.yoedtos.blog.util.TestConstants.CREATE_TWO;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.INTRO_ONE;
+import static net.yoedtos.blog.util.TestConstants.INTRO_TWO;
 import static net.yoedtos.blog.util.TestConstants.LANGUAGE;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_DESC;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_ID;
@@ -23,6 +26,7 @@ import static net.yoedtos.blog.util.TestConstants.META_DESC;
 import static net.yoedtos.blog.util.TestConstants.META_KEY;
 import static net.yoedtos.blog.util.TestConstants.PASSWORD;
 import static net.yoedtos.blog.util.TestConstants.POST_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.POST_TWO_ID;
 import static net.yoedtos.blog.util.TestConstants.REPLY_ONE;
 import static net.yoedtos.blog.util.TestConstants.REPLY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.SITE_ADDRESS;
@@ -36,6 +40,7 @@ import static net.yoedtos.blog.util.TestConstants.SMTP_SERVER;
 import static net.yoedtos.blog.util.TestConstants.SMTP_USER;
 import static net.yoedtos.blog.util.TestConstants.SMTP_USE_TLS;
 import static net.yoedtos.blog.util.TestConstants.TITLE_ONE;
+import static net.yoedtos.blog.util.TestConstants.TITLE_TWO;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.USER_ONE_ID;
@@ -132,6 +137,20 @@ public class TestUtil {
 				.category(category)
 				.intro(INTRO_ONE)
 				.content(CONTENT_ONE)
+				.metaDesc(META_DESC)
+				.metaKey(META_KEY)
+				.build();
+	}
+	
+	public static Post createPostTwo(Date createtAt, User userTwo, Category category) {
+		return new Post.Builder()
+				.id(POST_TWO_ID)
+				.createdAt(createDate(CREATE_TWO))
+				.title(TITLE_TWO)
+				.author(createUserTwo(createDate(CREATE_TWO)))
+				.category(createCategory())
+				.intro(INTRO_TWO)
+				.content(CONTENT_TWO)
 				.metaDesc(META_DESC)
 				.metaKey(META_KEY)
 				.build();
