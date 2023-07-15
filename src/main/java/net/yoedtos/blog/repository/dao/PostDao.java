@@ -72,4 +72,14 @@ public class PostDao extends AbstractDao<Post> implements Repository<Post> {
 		}
 		return posts;
 	}
+
+	public List<Post> getLatestBetween(long begin, int maxPages) throws DaoException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Long getTotalPosts() throws DaoException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,6 +1,7 @@
 package net.yoedtos.blog.model.dto;
 
 import java.util.Date;
+import java.util.Objects;
 
 import net.yoedtos.blog.model.entity.Post;
 
@@ -135,5 +136,33 @@ public class PostDTO {
 		public PostDTO build() {
 			return new PostDTO(this);
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "PostDTO [id=" + id + ", createdAt=" + createdAt + ", title=" + title + ", author=" + author
+				+ ", categoryId=" + categoryId + ", intro=" + intro + ", content=" + content + ", metaDesc=" + metaDesc
+				+ ", metaKey=" + metaKey + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(author, categoryId, content, createdAt, id, intro, metaDesc, metaKey, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PostDTO other = (PostDTO) obj;
+		return Objects.equals(author, other.author) && Objects.equals(categoryId, other.categoryId)
+				&& Objects.equals(content, other.content) && Objects.equals(createdAt, other.createdAt)
+				&& Objects.equals(id, other.id) && Objects.equals(intro, other.intro)
+				&& Objects.equals(metaDesc, other.metaDesc) && Objects.equals(metaKey, other.metaKey)
+				&& Objects.equals(title, other.title);
 	}
 }

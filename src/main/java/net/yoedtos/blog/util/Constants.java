@@ -14,4 +14,5 @@ public class Constants {
 	public static final String DATA_PATH = System.getProperty("user.home") + "/data/jsfblog";
 	public static final String MEDIA_PATH = DATA_PATH + "/media";
 	public static final String SLASH = "/";
+	public static final int MAX_PAGE_SIZE = 4;
 }
