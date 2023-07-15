@@ -1,6 +1,6 @@
 package net.yoedtos.blog.repository.dao;
 
-import static net.yoedtos.blog.util.TestConstants.CONTENT_NEW;
+import static net.yoedtos.blog.util.TestConstants.*;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_TWO;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.CREATE_ONE;
@@ -22,6 +22,7 @@ import static net.yoedtos.blog.util.TestUtil.createPostOne;
 import static net.yoedtos.blog.util.TestUtil.createUserOne;
 import static net.yoedtos.blog.util.TestUtil.createUserTwo;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertThat;
 
@@ -139,5 +140,18 @@ public class PostDaoTest extends AbstractDaoTest {
 		
 		Post postDb = postDao.merge(post);
 		assertThat(postDb, equalTo(post));
+	}
+	
+	@Test
+	public void whenGetLatestBetweenShouldReturnTwo() throws DaoException {
+		List<Post> posts = postDao.getLatestBetween(BEGIN_ZERO, MAX_PAGES);
+		assertThat(posts.size(), equalTo(2));
+		assertThat(posts, hasItem(postOne));
+	}
+	
+	@Test
+	public void whenGetTotalPostShouldReturnTwo() throws DaoException {
+		Long total = postDao.getTotalPosts();
+		assertThat(total, equalTo(2L));
 	}
 }
