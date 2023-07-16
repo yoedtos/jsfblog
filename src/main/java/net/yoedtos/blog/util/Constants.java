@@ -15,4 +15,6 @@ public class Constants {
 	public static final String MEDIA_PATH = DATA_PATH + "/media";
 	public static final String SLASH = "/";
 	public static final int MAX_PAGE_SIZE = 4;
+	public static final String USER_INACTIVE = "Error: user inactive";
+	public static final String USER_PASS_NG = "Error: user password";
 }

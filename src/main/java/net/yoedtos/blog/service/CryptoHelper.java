@@ -13,4 +13,8 @@ public class CryptoHelper {
 	public String encrypt(String password) {
 		return encryptor.encryptPassword(password);
 	}
+
+	public boolean isValidPassword(String password, String encoded) {
+		return encryptor.checkPassword(password, encoded);
+	}
 }
