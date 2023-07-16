@@ -140,5 +140,9 @@ public class TestConstants {
 	public final static long BEGIN_FOUR = 4;
 	public final static long BEGIN_NG = 12;
 	public final static int MAX_PAGES = 4;
+	
+	public final static String USER_UNKNOWN = "unknown";
+	public final static String PASS_WRONG = "passwrong";
+	
 }
 
