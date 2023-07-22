@@ -144,5 +144,11 @@ public class TestConstants {
 	public final static String USER_UNKNOWN = "unknown";
 	public final static String PASS_WRONG = "passwrong";
 	
+	public final static String TEST_CONTEXT = "http://localhost:8080/jsfblog";
+	public final static String INVALID_URI = "/index.xhtml";
+	public final static String UNAVAILABLE_URI = "/category2.jsf";
+	public final static String ERROR_404 = "Error 404";
+	public final static String ERROR_403 = "Error 403";
+	
 }
 
