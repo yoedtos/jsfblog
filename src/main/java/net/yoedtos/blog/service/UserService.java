@@ -3,6 +3,8 @@ package net.yoedtos.blog.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.NoResultException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,5 +95,19 @@ public class UserService extends AbstractService<UserDTO> implements Service {
 		return users.stream()
 				.map(UserDTO::convert)
 				.collect(Collectors.toList());
+	}
+
+	public boolean exist(String username) throws ServiceException {
+		User user;
+		try {
+			user = userDao.findByUsername(username);
+		} catch (DaoException e) {
+			LOGGER.error(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		} catch (NoResultException e) {
+			return false;
+		}
+		
+		return user != null ;
 	}
 }
