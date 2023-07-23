@@ -150,5 +150,11 @@ public class TestConstants {
 	public final static String ERROR_404 = "Error 404";
 	public final static String ERROR_403 = "Error 403";
 	
+	public final static String REGISTER_URI = "/register.jsf";
+	public final static String PG_TITLE = "Page title";
+	public final static String REGISTER_PG_TITLE = "User Register";
+	public final static String LOGIN_PG_TITLE = "Enter - Login";
+	public final static String MSG_USER_NA = "Username not available";
+	
 }
 
