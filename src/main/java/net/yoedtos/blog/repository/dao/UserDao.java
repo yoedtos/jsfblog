@@ -2,6 +2,8 @@ package net.yoedtos.blog.repository.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,6 +80,9 @@ public class UserDao extends AbstractDao<User> implements Repository<User> {
 		User user;
 		try {
 			user = loadOneByQuery("User.findByUsername", QueryKey.USERNAME, author);
+		} catch (NoResultException e) {
+			LOGGER.error(e.getMessage());
+			throw e;
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 			throw new DaoException(e.getMessage());
