@@ -1,6 +1,6 @@
 package net.yoedtos.blog.service;
 
-import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
+import static net.yoedtos.blog.util.TestConstants.*;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.ENCODED;
@@ -26,6 +26,8 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.NoResultException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -197,5 +199,24 @@ public class UserServiceTest {
 			assertThat(userDTO.getActive(), equalTo(users.get(index).getActive()));
 			index++;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void whenCheckUserNotExistShouldReturnFalse() throws DaoException, ServiceException {
+		when(userDaoMock.findByUsername(USERNAME_NEW)).thenThrow(NoResultException.class);
+		boolean result = userService.exist(USERNAME_NEW);
+		
+		assertEquals(false, result);
+		verify(userDaoMock, times(1)).findByUsername(USERNAME_NEW);
+	}
+	
+	@Test
+	public void whenCheckUserExistShouldReturnFalse() throws DaoException, ServiceException {
+		when(userDaoMock.findByUsername(USERNAME_ONE)).thenReturn(userOne);
+		boolean result = userService.exist(USERNAME_ONE);
+		
+		assertEquals(true, result);
+		verify(userDaoMock, times(1)).findByUsername(USERNAME_ONE);
 	}
 }
