@@ -24,6 +24,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
@@ -106,5 +108,10 @@ public class UserDaoTest extends AbstractDaoTest {
 		
 		User userDb = userDao.merge(user);
 		assertThat(userDb, equalTo(user));
+	}
+	
+	@Test(expected = NoResultException.class)
+	public void whenFindByUsernameHasNoResultShouldThrowException() throws DaoException {
+		userDao.findByUsername(USERNAME_NEW);
 	}
 }
