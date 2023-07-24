@@ -22,6 +22,10 @@ public class CategoryDTO {
 		return value;
 	}
 	
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
 	public static CategoryDTO convert(Category category) {
 		CategoryDTO categoryDTO = new CategoryDTO(category.getValue());
 		categoryDTO.setId(category.getId());
