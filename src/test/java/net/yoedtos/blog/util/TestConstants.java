@@ -156,5 +156,8 @@ public class TestConstants {
 	public final static String LOGIN_PG_TITLE = "Enter - Login";
 	public final static String MSG_USER_NA = "Username not available";
 	
+	public final static String CATEGORY_URI = "/admin/category.jsf";
+	public final static String CATEGORY_PG_TITLE = "Administration | Category";
+	
 }
 
