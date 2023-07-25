@@ -14,6 +14,7 @@ import static net.yoedtos.blog.util.TestConstants.TITLE_ONE;
 import static net.yoedtos.blog.util.TestConstants.TITLE_TWO;
 import static net.yoedtos.blog.util.TestConstants.TITLE_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
+import static net.yoedtos.blog.util.TestUtil.changeToSeconds;
 import static net.yoedtos.blog.util.TestUtil.createCategory;
 import static net.yoedtos.blog.util.TestUtil.createPostDTO;
 import static net.yoedtos.blog.util.TestUtil.createPostOne;
@@ -77,7 +78,7 @@ public class PostServiceTest {
 	public void init() {
 		today = new Date();
 
-		postDTO = createPostDTO(today);
+		postDTO = createPostDTO(null);
 		category = createCategory();
 		userOne = createUserOne(today);
 		postOne = createPostOne(today, userOne, category);
@@ -93,7 +94,7 @@ public class PostServiceTest {
 		Post post = (Post) captor.getValue();
 
 		assertThat(post.getId(), equalTo(POST_ONE_ID));
-		assertThat(post.getCreatedAt(), equalTo(today));
+		assertThat(changeToSeconds(post.getCreatedAt()), equalTo(changeToSeconds(today)));
 		assertThat(post.getTitle(), equalTo(TITLE_ONE));
 		assertThat(post.getAuthor(), equalTo(userOne));
 		assertThat(post.getCategory(), equalTo(category));

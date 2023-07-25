@@ -1,6 +1,6 @@
 package net.yoedtos.blog.service;
 
-import static net.yoedtos.blog.util.TestConstants.*;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.ENCODED;
@@ -10,9 +10,11 @@ import static net.yoedtos.blog.util.TestConstants.FULL_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.PASSWORD;
 import static net.yoedtos.blog.util.TestConstants.PASS_UPDATE;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_NEW;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.USER_ONE_ID;
+import static net.yoedtos.blog.util.TestUtil.changeToSeconds;
 import static net.yoedtos.blog.util.TestUtil.createUserDTO;
 import static net.yoedtos.blog.util.TestUtil.createUserOne;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -69,7 +71,7 @@ public class UserServiceTest {
 	public void init() {
 		today = new Date();
 		
-		userDTO = createUserDTO(today); 
+		userDTO = createUserDTO(null); 
 		userOne = createUserOne(today);
 	}
 
@@ -87,7 +89,7 @@ public class UserServiceTest {
 		assertThat(user.getHostAddress(), equalTo(HOST_ADDRESS));
 		assertThat(user.getRole(), equalTo(Role.MEMBER));
 		assertThat(user.getActive(), equalTo(true));
-		assertThat(user.getCreateAt(), equalTo(today));
+		assertThat(changeToSeconds(user.getCreateAt()), equalTo(changeToSeconds(today)));
 		
 		verify(userDaoMock, times(1)).persist(user);
 	}

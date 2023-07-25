@@ -7,6 +7,7 @@ import static net.yoedtos.blog.util.TestConstants.REPLY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.REPLY_TWO;
 import static net.yoedtos.blog.util.TestConstants.REPLY_TWO_ID;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
+import static net.yoedtos.blog.util.TestUtil.changeToSeconds;
 import static net.yoedtos.blog.util.TestUtil.createCommentOne;
 import static net.yoedtos.blog.util.TestUtil.createReplyDTO;
 import static net.yoedtos.blog.util.TestUtil.createReplyOne;
@@ -75,7 +76,7 @@ public class ReplyServiceTest {
 		user = createUserOne(today);
 		comment = createCommentOne(today, mock(Post.class));
 		
-		replyDTO = createReplyDTO(today);
+		replyDTO = createReplyDTO(null);
 		replyOne = createReplyOne(today, comment, user);
 	}
 
@@ -88,7 +89,7 @@ public class ReplyServiceTest {
 		Reply reply = captor.getValue();
 
 		assertThat(reply.getId(), equalTo(REPLY_ONE_ID));
-		assertThat(reply.getCreateAt(), equalTo(today));
+		assertThat(changeToSeconds(reply.getCreateAt()), equalTo(changeToSeconds(today)));
 		assertThat(reply.getContent(), equalTo(REPLY_ONE));
 		assertThat(reply.getAuthor(), equalTo(user));
 		assertThat(reply.getHostAddress(), equalTo(HOST_ADDRESS));

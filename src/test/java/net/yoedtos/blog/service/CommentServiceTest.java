@@ -10,6 +10,7 @@ import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.POST_ONE_ID;
+import static net.yoedtos.blog.util.TestUtil.changeToSeconds;
 import static net.yoedtos.blog.util.TestUtil.createCategory;
 import static net.yoedtos.blog.util.TestUtil.createCommentDTO;
 import static net.yoedtos.blog.util.TestUtil.createCommentOne;
@@ -73,7 +74,7 @@ public class CommentServiceTest {
 		user = createUserOne(today);
 		post = createPostOne(today, user, createCategory());
 		
-		commentDTO = createCommentDTO(today);
+		commentDTO = createCommentDTO(null);
 		commentOne = createCommentOne(today, post);
 	}
 
@@ -85,7 +86,7 @@ public class CommentServiceTest {
 		Comment comment = captor.getValue();
 
 		assertThat(comment.getId(), equalTo(COMMENT_ONE_ID));
-		assertThat(comment.getCreateAt(), equalTo(today));
+		assertThat(changeToSeconds(comment.getCreateAt()), equalTo(changeToSeconds(today)));
 		assertThat(comment.getContent(), equalTo(COMMENT_ONE));
 		assertThat(comment.getAuthor(), equalTo(AUTHOR_ONE));
 		assertThat(comment.getEmail(), equalTo(EMAIL_ONE));

@@ -209,6 +209,10 @@ public class TestUtil {
 		return date;
 	}
 	
+	public static long changeToSeconds(Date date) {
+		return date.getTime()/1000;
+	}
+	
 	public static SettingDTO createSettingDTO() {
 		return new SettingDTO.Builder()
 				.language(LANGUAGE)

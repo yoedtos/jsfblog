@@ -78,11 +78,11 @@ public class MediaServiceTest {
 	public void init() {
 		dateOne = createDate(CREATE_ONE);
 		
-		mediaDTO = createMediaDTO(dateOne);
+		mediaDTO = createMediaDTO(null);
 		mediaDTO.setBinary(MEDIA_ONE_BIN);
 		
 		mediaOne = createMediaOne(dateOne);
-		media = createMedia(dateOne);
+		media = createMedia(new Date());
 	}
 	
 	@Test
