@@ -27,6 +27,7 @@ public class CommentService extends AbstractService<CommentDTO> implements Servi
 	
 	@Override
 	public void create(CommentDTO commentDto) throws ServiceException {
+		commentDto.setCreateAt(getToday());
 		try {
 			Comment comment = Comment.convert(commentDto);
 			comment.setPost(postDao.findById(commentDto.getPostId()));

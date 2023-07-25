@@ -30,6 +30,7 @@ public class PostService extends AbstractService<PostDTO> implements Service {
 
 	@Override
 	public void create(PostDTO postDto) throws ServiceException {
+		postDto.setCreatedAt(getToday());
 		Post post = Post.convert(postDto);
 		try {
 			post.setCategory(categoryDao.findById(postDto.getCategoryId()));

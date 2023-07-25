@@ -33,6 +33,7 @@ public class MediaService extends AbstractService<MediaDTO> implements Service {
 	
 	@Override
 	public void create(MediaDTO mediaDto) throws ServiceException {
+		mediaDto.setCreateAt(getToday());
 		Media media = Media.convert(mediaDto);
 		try {
 			media.setOwner(userDao.findByUsername(mediaDto.getOwner()));

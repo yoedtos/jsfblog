@@ -40,7 +40,11 @@ public class CommentDTO {
 	public Date getCreateAt() {
 		return createAt;
 	}
-
+	
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+	
 	public String getContent() {
 		return content;
 	}

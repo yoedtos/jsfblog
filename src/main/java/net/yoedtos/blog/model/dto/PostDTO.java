@@ -37,6 +37,10 @@ public class PostDTO {
 		return this.createdAt;
 	}   
 
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	
 	public String getTitle() {
 		return this.title;
 	}

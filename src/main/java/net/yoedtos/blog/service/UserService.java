@@ -29,6 +29,7 @@ public class UserService extends AbstractService<UserDTO> implements Service {
 
 	@Override
 	public void create(UserDTO userDto) throws ServiceException {
+		userDto.setCreatedAt(getToday());
 		User user = User.convert(userDto);
 		user.setPassword(encryptor.encrypt(userDto.getPassword()));
 		try {

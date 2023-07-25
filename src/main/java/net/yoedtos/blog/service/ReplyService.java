@@ -33,6 +33,7 @@ public class ReplyService extends AbstractService<ReplyDTO> implements Service{
 
 	@Override
 	public void create(ReplyDTO replyDto) throws ServiceException {
+		replyDto.setCreateAt(getToday());
 		Reply reply = Reply.convert(replyDto);
 		
 		try {

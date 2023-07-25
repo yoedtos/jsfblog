@@ -174,7 +174,7 @@ public class Media implements Serializable {
 			return false;
 		Media other = (Media) obj;
 		return Objects.equals(contentType, other.contentType) 
-				&& Objects.equals(createAt.getTime(), other.createAt.getTime())
+				&& Objects.equals(createAt.getTime()/1000, other.createAt.getTime()/1000)
 				&& Objects.equals(description, other.description) && Objects.equals(id, other.id)
 				&& Objects.equals(name, other.name) && Objects.equals(owner, other.owner)
 				&& Objects.equals(urn, other.urn);
