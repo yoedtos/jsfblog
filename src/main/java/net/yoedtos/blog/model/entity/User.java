@@ -104,8 +104,16 @@ public class User implements Serializable {
 		return this.role;
 	}
 
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
 	public Boolean getActive() {
 		return active;
+	}
+	
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 	
 	public Date getCreateAt() {

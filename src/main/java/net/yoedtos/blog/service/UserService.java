@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import net.yoedtos.blog.exception.DaoException;
 import net.yoedtos.blog.exception.ServiceException;
 import net.yoedtos.blog.factory.RepositoryFactory;
+import net.yoedtos.blog.model.Role;
 import net.yoedtos.blog.model.dto.UserDTO;
 import net.yoedtos.blog.model.entity.User;
 import net.yoedtos.blog.repository.dao.UserDao;
@@ -30,6 +31,8 @@ public class UserService extends AbstractService<UserDTO> implements Service {
 	@Override
 	public void create(UserDTO userDto) throws ServiceException {
 		userDto.setCreatedAt(getToday());
+		userDto.setRole(Role.MEMBER);
+		userDto.setActive(true);
 		User user = User.convert(userDto);
 		user.setPassword(encryptor.encrypt(userDto.getPassword()));
 		try {
@@ -57,6 +60,8 @@ public class UserService extends AbstractService<UserDTO> implements Service {
 			User user = userDao.findById(userDto.getId());
 			user.setFullname(userDto.getFullname());
 			user.setEmail(userDto.getEmail());
+			user.setRole(userDto.getRole());
+			user.setActive(userDto.getActive());
 			
 			if(!userDto.getPassword().equals(Constants.PASS_MASK)) {
 				user.setPassword(encryptor.encrypt(userDto.getPassword()));
