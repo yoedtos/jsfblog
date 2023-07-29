@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+  	xmlns:p="http://primefaces.org/ui">
+
+   <div class="w3-bar w3-light-grey">
+		<a href="#{request.contextPath}/index.jsf" 
+			class="w3-bar-item w3-button w3-mobile #{view.viewId == '/index.xhtml' ? 'w3-gray' : ''}">
+				#{text['lb.home']}
+		</a>
+        <a href="#{request.contextPath}/contact.jsf" 
+			class="w3-bar-item w3-button w3-mobile #{view.viewId == '/contact.xhtml' ? 'w3-gray' : ''}">
+				#{text['lb.contact']}
+		</a>
+		<h:panelGroup rendered="#{sessionScope.username == null}">
+		   	<a href="#{request.contextPath}/register.jsf" 
+		   		class="w3-bar-item w3-button w3-mobile #{view.viewId == '/register.xhtml' ? 'w3-gray' : ''}">
+		   			#{text['lb.register']}
+		   	</a>
+		</h:panelGroup>
+		<a href="#{request.contextPath}/about.jsf" 
+			class="w3-bar-item w3-button w3-mobile #{view.viewId == '/about.xhtml' ? 'w3-gray' : ''}">
+					#{text['lb.about']}
+		</a>
+		<h:panelGroup rendered="#{sessionScope.username != null}">
+	    	<a href="#{request.contextPath}/home/home.jsf" 
+	    		class="w3-bar-item w3-button w3-mobile #{view.viewId == '/home/home.xhtml' ? 'w3-gray' : ''}">
+	    			#{text['lb.user']}
+	    	</a>
+	    </h:panelGroup>
+        <h:form id="drop-form" rendered="#{sessionScope.username != null}">
+          <div id="drop-menu" class="w3-dropdown-hover w3-mobile w3-right">
+           <button class="w3-button">
+              <h:outputText value="#{text['msg.user_hey']} #{sessionScope.username}!"/>
+           </button>
+           <div class="w3-dropdown-content w3-bar-block w3-card-4" style="right:0">
+              <a href="#{request.contextPath}/home/profile.jsf" class="w3-bar-item w3-button w3-mobile #{view.viewId == '/home/profile.xhtml' ? 'w3-gray' : ''}">
+                #{text['lb.profile']}
+              </a>
+              <h:commandButton id="blogout" styleClass="w3-bar-item w3-button w3-mobile" 
+                               value="#{text['lb.logout']}" action="#{auth.logout}" rendered="#{sessionScope.username != null}"/>
+           </div>
+          </div> 
+        </h:form>
+	    <ui:include src="/WEB-INF/pages/login_box.xhtml"/> 
+	</div>
+</ui:composition>

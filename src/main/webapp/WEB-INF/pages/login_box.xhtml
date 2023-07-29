@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<h:commandButton id="lg-box-login" styleClass="w3-bar-item w3-button w3-mobile w3-right"
+		value="#{text['lb.login']}"
+		rendered="#{sessionScope.username == null}" onclick="loginDlg.show()" />
+
+	<p:dialog header="#{text['lb.welcome']}" widgetVar="loginDlg"
+		onShow="loginDlg.initPosition()" position="center center" modal="true"
+		resizable="false">
+		<h:form id="lg-box">
+			<h:outputLabel for="userLogin">
+				<h:graphicImage library="images" name="icons/user.gif" />
+			</h:outputLabel>
+			<p:message id="m_userLogin" for="userLogin" />
+			<h:inputText id="userLogin" value="#{auth.dto.username}"
+				required="true" pt:placeholder="#{text['lb.name_login']}"
+				styleClass="w3-input w3-border">
+				<f:validator validatorId="userNameValidator" />
+				<f:ajax event="blur" execute="userLogin" render="m_userLogin" />
+			</h:inputText>
+			<h:outputLabel for="userPassword">
+				<h:graphicImage library="images" name="icons/authen.gif" />
+			</h:outputLabel>
+			<p:message id="m_userPassword" for="userPassword" />
+			<h:inputSecret id="userPassword" value="#{auth.dto.password}"
+				required="true" pt:placeholder="#{text['lb.password']}"
+				styleClass="w3-input w3-border">
+				<f:validator validatorId="passwordValidator" />
+				<f:ajax event="blur" execute="userPassword" render="m_userPassword" />
+			</h:inputSecret>
+			<p:selectBooleanCheckbox id="remember" style="padding-top:10px;" />
+			<h:outputLabel for="remember" value="#{text['lb.remember']}"
+				styleClass="remember" />
+			<div class="w3-bar w3-padding-16">
+				<p:commandButton id="blogin" value="#{text['lb.login']}" action="#{auth.login}" />
+				<a href="login.jsf" class="w3-bar-item w3-button">#{text['msg.lost_pass']}</a>
+			</div>
+		</h:form>
+	</p:dialog>
+
+</ui:composition>

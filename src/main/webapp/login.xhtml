@@ -1,21 +1,63 @@
-
 <ui:composition template="/WEB-INF/pages/layout.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-    xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-	
-  <ui:define name="windowTitle">
-  	#{text['title.login']}
-  </ui:define>
-  
-  <ui:define name="contentView">
-  <div class="w3-row w3-panel">
-	<div class="w3-container w3-card w3-padding-16">
-   
-    </div>
-  </div>
-  </ui:define>
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="windowTitle">
+  		#{text['title.login']}
+ 	</ui:define>
+
+	<ui:define name="contentView">
+		<div class="w3-row w3-panel">
+			<div class="w3-container w3-card w3-padding-16">
+				<div class="input-form">
+					<h:panelGroup>
+						<h3 class="w3-center">#{text['msg.entry_desc']}</h3>
+						<h:form id="login">
+							<h:outputLabel for="userLogin" value="#{text['lb.user']}" />
+							<p:message id="m_userLogin" for="userLogin" />
+							<h:inputText id="userLogin" value="#{auth.dto.username}"
+								required="true" styleClass="w3-input w3-border user">
+								<f:validator validatorId="userNameValidator" />
+								<f:ajax event="blur" execute="userLogin" render="m_userLogin" />
+							</h:inputText>
+							<h:outputLabel for="userPassword" value="#{text['lb.password']}" />
+							<p:message id="m_userPassword" for="userPassword" />
+							<h:inputSecret id="userPassword" value="#{auth.dto.password}"
+								required="true" styleClass="w3-input w3-border pass">
+								<f:validator validatorId="passwordValidator" />
+								<f:ajax event="blur" execute="userPassword" render="m_userPassword" />
+							</h:inputSecret>
+							<p:selectBooleanCheckbox id="remember" styleClass="w3-padding-16" />
+							<h:outputLabel for="remember" value="#{text['lb.remember']}"
+								styleClass="remember" />
+							<br />
+							<h:commandButton id="blogin" value="#{text['lb.login']}"
+								action="#{auth.login}" styleClass="w3-button button-color">
+								<f:ajax />
+							</h:commandButton>
+						</h:form>
+						<br />
+						<h:form>
+							<div class="w3-bar w3-padding-16">
+								<h:outputLabel for="passlost" value="#{text['msg.lost_pass']}" />
+								<p:message id="m_passlost" for="passlost" />
+								<h:inputText id="passlost" required="true"
+									pt:placeholder="#{text['msg.enter_email']}"
+									styleClass="w3-input w3-bar-item w3-border">
+									<f:validator validatorId="emailValidator" />
+									<f:ajax event="blur" execute="passlost" render="m_passlost" />
+								</h:inputText>
+								<h:commandButton value="#{text['msg.get_pass']}"
+									styleClass="w3-button w3-bar-item button-color" />
+							</div>
+						</h:form>
+					</h:panelGroup>
+				</div>
+			</div>
+		</div>
+	</ui:define>
 </ui:composition>
