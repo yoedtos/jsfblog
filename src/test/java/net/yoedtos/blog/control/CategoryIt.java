@@ -22,7 +22,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CategoryIT extends AbstractIT {
+public class CategoryIt extends AbstractIT {
 
 	@Before
 	public void setup() {

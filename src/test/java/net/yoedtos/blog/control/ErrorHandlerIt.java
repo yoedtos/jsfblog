@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class ErrorHandlerIT extends AbstractIT{
+public class ErrorHandlerIt extends AbstractIT{
 	
 	@Before
 	public void setup() {

@@ -25,7 +25,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AuthIT extends AbstractIT {
+public class AuthIt extends AbstractIT {
 	
 	@Before
 	public void setup() {
