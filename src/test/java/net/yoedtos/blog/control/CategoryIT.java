@@ -39,8 +39,8 @@ public class CategoryIT extends AbstractIT {
 	public void test1_whenAddCategoryShouldHaveOne() {
 		assertThat(PG_TITLE, driver.getTitle(), equalTo(CATEGORY_PG_TITLE));
 		
-		driver.findElement(By.id("j_idt17:category")).sendKeys(CATEGORY_ONE);
-		driver.findElement(By.id("j_idt17:ctadd")).click();
+		driver.findElement(By.id("cat-form:category")).sendKeys(CATEGORY_ONE);
+		driver.findElement(By.id("cat-form:ctadd")).click();
 		
 		List<WebElement> elements = driver.findElements(By.tagName("td"));
 		
@@ -50,7 +50,7 @@ public class CategoryIT extends AbstractIT {
 	
 	@Test
 	public void test2_whenDeleteCategoryId1_ShouldHaveZero() {
-		driver.findElement(By.id("j_idt17:j_idt18:0:udelete")).click();
+		driver.findElement(By.id("cat-form:cat-table:0:udelete")).click();
 		
 		List<WebElement> elements = driver.findElements(By.tagName("td"));
 		

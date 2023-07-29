@@ -59,7 +59,7 @@
 						<f:ajax event="blur" execute="email" render="m_email" />
 					</h:inputText>
 					<div class="w3-bar w3-padding-16">
-						<h:commandButton value="#{text['lb.register']}"
+						<h:commandButton id="rbutton" value="#{text['lb.register']}"
 							action="#{register.submit}" styleClass="w3-button button-color" />
 						<h:button value="#{text['lb.clear']}"
 							onclick="formReset('registerForm')"

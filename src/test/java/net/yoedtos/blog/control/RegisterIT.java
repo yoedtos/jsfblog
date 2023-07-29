@@ -56,6 +56,6 @@ public class RegisterIT extends AbstractIT {
 		driver.findElement(By.id("registerForm:confirm")).sendKeys(PASSWORD);
 		driver.findElement(By.id("registerForm:email")).sendKeys(EMAIL_NEW);
 		
-		driver.findElement(By.name("registerForm:j_idt24")).click();
+		driver.findElement(By.name("registerForm:rbutton")).click();
 	}
 }

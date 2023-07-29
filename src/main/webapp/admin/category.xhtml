@@ -14,8 +14,8 @@
 	</ui:define>
 
 	<ui:define name="contentView">
-		<h:form>
-			<h:dataTable value="#{category.categories}" var="ct"
+		<h:form id="cat-form">
+			<h:dataTable id="cat-table" value="#{category.categories}" var="ct"
 				styleClass="listTable" headerClass="listTable-header"
 				rowClasses="listTable-oddRow, listTable-evenRow">
 				<h:column>
