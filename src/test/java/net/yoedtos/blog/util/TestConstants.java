@@ -163,5 +163,8 @@ public class TestConstants {
 	public final static String USER_HOME_URI = "/home/home.jsf";
 	public final static String INDEX_URI = "/index.jsf";
 	public final static String USER_HOME_PG_TITLE = "User | Home";
+
+	public final static String USERS_URI = "/admin/users.jsf";
+	public final static String USERS_PG_TITLE = "Administration | Users";
 }
 
