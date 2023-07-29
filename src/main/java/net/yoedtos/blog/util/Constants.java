@@ -17,4 +17,8 @@ public class Constants {
 	public static final int MAX_PAGE_SIZE = 4;
 	public static final String USER_INACTIVE = "Error: user inactive";
 	public static final String USER_PASS_NG = "Error: user password";
+	public final static String ADMIN_USER = "admin-user";
+	public final static String ADMIN_USER_PASS = "abcde";
+	public final static String SCRIPT_ADMIN = "INSERT IGNORE INTO user(user_id, username, password, role, active) "
+			+ "VALUES ('0', 'admin-user', 'dMI3KYBrFlUr48MfjwowhC0yMqWoqpR97bYWs7CZd9B0bG0hxiSsBv92xo5SGUpB', 'ADMINISTRATOR', true);";
 }

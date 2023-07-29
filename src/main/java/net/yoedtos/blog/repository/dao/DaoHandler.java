@@ -2,6 +2,7 @@ package net.yoedtos.blog.repository.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import net.yoedtos.blog.util.Constants;
@@ -21,5 +22,14 @@ public class DaoHandler {
 	
 	public static EntityManager getEntityManager() {
 		return factory.createEntityManager();
-	}	
+	}
+	
+	public static void createAdminUser() {
+		EntityManager entityManager = getEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		entityManager.createNativeQuery(Constants.SCRIPT_ADMIN).executeUpdate();
+		transaction.commit();
+		entityManager.close();
+	}
 }
