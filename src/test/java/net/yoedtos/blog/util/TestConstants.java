@@ -159,5 +159,9 @@ public class TestConstants {
 	public final static String CATEGORY_URI = "/admin/category.jsf";
 	public final static String CATEGORY_PG_TITLE = "Administration | Category";
 	
+	public final static String LOGIN_URI = "/login.jsf";
+	public final static String USER_HOME_URI = "/home/home.jsf";
+	public final static String INDEX_URI = "/index.jsf";
+	public final static String USER_HOME_PG_TITLE = "User | Home";
 }
 
