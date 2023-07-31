@@ -26,7 +26,9 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">#{text['lb.date']}</f:facet>
-				<h:outputText value="#{u.createdAt}"/>
+				<h:outputText value="#{u.createdAt}">
+					<f:convertDateTime locale="#{setting.locale}" dateStyle="medium"/>
+				</h:outputText>
 			</h:column>
 			<h:column>
 				<f:facet name="header">#{text['lb.user']}</f:facet>
