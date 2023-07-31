@@ -1,0 +1,152 @@
+<ui:composition template="/WEB-INF/pages/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="windowTitle">
+		#{text['title.admin']} | #{text['lb.setting']}
+	</ui:define>
+
+	<ui:define name="menuView">
+		<ui:include src="/WEB-INF/pages/admin_menu.xhtml" />
+	</ui:define>
+
+	<ui:define name="contentView">
+		<div class="w3-row w3-panel">
+			<div class="w3-card w3-padding-16">
+				<h3 class="w3-center">#{text['lb.setting']}</h3>
+				<hr class="hr-thin" />
+				<h:form id="lang-form">
+					<div class="w3-cell-row w3-section">
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel value="#{text['lb.language']}"
+								styleClass="selectLabel" />
+							<h:selectOneMenu id="lang-sel" value="#{setting.dto.language}"
+								onchange="submit()"
+								valueChangeListener="#{setting.onSetLanguage}"
+								styleClass="w3-border button-color">
+								<f:selectItems value="#{setting.languages}" var="lang"
+									itemValue="#{lang}" itemLabel="#{lang.label}" />
+							</h:selectOneMenu>
+						</div>
+					</div>
+				</h:form>
+				<h:form id="set-form">
+					<div class="w3-cell-row">
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel for="sitename" value="#{text['lb.site_name']}" />
+							<p:message id="m_sitename" for="sitename" />
+							<h:inputText id="sitename" value="#{setting.dto.siteName}"
+								styleClass="w3-input w3-border">
+								<f:validateLength minimum="5" maximum="20" />
+								<f:ajax event="blur" execute="sitename" render="m_sitename" />
+							</h:inputText>
+						</div>
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel for="siteaddress"
+								value="#{text['lb.site_address']}" />
+							<p:message id="m_siteaddress" for="siteaddress" />
+							<h:inputText id="siteaddress" value="#{setting.dto.siteAddress}"
+								styleClass="w3-input w3-border">
+								<f:validateLength minimum="10" maximum="40" />
+								<f:ajax event="blur" execute="siteaddress" render="m_siteaddress" />
+							</h:inputText>
+						</div>
+					</div>
+					<div class="w3-cell-row">
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel for="siteemail" value="#{text['lb.site_email']}" />
+							<p:message id="m_siteemail" for="siteemail" />
+							<h:inputText id="siteemail" value="#{setting.dto.siteEmail}"
+								styleClass="w3-input w3-border">
+								<f:validateLength minimum="10" maximum="40" />
+								<f:ajax event="blur" execute="siteemail" render="m_siteemail" />
+							</h:inputText>
+						</div>
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel for="usetls" value="#{text['lb.site_email_tls']}" />
+							<br />
+							<p:selectBooleanCheckbox id="usetls"
+								value="#{setting.dto.useTLS}" style="padding-top:10px;" />
+						</div>
+					</div>
+					<div class="w3-cell-row">
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel for="smtpserver"
+								value="#{text['lb.site_email_smtp']}" />
+							<p:message id="m_smtpserver" for="smtpserver" />
+							<h:inputText id="smtpserver" value="#{setting.dto.smtpServer}"
+								styleClass="w3-input w3-border">
+								<f:validateLength minimum="8" maximum="40" />
+								<f:ajax event="blur" execute="smtpserver" render="m_smtpserver" />
+							</h:inputText>
+						</div>
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel for="smtpport"
+								value="#{text['lb.site_email_port']}" />
+							<p:message id="m_smtpport" for="smtpport" />
+							<h:inputText id="smtpport" value="#{setting.dto.smtpPort}"
+								styleClass="w3-input w3-border">
+								<f:validateLength minimum="2" maximum="5" />
+								<f:ajax event="blur" execute="smtpport" render="m_smtpport" />
+							</h:inputText>
+						</div>
+					</div>
+					<div class="w3-cell-row">
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel for="smtpuser"
+								value="#{text['lb.site_email_user']}" />
+							<p:message id="m_smtpuser" for="smtpuser" />
+							<h:inputText id="smtpuser" value="#{setting.dto.smtpUser}"
+								styleClass="w3-input w3-border">
+								<f:validateLength minimum="5" maximum="40" />
+								<f:ajax event="blur" execute="smtpuser" render="m_smtpuser" />
+							</h:inputText>
+						</div>
+						<div class="w3-container w3-cell w3-mobile">
+							<h:outputLabel for="smtppassword"
+								value="#{text['lb.site_email_pass']}" />
+							<p:message id="m_smtppassword" for="smtppassword" />
+							<h:inputSecret id="smtppassword"
+								value="#{setting.dto.smtpPassword}" redisplay="true"
+								styleClass="w3-input w3-border">
+								<f:validateLength minimum="5" maximum="20" />
+								<f:ajax event="blur" execute="smtppassword" render="m_smtppassword" />
+							</h:inputSecret>
+						</div>
+					</div>
+					<br />
+					<div class="w3-container">
+						<h:outputLabel for="sitemetadesc" value="#{text['lb.meta_desc']}" />
+						<p:message id="m_sitemetadesc" for="sitemetadesc" />
+						<h:inputTextarea id="sitemetadesc"
+							value="#{setting.dto.siteMetaDesc}" rows="5" required="true"
+							styleClass="w3-input w3-border">
+							<f:validateLength minimum="10" maximum="50" />
+							<f:ajax event="blur" execute="sitemetadesc"
+								render="m_sitemetadesc" />
+						</h:inputTextarea>
+						<br />
+						<h:outputLabel for="sitemetakey" value="#{text['lb.meta_key']}" />
+						<p:message id="m_sitemetakey" for="sitemetakey" />
+						<h:inputTextarea id="sitemetakey"
+							value="#{setting.dto.siteMetaKey}" required="true"
+							styleClass="w3-input w3-border">
+							<f:validateLength minimum="3" maximum="30" />
+							<f:ajax event="blur" execute="sitemetakey" render="m_sitemetakey" />
+						</h:inputTextarea>
+					</div>
+					<div class="w3-container w3-bar w3-padding-16">
+						<h:commandButton id="save-btn" value="#{text['lb.save']}"
+							action="#{setting.save}" styleClass="w3-button button-color" />
+						<h:commandButton value="#{text['lb.cancel']}"
+							actionListener="#{setting.cancel}" immediate="true"
+							styleClass="w3-button button-color" />
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
