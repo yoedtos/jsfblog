@@ -166,5 +166,10 @@ public class TestConstants {
 
 	public final static String USERS_URI = "/admin/users.jsf";
 	public final static String USERS_PG_TITLE = "Administration | Users";
+	
+	public final static String SETTING_URI = "/admin/setting.jsf";
+	public final static String SETTING_PG_TITLE = "Administration | Setting";
+	public final static String SETTING_PG_TITLE_PT = "Administração | Configuração";
+	public final static String ADMIN_HOME_PG_TITLE = "Administration | Home";
 }
 
