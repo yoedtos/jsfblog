@@ -171,5 +171,8 @@ public class TestConstants {
 	public final static String SETTING_PG_TITLE = "Administration | Setting";
 	public final static String SETTING_PG_TITLE_PT = "Administração | Configuração";
 	public final static String ADMIN_HOME_PG_TITLE = "Administration | Home";
+
+	public final static String PROFILE_URI = "/home/profile.jsf";
+	public final static String PROFILE_PG_TITLE = "Profile";
 }
 
