@@ -5,6 +5,7 @@ class Constants {
 
 	public static final String LOGIN_REDIRECT = "login?faces-redirect=true";
 	public static final String CATEGORY_REDIRECT = "/admin/category?faces-redirect=true";
+	public static final String HOME = "../home/home.jsf";
 	public static final String HOME_REDIRECT = "/home/home?faces-redirect=true";
 	public static final String INDEX_REDIRECT = "/index?faces-redirect=true";
 	public static final String USERS = "users.jsf";

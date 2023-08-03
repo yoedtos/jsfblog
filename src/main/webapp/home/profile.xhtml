@@ -1,0 +1,69 @@
+<ui:composition template="/WEB-INF/pages/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{profile.loadUser}" />
+	</f:metadata>
+
+	<ui:define name="windowTitle">
+  		#{text['title.profile']}
+ 	</ui:define>
+
+	<ui:define name="contentView">
+		<div class="w3-row w3-panel">
+			<h:form id="profile" styleClass="w3-container w3-card w3-padding-16"
+				acceptcharset="UTF-8">
+				<div class="input-form">
+					<h3 class="w3-center">#{text['lb.edit_profile']}</h3>
+					<h:outputLabel for="fullname" value="#{text['lb.full_name']}" />
+					<p:message id="m_fullname" for="fullname" />
+					<h:inputText id="fullname" value="#{profile.dto.fullname}"
+						required="true" styleClass="w3-input w3-border">
+						<f:validateLength minimum="5" maximum="40" />
+						<f:ajax event="change" execute="fullname" render="m_fullname" />
+					</h:inputText>
+					<h:outputLabel for="username" value="#{text['lb.name_login']}" />
+					<h:inputText id="username" value="#{profile.dto.username}"
+						disabled="true" styleClass="w3-input w3-border" />
+
+					<h:outputLabel for="password" value="#{text['lb.password']}" />
+					<p:message id="m_password" for="password" />
+					<h:inputSecret id="password" value="#{profile.dto.password}"
+						required="true" styleClass="w3-input w3-border">
+						<f:validator validatorId="passwordValidator" />
+						<f:attribute name="confirm"
+							value="#{confirmPassword.submittedValue}" />
+						<f:ajax event="blur" execute="password confirm" render="m_password" />
+					</h:inputSecret>
+
+					<h:outputLabel for="confirm" value="#{text['lb.rentry_pass']}" />
+					<p:message id="m_confirm" for="confirm" />
+					<h:inputSecret id="confirm" binding="#{confirmPassword}"
+						required="true" styleClass="w3-input w3-border">
+						<f:ajax event="blur" execute="password confirm" render="m_password m_confirm" />
+					</h:inputSecret>
+
+					<h:outputLabel for="email" value="#{text['lb.email']}" />
+					<p:message id="m_email" for="email" />
+					<h:inputText id="email" value="#{profile.dto.email}"
+						required="true" styleClass="w3-input w3-border">
+						<f:validator validatorId="emailValidator" />
+						<f:ajax event="change" execute="email" render="m_email" />
+					</h:inputText>
+
+					<div class="w3-bar w3-padding-16">
+						<h:commandButton id="pubutton" value="#{text['lb.update']}"
+							action="#{profile.update}" styleClass="w3-button button-color" />
+						<h:commandButton value="#{text['lb.cancel']}"
+							actionListener="#{profile.cancel}" immediate="true"
+							styleClass="w3-button button-color" />
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
