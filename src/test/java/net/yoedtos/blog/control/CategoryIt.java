@@ -3,12 +3,13 @@ package net.yoedtos.blog.control;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_PG_TITLE;
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_TWO;
+import static net.yoedtos.blog.util.TestConstants.CATEGORY_TWO_ID;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_URI;
 import static net.yoedtos.blog.util.TestConstants.PG_TITLE;
 import static net.yoedtos.blog.util.TestConstants.TEST_CONTEXT;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -39,22 +40,21 @@ public class CategoryIt extends AbstractIT {
 	public void test1_whenAddCategoryShouldHaveOne() {
 		assertThat(PG_TITLE, driver.getTitle(), equalTo(CATEGORY_PG_TITLE));
 		
-		driver.findElement(By.id("cat-form:category")).sendKeys(CATEGORY_ONE);
+		driver.findElement(By.id("cat-form:category")).sendKeys(CATEGORY_TWO);
 		driver.findElement(By.id("cat-form:ctadd")).click();
-		
-		List<WebElement> elements = driver.findElements(By.tagName("td"));
-		
-		assertThat(Long.parseLong(elements.get(0).getText()), equalTo(CATEGORY_ONE_ID));
-		assertThat(elements.get(1).getText(), equalTo(CATEGORY_ONE));
+		List<WebElement> elements = driver.findElements(By.xpath("//form/table/tbody/tr[2]/td"));
+
+		assertThat(Long.parseLong(elements.get(0).getText()), equalTo(CATEGORY_TWO_ID));
+		assertThat(elements.get(1).getText(), equalTo(CATEGORY_TWO));
 	}
 	
 	@Test
-	public void test2_whenDeleteCategoryId1_ShouldHaveZero() {
-		driver.findElement(By.id("cat-form:cat-table:0:udelete")).click();
+	public void test2_whenDeleteCategoryId2_ShouldHaveOne() {
+		driver.findElement(By.id("cat-form:cat-table:1:udelete")).click();
 		
-		List<WebElement> elements = driver.findElements(By.tagName("td"));
+		List<WebElement> elements = driver.findElements(By.xpath("//form/table/tbody/tr[1]/td"));
 		
-		assertTrue(elements.get(0).getText().isEmpty());
-		assertTrue(elements.get(1).getText().isEmpty());
+		assertThat(Long.parseLong(elements.get(0).getText()), equalTo(CATEGORY_ONE_ID));
+		assertThat(elements.get(1).getText(), equalTo(CATEGORY_ONE));
 	}
 }
