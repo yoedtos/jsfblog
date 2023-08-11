@@ -14,6 +14,7 @@ public class ContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent e) {
     	DaoHandler.init();
     	DaoHandler.createAdminUser();
+    	DaoHandler.createDemoData();
     }
 
     public void contextDestroyed(ServletContextEvent e) {
