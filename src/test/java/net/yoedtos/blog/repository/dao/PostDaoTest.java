@@ -1,6 +1,7 @@
 package net.yoedtos.blog.repository.dao;
 
-import static net.yoedtos.blog.util.TestConstants.*;
+import static net.yoedtos.blog.util.TestConstants.BEGIN_ZERO;
+import static net.yoedtos.blog.util.TestConstants.CONTENT_NEW;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_TWO;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.CREATE_ONE;
@@ -8,6 +9,7 @@ import static net.yoedtos.blog.util.TestConstants.CREATE_TWO;
 import static net.yoedtos.blog.util.TestConstants.INTRO_NEW;
 import static net.yoedtos.blog.util.TestConstants.INTRO_TWO;
 import static net.yoedtos.blog.util.TestConstants.INTRO_UPDATE;
+import static net.yoedtos.blog.util.TestConstants.MAX_PAGES;
 import static net.yoedtos.blog.util.TestConstants.META_DESC;
 import static net.yoedtos.blog.util.TestConstants.META_KEY;
 import static net.yoedtos.blog.util.TestConstants.POST_NEW_ID;
@@ -16,6 +18,7 @@ import static net.yoedtos.blog.util.TestConstants.POST_TWO_ID;
 import static net.yoedtos.blog.util.TestConstants.TITLE_NEW;
 import static net.yoedtos.blog.util.TestConstants.TITLE_TWO;
 import static net.yoedtos.blog.util.TestConstants.TITLE_UPDATE;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestUtil.createCategory;
 import static net.yoedtos.blog.util.TestUtil.createDate;
 import static net.yoedtos.blog.util.TestUtil.createPostOne;
@@ -153,5 +156,12 @@ public class PostDaoTest extends AbstractDaoTest {
 	public void whenGetTotalPostShouldReturnTwo() throws DaoException {
 		Long total = postDao.getTotalPosts();
 		assertThat(total, equalTo(2L));
+	}
+	
+	@Test
+	public void whenFindAllByUserShouldReturnOne() throws DaoException {
+		List<Post> posts = postDao.findAllByUser(USERNAME_ONE);
+		assertThat(posts.size(), equalTo(1));
+		assertThat(posts, hasItem(postOne));
 	}
 }
