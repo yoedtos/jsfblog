@@ -94,5 +94,18 @@ public class PostService extends AbstractService<PostDTO> implements Service {
 				.map(PostDTO::convert)
 				.collect(Collectors.toList());
 	}
+
+	public List<PostDTO> getAllByUser(String username) throws ServiceException {
+		List<Post> posts;
+		try {
+			posts = postDao.findAllByUser(username);
+		} catch (DaoException e) {
+			LOGGER.error(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		}
+		return posts.stream()
+				.map(PostDTO::convert)
+				.collect(Collectors.toList());
+	}
 	
 }
