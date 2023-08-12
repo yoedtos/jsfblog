@@ -27,6 +27,7 @@ import net.yoedtos.blog.model.dto.PostDTO;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Post.loadAll", query="SELECT p FROM Post p"),
+	@NamedQuery(name="Post.loadAllByUser", query="SELECT p FROM Post p WHERE p.author.username = :user"),
 	@NamedQuery(name="Post.loadPostTotal", query="SELECT COUNT(p) FROM Post p"),
 	@NamedQuery(name="Post.loadLastBetween", query="SELECT p FROM Post p ORDER BY p.createdAt DESC")
 })

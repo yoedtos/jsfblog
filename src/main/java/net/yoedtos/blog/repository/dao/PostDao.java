@@ -92,4 +92,13 @@ public class PostDao extends AbstractDao<Post> implements Repository<Post> {
 			throw new DaoException(e.getMessage());
 		}
 	}
+
+	public List<Post> findAllByUser(String username) throws DaoException {
+		try {
+			return loadByQuery("Post.loadAllByUser", QueryKey.USERNAME, username);
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			throw new DaoException(e.getMessage());
+		}
+	}
 }
