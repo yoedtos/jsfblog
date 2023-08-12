@@ -231,4 +231,22 @@ public class PostServiceTest {
 			index++;
 		}
 	}
+	
+	@Test
+	public void whenGetAllByUserShouldReturnOnePost() throws ServiceException, DaoException {
+		List<Post> posts = Arrays.asList(postOne);
+		when(postDaoMock.findAllByUser(USERNAME_ONE)).thenReturn(posts);
+		List<PostDTO> postDTOs = postService.getAllByUser(USERNAME_ONE);
+		assertEquals(1, postDTOs.size());
+
+		assertThat(postDTOs.get(0).getId(), equalTo(postOne.getId()));
+		assertThat(postDTOs.get(0).getCreatedAt(), equalTo(postOne.getCreatedAt()));
+		assertThat(postDTOs.get(0).getTitle(), equalTo(postOne.getTitle()));
+		assertThat(postDTOs.get(0).getAuthor(), equalTo(postOne.getAuthor().getUsername()));
+		assertThat(postDTOs.get(0).getCategoryId(), equalTo(postOne.getCategory().getId()));
+		assertThat(postDTOs.get(0).getIntro(), equalTo(postOne.getIntro()));
+		assertThat(postDTOs.get(0).getContent(), equalTo(postOne.getContent()));
+		assertThat(postDTOs.get(0).getMetaDesc(), equalTo(postOne.getMetaDesc()));
+		assertThat(postDTOs.get(0).getMetaKey(), equalTo(postOne.getMetaKey()));
+	}
 }
