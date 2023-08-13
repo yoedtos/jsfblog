@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@SuiteClasses({SuitePublic.class, SuiteRestrict.class})
+@SuiteClasses({ContentIt.class, SuitePublic.class, SuiteRestrict.class})
 @RunWith(Suite.class)
 public class SuiteIT {
 	

@@ -181,5 +181,11 @@ public class TestConstants {
 	public final static String POSTS_URI = "/home/posts.jsf";
 	public final static String POSTS_PG_TITLE = "User | Publications";
 	
+	public final static String INDEX_PG_TITLE = SITE_NAME + " | Publications";
+	public final static String VIEW_TITLE = "One morning, when Gregor Samsa";
+	public final static String VIEW_META_DESC = "One morning, when Gregor Samsa woke";
+	public final static String VIEW_META_KEY = "Kafka";
+	public final static String PG_META_DESC = "Meta Description";
+	public final static String PG_META_KEY = "Meta Keyword";
 }
 
