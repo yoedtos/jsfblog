@@ -174,5 +174,12 @@ public class TestConstants {
 
 	public final static String PROFILE_URI = "/home/profile.jsf";
 	public final static String PROFILE_PG_TITLE = "Profile";
+	
+	public final static String POST_URI = "/home/post.jsf";
+	public final static String POST_PG_TITLE = "User | Publish";
+	
+	public final static String POSTS_URI = "/home/posts.jsf";
+	public final static String POSTS_PG_TITLE = "User | Publications";
+	
 }
 
