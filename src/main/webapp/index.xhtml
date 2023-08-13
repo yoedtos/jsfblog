@@ -1,5 +1,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<f:metadata>
+		<f:viewParam id="idpage" name="pageId" value="#{pager.dto.pageId}" />
+		<f:event type="preRenderView" listener="#{pager.loadPage}" />
+	</f:metadata>
 
+	<ui:include src="/WEB-INF/pages/front_posts.xhtml" />
 </ui:composition>

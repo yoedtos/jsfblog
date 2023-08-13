@@ -1,0 +1,49 @@
+<ui:composition template="/WEB-INF/pages/layout.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+  <ui:define name="meta">
+	<meta name="keywords" content="#{content.dto.metaKey}"/>
+	<meta name="description" content="#{content.dto.metaDesc}"/>
+  </ui:define>
+
+  <f:metadata>
+	<f:viewParam id="idpost" name="postId" value="#{content.postId}"/>
+	<f:event type="preRenderView" listener="#{content.loadPost}"/>
+  </f:metadata>
+
+  <ui:define name="windowTitle">
+  	#{content.dto.title}
+  </ui:define>
+
+  <ui:define name="contentView">
+	<div class="w3-panel w3-border">
+        <div id="title-panel" class="postTitle">
+		  <h:outputFormat value="#{content.dto.title}" styleClass="postTitle"/>
+		</div>
+        <div class="w3-bar w3-small">
+          <div class="w3-bar-item">
+        	<h:graphicImage styleClass="icons" library="images" name="icons/user.png"/>
+			<h:outputText value="#{content.dto.author}"/>
+		  </div>
+          <div class="w3-bar-item">
+    		<h:graphicImage styleClass="icons" library="images" name="icons/date.png"/>
+	   		<h:outputText value="#{content.dto.createdAt}">
+				<f:convertDateTime locale="#{setting.locale}"/>
+	  		</h:outputText>
+          </div>
+	      <div class="w3-bar-item">
+   	  		<h:graphicImage styleClass="icons" library="images" name="icons/reviews.png"/>
+	  		<h:outputText />
+		  </div>
+      </div>
+	<div id="content-panel" class="w3-container w3-padding-16">
+		<h:outputFormat value="#{content.dto.intro}" escape="false"/>
+		<h:outputFormat value="#{content.dto.content}" escape="false"/>
+	</div>
+   </div>
+   <hr/>
+  </ui:define>
+</ui:composition>

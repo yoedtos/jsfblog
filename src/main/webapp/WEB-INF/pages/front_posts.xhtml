@@ -1,0 +1,88 @@
+<ui:composition template="/WEB-INF/pages/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="meta">
+		<meta name="keywords" content="#{setting.dto.siteMetaKey}" />
+		<meta name="description" content="#{setting.dto.siteMetaDesc}" />
+	</ui:define>
+
+	<ui:define name="windowTitle">
+  		#{setting.dto.siteName} | #{text['title.posts']}
+  	</ui:define>
+
+	<ui:define name="contentView">
+		<ui:repeat value="#{pager.dto.posts}" var="p">
+			<div class="w3-row w3-half">
+				<div id="front-panel" class="w3-panel">
+					<div class="frontTitle">
+						<h:link styleClass="w3-tooltip" outcome="view"
+							includeViewParams="true">
+							<abbr title="#{p.title}">#{p.title.length() gt 25 ?
+								p.title.substring(0,24).concat('...') : p.title}</abbr>
+							<f:param name="postId" value="#{p.id}" />
+						</h:link>
+					</div>
+					<div class="w3-bar w3-border w3-small">
+						<div class="w3-bar-item">
+							<h:graphicImage styleClass="icons" library="images"
+								name="icons/user.png" />
+							<h:outputText value="#{p.author}" />
+						</div>
+						<div class="w3-bar-item">
+							<h:graphicImage styleClass="icons" library="images"
+								name="icons/date.png" />
+							<h:outputText value="#{p.createdAt}">
+								<f:convertDateTime locale="#{setting.locale}" />
+							</h:outputText>
+						</div>
+						<div class="w3-bar-item">
+							<h:graphicImage styleClass="icons" library="images"
+								name="icons/reviews.png" />
+						</div>
+					</div>
+					<div class="frontContent">
+						<h:outputFormat value="#{p.intro}" escape="false" />
+					</div>
+				</div>
+			</div>
+		</ui:repeat>
+
+		<div class="w3-bar">
+			<hr />
+			<div id="pager-panel" class="w3-center">
+				<h:panelGroup rendered="#{pager.dto.first != pager.dto.current}">
+					<h:link outcome="index" includeViewParams="true"
+						styleClass="w3-button">
+						<f:param name="pageId" value="#{pager.dto.first}" />
+						<h:graphicImage library="images" name="icons/2left.png"
+							styleClass="pagerIcon" />
+					</h:link>
+					<h:link outcome="index" includeViewParams="true"
+						styleClass="w3-button">
+						<f:param name="pageId" value="#{pager.dto.previous}" />
+						<h:graphicImage library="images" name="icons/1left.png"
+							styleClass="pagerIcon" />
+					</h:link>
+				</h:panelGroup>
+				<h:outputLabel styleClass="pagerIndex">#{pager.dto.current}</h:outputLabel>
+				<h:panelGroup rendered="#{pager.dto.last != pager.dto.current}">
+					<h:link outcome="index" includeViewParams="true"
+						styleClass="w3-button">
+						<f:param name="pageId" value="#{pager.dto.next}" />
+						<h:graphicImage library="images" name="icons/1right.png"
+							styleClass="pagerIcon" />
+					</h:link>
+					<h:link outcome="index" includeViewParams="true"
+						styleClass="w3-button">
+						<f:param name="pageId" value="#{pager.dto.last}" />
+						<h:graphicImage library="images" name="icons/2right.png"
+							styleClass="pagerIcon" />
+					</h:link>
+				</h:panelGroup>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
