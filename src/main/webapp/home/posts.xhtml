@@ -1,0 +1,59 @@
+<ui:composition template="/WEB-INF/pages/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{post.allPostByUser}" />
+	</f:metadata>
+
+	<ui:define name="windowTitle">
+  		#{text['lb.user']} | #{text['title.posts']}
+  	</ui:define>
+
+	<ui:define name="menuView">
+		<ui:include src="/WEB-INF/pages/user_menu.xhtml" />
+	</ui:define>
+
+	<ui:define name="contentView">
+		<h:form id="posts-form">
+			<h:panelGroup rendered="#{post.posts.rowCount > 0}">
+				<h:dataTable id="posts-table" value="#{post.posts}" var="p" styleClass="listTable"
+					headerClass="listTable-header"
+					rowClasses="listTable-oddRow, listTable-evenRow">
+					<h:column>
+						<f:facet name="header">#</f:facet>
+						<h:outputText value="#{post.posts.rowIndex +1}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{text['lb.date']}</f:facet>
+						<h:outputText value="#{p.createdAt}">
+							<f:convertDateTime locale="#{setting.locale}" dateStyle="medium" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{text['lb.title']}</f:facet>
+						<h:outputText value="#{p.title}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{text['lb.edit']}</f:facet>
+						<h:link id="pedit" outcome="post" includeViewParams="true">
+							<h:graphicImage styleClass="icons" library="images"
+								name="icons/modify.gif" />
+							<f:param name="post_id" value="#{p.id}" />
+						</h:link>
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{text['lb.erase']}</f:facet>
+						<h:commandButton id="pdelete"
+							image="../resources/images/icons/remove.gif"
+							action="#{post.delete}">
+							<f:param name="post_id" value="#{p.id}" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+</ui:composition>

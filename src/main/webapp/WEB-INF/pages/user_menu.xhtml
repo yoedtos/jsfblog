@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core">
+	
+	<div class="w3-bar w3-lime w3-small">
+		<a href="#{request.contextPath}/home/home.jsf" 
+			class="w3-bar-item w3-button #{view.viewId == '/home/home.xhtml' ? 'w3-light-green' : ''}">
+				#{text['lb.home']}
+		</a>
+		<a href="#{request.contextPath}/home/post.jsf" 
+			class="w3-bar-item w3-button #{view.viewId == '/home/post.xhtml' ? 'w3-light-green' : ''}">
+	    	<h:outputText rendered="#{post.editMode}" value="#{text['lb.edit']}"/>
+	    	<h:outputText rendered="#{!post.editMode}" value="#{text['lb.add']}"/>
+	 	</a>  
+		<a href="#{request.contextPath}/home/posts.jsf" 
+			class="w3-bar-item w3-button #{view.viewId == '/home/posts.xhtml' ? 'w3-light-green' : ''}">
+				#{text['lb.list']}
+		</a>
+	
+	    <h:panelGroup rendered="#{auth.user.role == auth.roleValues[3]}">
+	    	<a href="#{request.contextPath}/admin/home.jsf" class="w3-bar-item w3-button">
+	    		#{text['lb.manage']}
+	    	</a>
+	    </h:panelGroup>
+	</div>
+	
+</ui:composition>
+

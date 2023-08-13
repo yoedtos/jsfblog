@@ -33,42 +33,74 @@ public class PostDTO {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Date getCreatedAt() {
-		return this.createdAt;
-	}   
+		return createdAt;
+	}
 
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	
+
 	public String getTitle() {
-		return this.title;
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getAuthor() {
-		return this.author;
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
 	public Long getCategoryId() {
-		return this.categoryId;
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getIntro() {
 		return intro;
 	}
-	
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
 	public String getContent() {
-		return this.content;
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getMetaDesc() {
 		return metaDesc;
 	}
 
+	public void setMetaDesc(String metaDesc) {
+		this.metaDesc = metaDesc;
+	}
+
 	public String getMetaKey() {
 		return metaKey;
 	}
-	
+
+	public void setMetaKey(String metaKey) {
+		this.metaKey = metaKey;
+	}
+
 	public static PostDTO convert(Post post) {
 		return new PostDTO.Builder(post.getAuthor().getUsername())
 				.postId(post.getId())

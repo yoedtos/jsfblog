@@ -7,7 +7,11 @@
 	<ui:define name="windowTitle">
   		#{text['lb.user']} | #{text['lb.home']}
   	</ui:define>
-
+	
+	<ui:define name="menuView">
+		<ui:include src="/WEB-INF/pages/user_menu.xhtml" />
+	</ui:define>
+	
 	<ui:define name="contentView">
 		<div class="w3-row w3-panel">
 			<div class="w3-container w3-card w3-padding-16">

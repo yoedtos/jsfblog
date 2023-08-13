@@ -1,0 +1,122 @@
+<ui:composition template="/WEB-INF/pages/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<f:metadata>
+		<f:viewParam id="idedit" name="post_id" value="#{post.dto.id}" />
+		<f:event type="preRenderView" listener="#{post.loadPost}" />
+	</f:metadata>
+
+	<ui:define name="windowTitle">
+  		#{text['lb.user']} | #{text['title.post']}
+  	</ui:define>
+
+	<ui:define name="menuView">
+		<ui:include src="/WEB-INF/pages/user_menu.xhtml" />
+	</ui:define>
+
+	<ui:define name="contentView">
+		<div class="w3-row w3-panel">
+			<h:form id="postForm" styleClass="w3-container w3-card w3-padding-16">
+				<h3 class="w3-center">#{text['lb.content']}</h3>
+				<div class="w3-cell-row w3-border" style="padding: 10px;">
+					<h:panelGroup rendered="#{post.editMode}">
+						<div class="w3-container w3-cell w3-mobile w3-border-right">
+							<h:outputLabel value="#{text['lb.date']}: " />
+							<h:outputText value="#{post.dto.createdAt}">
+								<f:convertDateTime pattern="dd/MM/yyyy" locale="#{setting.locale}" />
+							</h:outputText>
+						</div>
+					</h:panelGroup>
+					<div class="w3-container w3-cell w3-mobile w3-border-right">
+						<h:outputLabel value="#{text['lb.author']}: " />
+						<h:outputText value="#{post.editMode ? post.dto.author : sessionScope.username}" />
+					</div>
+					<div class="w3-container w3-cell w3-mobile">
+						<p:message id="m_category-sel" for="category-sel" />
+						<h:outputLabel value="#{text['lb.category']}:"
+							styleClass="selectLabel" />
+						<h:selectOneMenu id="category-sel"
+							value="#{post.dto.categoryId}" required="true"
+							styleClass="w3-border button-color">
+							<f:selectItem itemLabel="#{text['lb.select']}"
+								noSelectionOption="true" />
+							<f:selectItems value="#{category.categories}" var="ct"
+								itemValue="#{ct.id}" itemLabel="#{ct.value}" />
+							<f:ajax event="blur" execute="category-sel"
+								render="m_category-sel" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+				<br />
+				<div class="w3-row">
+					<h:outputLabel for="title" value="#{text['lb.title']}" />
+					<p:message id="m_title" for="title" />
+					<h:inputText id="title" value="#{post.dto.title}" required="true"
+						styleClass="w3-input w3-border">
+						<f:validateLength minimum="10" maximum="50" />
+						<f:ajax event="blur" execute="title" render="m_title" />
+					</h:inputText>
+					<br />
+					<h:outputLabel for="intro" value="#{text['lb.intro']}" />
+					<p:message id="m_intro" for="intro" />
+					<pe:ckEditor id="intro" value="#{post.dto.intro}"
+						required="true" width="auto"
+						customConfig="#{request.contextPath}/resources/js/config/ck-simple.js">
+						<f:validateLength minimum="100" maximum="450" />
+						<f:ajax event="blur" execute="intro" render="m_intro" />
+					</pe:ckEditor>
+					<br />
+					<h:outputLabel for="content" value="#{text['lb.content']}" />
+					<p:message id="m_main" for="main" />
+					<pe:ckEditor id="main" value="#{post.dto.content}"
+						required="true" width="auto" height="400"
+						customConfig="#{request.contextPath}/resources/js/config/ck-custom.js">
+						<f:ajax event="blur" execute="main" render="m_main" />
+					</pe:ckEditor>
+				</div>
+				<br />
+				<div>
+					<h:outputLabel for="metaDesc" value="#{text['lb.meta_desc']}" />
+					<br />
+					<p:message id="m_metaDesc" for="metaDesc" />
+					<h:inputTextarea id="metaDesc" value="#{post.dto.metaDesc}"
+						rows="5" required="true" styleClass="w3-input w3-border">
+						<f:validateLength minimum="10" maximum="200" />
+						<f:ajax event="blur" execute="metaDesc" render="m_metaDesc" />
+					</h:inputTextarea>
+					<br />
+					<h:outputLabel for="metaKey" value="#{text['lb.meta_key']}" />
+					<br />
+					<p:message id="m_metaKey" for="metaKey" />
+					<h:inputTextarea id="metaKey" value="#{post.dto.metaKey}"
+						required="true" styleClass="w3-input w3-border">
+						<f:validateLength minimum="10" maximum="100" />
+						<f:ajax event="blur" execute="metaKey" render="m_metaKey" />
+					</h:inputTextarea>
+				</div>
+				<br />
+				<h:panelGroup rendered="#{!post.editMode}">
+					<h:commandButton id="sbutton" value="#{text['lb.post']}" action="#{post.save}"
+						styleClass="w3-button button-color">
+					</h:commandButton>
+					<h:commandButton value="#{text['lb.clear']}"
+						actionListener="#{post.clear}" immediate="true"
+						styleClass="w3-button button-color" />
+				</h:panelGroup>
+				<h:panelGroup rendered="#{post.editMode}">
+					<h:commandButton id="ubutton" value="#{text['lb.update']}"
+						action="#{post.update}" styleClass="w3-button button-color">
+					</h:commandButton>
+					<h:commandButton value="#{text['lb.cancel']}"
+						actionListener="#{post.cancel}" immediate="true"
+						styleClass="w3-button button-color" />
+				</h:panelGroup>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
