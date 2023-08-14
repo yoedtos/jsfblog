@@ -137,7 +137,7 @@ public class ReplyServiceTest {
 	}
 
 	@Test
-	public void whenGetAllByCommentShouldReturnTwoComments() throws ServiceException, DaoException {
+	public void whenGetAllByCommentShouldReturnTwoReplies() throws ServiceException, DaoException {
 		
 		Reply replyTwo = new Reply.Builder()
 				.id(REPLY_TWO_ID)

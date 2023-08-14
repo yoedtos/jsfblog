@@ -29,7 +29,7 @@ import net.yoedtos.blog.model.dto.ReplyDTO;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Reply.loadAll", query="SELECT r FROM Reply r"),
-	@NamedQuery(name="Reply.findAllByCommentId", query="SELECT r FROM Reply r WHERE r.comment.id = :commentId"),
+	@NamedQuery(name="Reply.findAllByCommentId", query="SELECT r FROM Reply r WHERE r.comment.id = :id"),
 })
 public class Reply implements Serializable {
 

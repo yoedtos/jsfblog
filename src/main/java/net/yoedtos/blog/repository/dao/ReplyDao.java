@@ -76,7 +76,7 @@ public class ReplyDao extends AbstractDao<Reply> implements Repository<Reply> {
 	public List<Reply> findAllByCommentId(Long id) throws DaoException {
 		List<Reply> replies;
 		try {
-			replies = loadByQuery("Reply.findAllByCommentId", QueryKey.COMMENT_ID, id);
+			replies = loadByQuery("Reply.findAllByCommentId", QueryKey.ID, id);
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 			throw new DaoException(e.getMessage());
