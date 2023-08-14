@@ -62,9 +62,23 @@ public class CommentService extends AbstractService<CommentDTO> implements Servi
 			LOGGER.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
+		return convertToDto(comments);
+	}
+
+	public List<CommentDTO> getAllByPost(Long id) throws ServiceException {
+		List<Comment> comments;
+		try {
+			comments = commentDao.findAllByPostId(id);
+		} catch (DaoException e) {
+			LOGGER.error(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		}
+		return convertToDto(comments);
+	}
+
+	private List<CommentDTO> convertToDto(List<Comment> comments) {
 		return comments.stream()
 				.map(CommentDTO::convert)
 				.collect(Collectors.toList());
 	}
-	 
 }
