@@ -28,6 +28,7 @@ import net.yoedtos.blog.model.dto.CommentDTO;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Comment.loadAll", query="SELECT c FROM Comment c"),
+	@NamedQuery(name="Comment.loadAllByPostId", query="SELECT c FROM Comment c JOIN FETCH c.post WHERE c.post.id = :id")
 })
 public class Comment implements Serializable {
 	

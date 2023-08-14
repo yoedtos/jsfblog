@@ -74,6 +74,13 @@ public class CommentDao extends AbstractDao<Comment> implements Repository<Comme
 	}
 
 	public List<Comment> findAllByPostId(Long id) throws DaoException {
-		return null;
+		List<Comment> comments;
+		try {
+			comments = loadByQuery("Comment.loadAllByPostId", QueryKey.ID, id);
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			throw new DaoException(e.getMessage());
+		}
+		return comments;
 	}
 }
