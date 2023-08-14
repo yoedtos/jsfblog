@@ -157,4 +157,21 @@ public class CommentServiceTest {
 			index++;
 		}
 	}
+	
+	@Test
+	public void whenGetAllByPostShouldReturnOneComment() throws ServiceException, DaoException {
+
+		List<Comment> comments = Arrays.asList(commentOne);
+		when(commentDaoMock.findAllByPostId(POST_ONE_ID)).thenReturn(comments);
+		List<CommentDTO> commentDTOs = commentService.getAllByPost(POST_ONE_ID);
+		
+		assertEquals(1, commentDTOs.size());
+		assertThat(commentDTOs.get(0).getId(), equalTo(COMMENT_ONE_ID));
+		assertThat(changeToSeconds(commentDTOs.get(0).getCreateAt()), equalTo(changeToSeconds(today)));
+		assertThat(commentDTOs.get(0).getContent(), equalTo(COMMENT_ONE));
+		assertThat(commentDTOs.get(0).getAuthor(), equalTo(AUTHOR_ONE));
+		assertThat(commentDTOs.get(0).getEmail(), equalTo(EMAIL_ONE));
+		assertThat(commentDTOs.get(0).getHostAddress(), equalTo(HOST_ADDRESS));
+		assertThat(commentDTOs.get(0).getPostId(), equalTo(POST_ONE_ID));
+	}
 }
