@@ -1,7 +1,22 @@
 package net.yoedtos.blog.repository.dao;
 
-import static net.yoedtos.blog.util.TestConstants.*;
-import static net.yoedtos.blog.util.TestUtil.*;
+import static net.yoedtos.blog.util.TestConstants.AUTHOR_NEW;
+import static net.yoedtos.blog.util.TestConstants.AUTHOR_TWO;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_NEW;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_NEW_ID;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_TWO;
+import static net.yoedtos.blog.util.TestConstants.COMMENT_TWO_ID;
+import static net.yoedtos.blog.util.TestConstants.CREATE_ONE;
+import static net.yoedtos.blog.util.TestConstants.CREATE_TWO;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_NEW;
+import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
+import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
+import static net.yoedtos.blog.util.TestConstants.POST_ONE_ID;
+import static net.yoedtos.blog.util.TestUtil.createCategory;
+import static net.yoedtos.blog.util.TestUtil.createCommentOne;
+import static net.yoedtos.blog.util.TestUtil.createDate;
+import static net.yoedtos.blog.util.TestUtil.createPostOne;
+import static net.yoedtos.blog.util.TestUtil.createUserOne;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertThat;
@@ -25,6 +40,7 @@ public class CommentDaoTest extends AbstractDaoTest {
 	
 	private CommentDao commentDao;
 	private Comment commentOne;
+	private Comment commentTwo;
 	private Post postOne;
 	private Date createOne;
 	
@@ -34,6 +50,14 @@ public class CommentDaoTest extends AbstractDaoTest {
 		createOne = createDate(CREATE_ONE);
 		postOne = createPostOne(createOne, createUserOne(createOne), createCategory());
 		commentOne = createCommentOne(createOne, postOne);
+		commentTwo = new Comment.Builder(AUTHOR_TWO)
+				.id(COMMENT_TWO_ID)
+				.createAt(createDate(CREATE_TWO))
+				.content(COMMENT_TWO)
+				.email(EMAIL_TWO)
+				.hostAddress(HOST_ADDRESS)
+				.post(postOne)
+				.build();
 	}
 
 	@Before
@@ -43,15 +67,6 @@ public class CommentDaoTest extends AbstractDaoTest {
 	
 	@Test
 	public void whenFindAllShouldReturnTwoComments() throws DaoException {
-		Comment commentTwo = new Comment.Builder(AUTHOR_TWO)
-				.id(COMMENT_TWO_ID)
-				.createAt(createDate(CREATE_TWO))
-				.content(COMMENT_TWO)
-				.email(EMAIL_TWO)
-				.hostAddress(HOST_ADDRESS)
-				.post(postOne)
-				.build();
-		
 		List<Comment> comments = commentDao.findAll();
 		assertThat(comments.size(), equalTo(2));
 		assertThat(comments, hasItems(new Comment[] {commentOne, commentTwo}));
@@ -81,5 +96,12 @@ public class CommentDaoTest extends AbstractDaoTest {
 		assertThat(commentDb.getAuthor(), equalTo(AUTHOR_NEW));
 		assertThat(commentDb.getEmail(), equalTo(EMAIL_NEW));
 		assertThat(commentDb.getHostAddress(), equalTo(HOST_ADDRESS));
+	}
+	
+	@Test
+	public void whenFindAllByPostIdShouldReturnTwoComments() throws DaoException {
+		List<Comment> comments = commentDao.findAllByPostId(POST_ONE_ID);
+		assertThat(comments.size(), equalTo(2));
+		assertThat(comments, hasItems(new Comment[] {commentOne, commentTwo}));
 	}
 }
