@@ -187,5 +187,7 @@ public class TestConstants {
 	public final static String VIEW_META_KEY = "Kafka";
 	public final static String PG_META_DESC = "Meta Description";
 	public final static String PG_META_KEY = "Meta Keyword";
+	
+	public final static String VIEW_ONE_URI = "/view.jsf?postId=6";
 }
 
