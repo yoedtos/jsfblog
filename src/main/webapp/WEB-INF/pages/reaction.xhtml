@@ -1,0 +1,146 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	
+	<h:commandButton id="commentDialog" type="button"
+		styleClass="w3-button button-color" value="#{text['lb.comment']}"
+		disabled="#{sessionScope.username != null ? 'true' : 'false'}"
+		onclick="comDlg.show();setCommentPostId(#{content.dto.id});" />
+	
+	<br />
+	<h:panelGroup rendered="#{(content.reactions.size() > 0)}">
+		<div id="comments">
+			<ui:repeat id="ctable" value="#{content.reactions}" var="c">
+				<table class="tableFull">
+					<tr>
+					 <td valign="top" width="10%" align="center">
+						<div id="author">
+							<h:graphicImage library="images" name="anon.png" />
+							<br />
+							<h:outputText value="#{c.key.author}" />
+						</div>
+					 </td>
+					 <td align="left">
+						<div id="bubble-left">
+							<span id="left">
+								<h:outputText value="#{c.key.createAt}">
+									<f:convertDateTime locale="#{setting.locale}" />
+								</h:outputText>
+							</span> 
+							<span id="right-btn"> 
+								<h:commandButton id="replyDialog"
+									styleClass="w3-button button-color" type="button"
+									rendered="#{sessionScope.username != null}"
+									value="#{text['lb.reply']}"
+									onclick="replyDlg.show();setReplyCommentId(#{c.key.id});" />
+							</span>
+							<br />
+							<span id="left">
+								<h:outputText value="#{c.key.content}" escape="false" />
+							</span>
+						</div>
+					 </td>
+					</tr>
+				</table>
+				<ui:repeat id="rtable" value="#{c.value}" var="r" rendered="#{(c.value.size() > 0)}">
+					<table class="tableFull">
+						<tr>
+						 <td align="right">
+							<div id="bubble-right">
+								<span id="right"> 
+									<h:outputText value="#{r.createAt}">
+										<f:convertDateTime locale="#{setting.locale}" />
+									</h:outputText>
+								</span>
+								<br />
+								<span id="left"> 
+									<h:outputText value="#{r.content}" escape="false" />
+								</span>
+							</div>
+						 </td>
+						 <td valign="top" width="10%" align="center">
+							<div id="author">
+								<h:graphicImage library="images" name="anon.png" />
+								<br />
+								<h:outputText value="#{r.author}" />
+							</div>
+						 </td>
+						</tr>
+					</table>
+				</ui:repeat>
+			</ui:repeat>
+		</div>
+	</h:panelGroup>
+	<p:dialog header="#{text['msg.write_comment']}" widgetVar="comDlg"
+		position="center center" modal="true" closeOnEscape="true"
+		resizable="false" width="auto" onShow="comDlg.initPosition()">
+		<span class="id-holder">Post ID = <span id="postNumber" /></span>
+		<h:form id="comment" acceptcharset="UTF-8">
+			<h:panelGroup rendered="#{sessionScope.username == null}">
+				<h:outputLabel for="name" value="#{text['lb.name']}" />
+				<p:message id="m_author" for="author" />
+				<h:inputText id="author" value="#{reaction.comment.author}"
+					required="true" styleClass="w3-input w3-border">
+					<f:validateLength minimum="5" maximum="20" />
+					<f:ajax event="blur" execute="author" render="m_author" />
+				</h:inputText>
+				<h:outputLabel for="email" value="#{text['lb.email']}" />
+				<p:message id="m_email" for="email" />
+				<h:inputText id="email" value="#{reaction.comment.email}"
+					required="true" styleClass="w3-input w3-border">
+					<f:validator validatorId="emailValidator" />
+					<f:ajax event="blur" execute="email" render="m_email" />
+				</h:inputText>
+				<h:outputText value="#{text['msg.notShowEmail']}" />
+			</h:panelGroup>
+			<h:panelGroup rendered="#{sessionScope.username != null}">
+				<h:outputText value="#{text['lb.user']}: " />
+				<h:outputText value="#{sessionScope.username}" />
+			</h:panelGroup>
+			<br />
+			<br />
+			<p:message id="m_comment" for="comment" />
+			<pe:ckEditor id="comment" value="#{reaction.comment.content}"
+				required="true" width="auto" height="140"
+				customConfig="#{request.contextPath}/resources/js/config/ck-tiny.js">
+				<f:validateLength minimum="10" maximum="500" />
+				<f:ajax event="blur" execute="comment" render="m_comment" />
+			</pe:ckEditor>
+			<br />
+			<p:commandButton id="csave" value="#{text['lb.comment']}"
+				action="#{reaction.doComment}" styleClass="w3-button button-color" />
+			<input type="hidden" id="comment_post_id" name="postId" />
+			<p:button value="#{text['lb.cancel']}" onclick="cancelDialog();"
+				styleClass="w3-button button-color" />
+		</h:form>
+	</p:dialog>
+
+	<p:dialog header="#{text['msg.reply_comment']}" widgetVar="replyDlg"
+		position="center center" modal="true" closeOnEscape="true"
+		resizable="false" width="auto" onShow="replyDlg.initPosition()">
+		<span class="id-holder">Comment ID = <span id="commentNumber" /></span>
+		<h:form id="reply" acceptcharset="UTF-8">
+			<h:outputText value="#{text['lb.user']}: " />
+			<h:outputText value="#{sessionScope.username}" />
+			<br />
+			<br />
+			<p:message id="m_reply" for="reply" />
+			<pe:ckEditor id="reply" value="#{reaction.reply.content}"
+				required="true" width="auto" height="140"
+				customConfig="#{request.contextPath}/resources/js/config/ck-tiny.js">
+				<f:validateLength minimum="10" maximum="500" />
+				<f:ajax event="blur" execute="reply" render="m_reply" />
+			</pe:ckEditor>
+			<br />
+			<p:commandButton id="rsave" value="#{text['lb.reply']}"
+				action="#{reaction.doReply}" styleClass="w3-button button-color" />
+			<input type="hidden" id="reply_comment_id" name="commentId" />
+			<p:button value="#{text['lb.cancel']}" onclick="cancelReply();"
+				styleClass="w3-button button-color" />
+		</h:form>
+	</p:dialog>
+
+</ui:composition>

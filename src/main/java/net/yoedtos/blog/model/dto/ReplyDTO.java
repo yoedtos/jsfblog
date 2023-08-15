@@ -31,8 +31,16 @@ public class ReplyDTO {
 		return commentId;
 	}
 	
+	public void setCommentId(Long commentId) {
+		this.commentId = commentId;
+	}
+	
 	public String getAuthor() {
 		return this.author;
+	}
+	
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	
 	public Date getCreateAt() {
@@ -47,8 +55,16 @@ public class ReplyDTO {
 		return content;
 	}
 	
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
 	public String getHostAddress() {
 		return hostAddress;
+	}
+	
+	public void setHostAddress(String hostAddress) {
+		this.hostAddress = hostAddress;
 	}
 	
 	public static ReplyDTO convert(Reply reply) {

@@ -33,8 +33,16 @@ public class CommentDTO {
 		return postId;
 	}
 	
+	public void setPostId(Long postId) {
+		this.postId = postId;
+	}
+	
 	public String getAuthor() {
 		return this.author;
+	}
+	
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	
 	public Date getCreateAt() {
@@ -49,12 +57,24 @@ public class CommentDTO {
 		return content;
 	}
 
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
 	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getHostAddress() {
 		return hostAddress;
+	}
+	
+	public void setHostAddress(String hostAddress) {
+		this.hostAddress = hostAddress;
 	}
 	
 	public static CommentDTO convert(Comment comment) {

@@ -36,14 +36,15 @@
           </div>
 	      <div class="w3-bar-item">
    	  		<h:graphicImage styleClass="icons" library="images" name="icons/reviews.png"/>
-	  		<h:outputText />
+	  		<h:outputText value="#{content.reactions.size()}" />
 		  </div>
-      </div>
-	<div id="content-panel" class="w3-container w3-padding-16">
-		<h:outputFormat value="#{content.dto.intro}" escape="false"/>
-		<h:outputFormat value="#{content.dto.content}" escape="false"/>
-	</div>
-   </div>
-   <hr/>
+    	</div>
+		<div id="content-panel" class="w3-container w3-padding-16">
+			<h:outputFormat value="#{content.dto.intro}" escape="false"/>
+			<h:outputFormat value="#{content.dto.content}" escape="false"/>
+		</div>
+   	</div>
+   	<hr/>
+   	<ui:include src="/WEB-INF/pages/reaction.xhtml"/>
   </ui:define>
 </ui:composition>
