@@ -1,31 +1,30 @@
 function selectFileName() {
-	var input = document.getElementById('j_idt57:upload');
-	var fileInfo = document.getElementById('uploadFileName');
+	let input = document.getElementById('media-form:upload');
+	let span = document.getElementById('mediaFileName');
 	
 	input.addEventListener('change', showFileName);
 	
 	function showFileName(event) {
-		var input = event.srcElement;
-		var fileName = input.files[0].name;
-		fileInfo.textContent = fileName;
+		let input = event.srcElement;
+		span.textContent = input.files[0].name;
 	}
 }
 
 function fallbackCopyToClipboard(url, message) {
-	  var text = document.createElement("textarea");
-	  text.value = url;
+	  let txtArea = document.createElement("textarea");
+	  txtArea.value = url;
 	  
-	  text.style.top = "0";
-	  text.style.left = "0";
-	  text.style.position = "fixed";
+	  txtArea.style.top = "0";
+	  txtArea.style.left = "0";
+	  txtArea.style.position = "fixed";
 	  
-	  document.body.appendChild(text);
-	  text.focus();
-	  text.select();
+	  document.body.appendChild(txtArea);
+	  txtArea.focus();
+	  txtArea.select();
 
 	  try {
-	    var successful = document.execCommand('copy');
-	    var msg = successful ? 'successful' : 'unsuccessful';
+	    let successful = document.execCommand('copy');
+	    let msg = successful ? 'successful' : 'unsuccessful';
 	    console.log('Fallback: Copying text command was ' + msg);
 	    copyGrowl.renderMessage({"summary": message,
             					 "severity":"info"});
@@ -33,7 +32,7 @@ function fallbackCopyToClipboard(url, message) {
 	    console.error('Fallback: Oops, unable to copy', err);
 	  }
 
-	  document.body.removeChild(text);
+	  document.body.removeChild(txtArea);
 	}
 
 function copyToClipboard(url, message) {
@@ -64,32 +63,32 @@ function cancelReply(event) {
 }
 
 function formReset(form) {
-	event.preventDefault();
+	form.event.preventDefault();
 	document.getElementById(form).reset();
 }
 
 function setReplyCommentId(value) {
-	var id = value;
+	let id = value;
 	document.getElementById("commentNumber").innerHTML = id;
 	document.getElementById("reply_comment_id").value = id;
 }
 
 function setCommentPostId(value) {
-	var id = value;
+	let id = value;
 	document.getElementById("postNumber").innerHTML = id;
 	document.getElementById("comment_post_id").value = id;
 }
 
 function getActualYear() {
-	var year = new Date().getFullYear();
+	let year = new Date().getFullYear();
 	document.write(year);
 }
 
 function enableActualPage() {
-	var header = document.getElementById("topBar");
-	var btns = header.getElementsByClassName("w3-bar-item");
-	for (var i = 0; i < btns.length; i++) {
-		btns[i].addEventListener("click", function() {
+	let header = document.getElementById("topBar");
+	let btns = header.getElementsByClassName("w3-bar-item");
+	for (const element of btns) {
+		element.addEventListener("click", function() {
 			var current = document.getElementsByClassName("w3-grey");
 			current[0].className = current[0].className.replace(" w3-grey", "")
 			this.className += " w3-grey";
