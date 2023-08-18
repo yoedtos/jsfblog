@@ -5,6 +5,7 @@ import static net.yoedtos.blog.util.TestConstants.CONTENT_TYPE_TWO;
 import static net.yoedtos.blog.util.TestConstants.CREATE_ONE;
 import static net.yoedtos.blog.util.TestConstants.CREATE_TWO;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_BIN;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_DESC;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_NAME;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_SURN;
@@ -16,6 +17,7 @@ import static net.yoedtos.blog.util.TestConstants.MEDIA_TWO_NAME;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_TWO_SURN;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_TWO_TYPE;
 import static net.yoedtos.blog.util.TestConstants.MEDIA_TWO_URN;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestUtil.createDate;
 import static net.yoedtos.blog.util.TestUtil.createMedia;
 import static net.yoedtos.blog.util.TestUtil.createMediaDTO;
@@ -144,6 +146,7 @@ public class MediaServiceTest {
 		
 		assertThat(mediaDTO.getId(), equalTo(MEDIA_ONE_ID));
 		assertThat(mediaDTO.getName(), equalTo(MEDIA_ONE_NAME));
+		assertThat(mediaDTO.getDescription(), equalTo(MEDIA_ONE_DESC));
 		assertThat(mediaDTO.getContentType(), equalTo(CONTENT_TYPE_ONE));
 		assertThat(mediaDTO.getBinary(), equalTo(MEDIA_ONE_BIN));
 		
@@ -217,5 +220,24 @@ public class MediaServiceTest {
 		assertThat(mediaDTOs.get(1).getType(), equalTo(MEDIA_TWO_TYPE));
 		assertThat(mediaDTOs.get(0).getUrn(), equalTo(MEDIA_ONE_SURN));
 		assertThat(mediaDTOs.get(1).getUrn(), equalTo(MEDIA_TWO_SURN));
+	}
+	
+	@Test
+	public void whenGetAllByUserShouldReturnOneMedia() throws ServiceException, DaoException {	
+		List<Media> mediaList = Arrays.asList(mediaOne);
+		
+		when(mediaDaoMock.findAllByUser(USERNAME_ONE)).thenReturn(mediaList);
+		
+		List<MediaDTO> mediaDTOs = mediaService.getAllByUser(USERNAME_ONE);
+		
+		assertEquals(1, mediaDTOs.size());
+		assertThat(mediaDTOs.get(0).getId(), equalTo(MEDIA_ONE_ID));
+		assertThat(mediaDTOs.get(0).getCreateAt(), equalTo(mediaOne.getCreateAt()));
+		assertThat(mediaDTOs.get(0).getDescription(), equalTo(MEDIA_ONE_DESC));
+		assertThat(mediaDTOs.get(0).getName(), equalTo(MEDIA_ONE_NAME));
+		assertThat(mediaDTOs.get(0).getOwner(), equalTo(USERNAME_ONE));
+		assertThat(mediaDTOs.get(0).getContentType(), equalTo(CONTENT_TYPE_ONE));
+		assertThat(mediaDTOs.get(0).getType(), equalTo(MEDIA_ONE_TYPE));
+		assertThat(mediaDTOs.get(0).getUrn(), equalTo(MEDIA_ONE_SURN));
 	}
 }
