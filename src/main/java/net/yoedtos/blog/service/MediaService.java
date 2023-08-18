@@ -104,4 +104,17 @@ public class MediaService extends AbstractService<MediaDTO> implements Service {
 				.map(MediaDTO::convert)
 				.collect(Collectors.toList());
 	}
+	
+	public List<MediaDTO> getAllByUser(String username) throws ServiceException {
+		List<Media> medias;
+		try {
+			medias = mediaDao.findAllByUser(username);
+		} catch (DaoException e) {
+			LOGGER.error(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		}
+		return medias.stream()
+				.map(MediaDTO::convert)
+				.collect(Collectors.toList());
+	}
 }

@@ -65,4 +65,8 @@ public class MediaDao extends AbstractDao<Media> implements Repository<Media>{
 		}
 		return medias;
 	}
+
+	public List<Media> findAllByUser(String username) throws DaoException {
+		return null;
+	}
 }
