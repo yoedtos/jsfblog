@@ -45,6 +45,8 @@ import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.USER_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.USER_TWO_ID;
+
+import java.io.File;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -286,5 +288,11 @@ public class TestUtil {
 				+ today.get(Calendar.YEAR) 
 				+ "/" + (today.get(Calendar.MONTH) + 1) 
 				+ "/" + mediaName;
+	}
+	
+	public static String loadMediaFile(String filename) {
+		ClassLoader classloader = TestUtil.class.getClassLoader();
+		File resource = new File(classloader.getResource(filename).getFile());
+		return resource.getAbsolutePath();
 	}
 }

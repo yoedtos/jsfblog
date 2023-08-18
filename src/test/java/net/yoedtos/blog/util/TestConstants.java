@@ -189,5 +189,11 @@ public class TestConstants {
 	public final static String PG_META_KEY = "Meta Keyword";
 	
 	public final static String VIEW_ONE_URI = "/view.jsf?postId=6";
+	
+	public final static String MEDIAS_URI = "/home/files.jsf";
+	public final static String MEDIAS_PG_TITLE = "User | Manage Files";
+	public final static String MEDIA_IMG = "duke-plug.png";
+	public final static String MEDIA_IMG_DESC = "Duke plugging power sockets";
+	public final static String MEDIA_IMG_SURN = "/media/1-duke-plug.png";
 }
 
