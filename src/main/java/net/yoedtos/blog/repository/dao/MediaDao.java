@@ -67,6 +67,11 @@ public class MediaDao extends AbstractDao<Media> implements Repository<Media>{
 	}
 
 	public List<Media> findAllByUser(String username) throws DaoException {
-		return null;
+		try {
+			return loadByQuery("Media.loadAllByUser", QueryKey.USERNAME, username);
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			throw new DaoException(e.getMessage());
+		}
 	}
 }

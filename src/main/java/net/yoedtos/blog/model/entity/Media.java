@@ -24,7 +24,10 @@ import net.yoedtos.blog.model.dto.MediaDTO;
  */
 @SuppressWarnings("serial")
 @Entity
-@NamedQueries({ @NamedQuery(name = "Media.loadAll", query = "SELECT m FROM Media m") })
+@NamedQueries({ 
+	@NamedQuery(name = "Media.loadAll", query = "SELECT m FROM Media m"),
+	@NamedQuery(name = "Media.loadAllByUser", query="SELECT m FROM Media m WHERE m.owner.username = :user")
+	})
 public class Media implements Serializable {
 
 	@Id
