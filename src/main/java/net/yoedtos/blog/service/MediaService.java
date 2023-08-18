@@ -38,6 +38,7 @@ public class MediaService extends AbstractService<MediaDTO> implements Service {
 		try {
 			media.setOwner(userDao.findByUsername(mediaDto.getOwner()));
 			mediaFS.store(mediaDto);
+			media.setName(mediaDto.getName());
 			media.setUrn(mediaFS.getUrn());
 			mediaDao.persist(media);
 		} catch (FSException e) {
