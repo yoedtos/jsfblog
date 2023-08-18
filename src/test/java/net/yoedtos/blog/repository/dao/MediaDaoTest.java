@@ -1,8 +1,26 @@
 package net.yoedtos.blog.repository.dao;
 
-import static net.yoedtos.blog.util.TestConstants.*;
-import static net.yoedtos.blog.util.TestUtil.*;
+import static net.yoedtos.blog.util.TestConstants.CONTENT_TYPE_ONE;
+import static net.yoedtos.blog.util.TestConstants.CONTENT_TYPE_TWO;
+import static net.yoedtos.blog.util.TestConstants.CREATE_ONE;
+import static net.yoedtos.blog.util.TestConstants.CREATE_TWO;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_NEW_DESC;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_NEW_ID;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_NEW_NAME;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_NEW_URN;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_ONE_ID;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_OUT_ID;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_TWO_DESC;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_TWO_ID;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_TWO_NAME;
+import static net.yoedtos.blog.util.TestConstants.MEDIA_TWO_URN;
+import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
+import static net.yoedtos.blog.util.TestUtil.createDate;
+import static net.yoedtos.blog.util.TestUtil.createMediaOne;
+import static net.yoedtos.blog.util.TestUtil.createUserOne;
+import static net.yoedtos.blog.util.TestUtil.createUserTwo;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
@@ -59,6 +77,13 @@ public class MediaDaoTest extends AbstractDaoTest {
 		List<Media> medias = mediaDao.findAll();
 		assertThat(medias.size(), equalTo(2));
 		assertThat(medias, hasItems(new Media[] {mediaOne, mediaTwo}));
+	}
+	
+	@Test
+	public void whenFindAllByUserShouldReturnOne() throws DaoException {
+		List<Media> medias = mediaDao.findAllByUser(USERNAME_ONE);
+		assertThat(medias.size(), equalTo(1));
+		assertThat(medias, hasItem(mediaOne));
 	}
 	
 	@Test
