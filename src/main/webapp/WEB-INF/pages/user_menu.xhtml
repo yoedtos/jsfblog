@@ -2,7 +2,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:c="http://java.sun.com/jstl/core">
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
 	
 	<div class="w3-bar w3-lime w3-small">
 		<a href="#{request.contextPath}/home/home.jsf" 
@@ -18,13 +19,54 @@
 			class="w3-bar-item w3-button #{view.viewId == '/home/posts.xhtml' ? 'w3-light-green' : ''}">
 				#{text['lb.list']}
 		</a>
-	
+	    <div id="media-menu" class="w3-dropdown-hover">
+	     <button class="w3-button">#{text['lb.files']}</button>
+	     <div class="w3-dropdown-content w3-bar-block w3-card-4">
+	       <a onclick="uploadDlg.show()" class="w3-bar-item w3-button">#{text['lb.upload']}</a>
+	       <a href="#{request.contextPath}/home/files.jsf" 
+	       		class="w3-bar-item w3-button #{view.viewId == '/home/files.xhtml' ? 'w3-light-green' : ''}">
+	          		#{text['lb.search']}
+	       </a>
+	     </div>
+	   	</div>
 	    <h:panelGroup rendered="#{auth.user.role == auth.roleValues[3]}">
 	    	<a href="#{request.contextPath}/admin/home.jsf" class="w3-bar-item w3-button">
 	    		#{text['lb.manage']}
 	    	</a>
 	    </h:panelGroup>
 	</div>
-	
+	<p:dialog header="#{text['title.upload_file']}" widgetVar="uploadDlg"
+		position="center center" modal="true" resizable="false" width="350"
+		onShow="uploadDlg.initPosition()">
+
+		<h:form id="media-form" enctype="multipart/form-data">
+			<h:outputLabel for="fdescription" value="#{text['lb.file_desc']}" />
+			<p:message id="m_fdescription" for="fdescription" />
+			<h:inputText id="fdescription" value="#{media.dto.description}" required="true" 
+				styleClass="w3-input w3-border">
+				<f:validateLength minimum="5" maximum="30" />
+				<f:ajax event="blur" execute="fdescription" render="m_fdescription" />
+			</h:inputText>
+			<div id="mediaFileName" class="w3-panel">
+				<span>#{text['lb.file_name']}</span>
+			</div>
+			<p:message id="m_selectType" for="selectType" />
+			<label class="custom-input" onclick="selectFileName();">
+			<p:fileUpload id="upload" value="#{media.uploadedFile}" mode="simple" required="true">
+				<f:validator validatorId="mediaValidator" />
+				<f:attribute name="types" value="#{media.allowedTypes}" />
+			</p:fileUpload> <i>#{text['lb.choose']}</i>
+			</label>
+			<h:outputLabel value="#{text['lb.type']}:" styleClass="selectLabel" />
+			<h:selectOneMenu id="selectType" value="#{media.dto.type}" required="true"
+				valueChangeListener="#{media.changeType}" styleClass="w3-border selectType">
+				<f:selectItem itemLabel="#{text['lb.select']}" noSelectionOption="true" />
+				<f:selectItems value="#{media.types}" var="t" itemLabel="#{t.type}" itemValue="#{t}" />
+				<f:ajax event="blur" execute="selectType" render="m_selectType" />
+			</h:selectOneMenu>
+			<h:commandButton id="sbutton" value="#{text['lb.send']}" action="#{media.upload}"
+				styleClass="w3-button button-color" />
+		</h:form>
+	</p:dialog>
 </ui:composition>
 
