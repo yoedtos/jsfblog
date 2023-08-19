@@ -1,5 +1,7 @@
 package net.yoedtos.blog.control;
 
+import static net.yoedtos.blog.util.Constants.ADMIN_USER;
+import static net.yoedtos.blog.util.Constants.ADMIN_USER_PASS;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_PG_TITLE;
@@ -28,7 +30,8 @@ public class CategoryIt extends AbstractIT {
 	@Before
 	public void setup() {
 		driver = new FirefoxDriver(getFirefoxOptions());
-		driver.get(TEST_CONTEXT + CATEGORY_URI);
+		login(ADMIN_USER, ADMIN_USER_PASS);
+		driver.navigate().to(TEST_CONTEXT + CATEGORY_URI);
 	}
 
 	@After

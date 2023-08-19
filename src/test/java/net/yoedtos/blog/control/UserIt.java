@@ -1,5 +1,7 @@
 package net.yoedtos.blog.control;
 
+import static net.yoedtos.blog.util.Constants.ADMIN_USER;
+import static net.yoedtos.blog.util.Constants.ADMIN_USER_PASS;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.PG_TITLE;
 import static net.yoedtos.blog.util.TestConstants.TEST_CONTEXT;
@@ -32,7 +34,8 @@ public class UserIt extends AbstractIT {
 	@Before
 	public void setup() {
 		driver = new FirefoxDriver(getFirefoxOptions());
-		driver.get(TEST_CONTEXT + USERS_URI);
+		login(ADMIN_USER, ADMIN_USER_PASS);
+		driver.navigate().to(TEST_CONTEXT + USERS_URI);
 	}
 
 	@After
