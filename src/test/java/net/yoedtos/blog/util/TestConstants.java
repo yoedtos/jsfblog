@@ -196,5 +196,7 @@ public class TestConstants {
 	public final static String MEDIA_IMG = "duke-plug.png";
 	public final static String MEDIA_IMG_DESC = "Duke plugging power sockets";
 	public final static String MEDIA_IMG_SURN = "/media/1-duke-plug.png";
+	
+	public final static String SEARCH_TITLE = "Etiam";
 }
 

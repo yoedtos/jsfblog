@@ -68,6 +68,7 @@ import net.yoedtos.blog.model.entity.Post;
 import net.yoedtos.blog.model.entity.Reply;
 import net.yoedtos.blog.model.entity.User;
 import net.yoedtos.blog.repository.fs.PropsKey;
+import net.yoedtos.blog.search.Found;
 import net.yoedtos.blog.view.i18n.Language;
 
 public class TestUtil {
@@ -294,5 +295,9 @@ public class TestUtil {
 		ClassLoader classloader = TestUtil.class.getClassLoader();
 		File resource = new File(classloader.getResource(filename).getFile());
 		return resource.getAbsolutePath();
+	}
+	
+	public static Found createFoundOne() {
+		return new Found(POST_ONE_ID, TITLE_ONE, META_DESC);
 	}
 }
