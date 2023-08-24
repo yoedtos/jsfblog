@@ -17,6 +17,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 import net.yoedtos.blog.model.dto.PostDTO;
 
 /**
@@ -25,6 +29,7 @@ import net.yoedtos.blog.model.dto.PostDTO;
  */
 @SuppressWarnings("serial")
 @Entity
+@Indexed
 @NamedQueries({
 	@NamedQuery(name="Post.loadAll", query="SELECT p FROM Post p"),
 	@NamedQuery(name="Post.loadAllByUser", query="SELECT p FROM Post p WHERE p.author.username = :user"),
@@ -40,18 +45,22 @@ public class Post implements Serializable {
 	@Temporal(TIMESTAMP)
 	private Date createdAt;
 	@Column(length = 55)
+	@Field(store = Store.YES)
 	private String title;
 	@OneToOne
 	private User author;
 	@OneToOne
 	private Category category;
 	@Column(length=450)
+	@Field
 	private String intro;
 	@Lob
 	private String content;
 	@Column(length=200)
+	@Field(store = Store.YES)
 	private String metaDesc;
 	@Column(length=100)
+	@Field
 	private String metaKey;
 	
 	public Post() {
@@ -206,6 +215,4 @@ public class Post implements Serializable {
 		Post other = (Post) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 }
