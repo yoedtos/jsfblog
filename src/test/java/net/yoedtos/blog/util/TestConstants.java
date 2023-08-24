@@ -198,5 +198,7 @@ public class TestConstants {
 	public final static String MEDIA_IMG_SURN = "/media/1-duke-plug.png";
 	
 	public final static String SEARCH_TITLE = "Etiam";
+	public final static String SEARCH_META = "Lorem";
+	public final static String SEARCH_TITLE_NEW = "Vestibulum";
 }
 

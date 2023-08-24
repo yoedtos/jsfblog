@@ -300,4 +300,8 @@ public class TestUtil {
 	public static Found createFoundOne() {
 		return new Found(POST_ONE_ID, TITLE_ONE, META_DESC);
 	}
+	
+	public static Found createFoundTwo() {
+		return new Found(POST_TWO_ID, TITLE_TWO, META_DESC);
+	}
 }
