@@ -5,6 +5,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import net.yoedtos.blog.repository.dao.DaoHandler;
+import net.yoedtos.blog.search.SearchEngine;
 
 @WebListener
 public class ContextListener implements ServletContextListener {
@@ -15,6 +16,7 @@ public class ContextListener implements ServletContextListener {
     	DaoHandler.init();
     	DaoHandler.createAdminUser();
     	DaoHandler.createDemoData();
+    	SearchEngine.createIndex(DaoHandler.getEntityManager());
     }
 
     public void contextDestroyed(ServletContextEvent e) {

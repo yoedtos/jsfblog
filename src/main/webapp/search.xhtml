@@ -1,0 +1,28 @@
+
+<ui:composition template="/WEB-INF/pages/layout.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" >
+	
+  <ui:define name="windowTitle">
+  	#{text['title.search']}
+  </ui:define>
+  
+  <ui:define name="contentView">
+    <div class="w3-panel">
+      <h:outputText value="#{text['msg.search_result']}: "/>
+      <h:outputText value="#{(search.results.size())}"/>
+    </div>
+    <ui:repeat value="#{search.results}" var="f"> 	
+          <div id="result" class="w3-panel w3-card-4"> 
+			<span class="searchTitle">
+				<h:link value="#{f.title}" outcome="view" includeViewParams="true">
+					<f:param name="postId" value="#{f.id}" />
+				</h:link>
+			</span>
+			<p class="w3-small">#{f.details}</p>
+          </div>
+    </ui:repeat>
+  </ui:define>
+</ui:composition>

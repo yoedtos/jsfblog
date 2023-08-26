@@ -116,6 +116,7 @@
 	background: white
 				url("#{resource['images:icons/search.gif']}") 
 				no-repeat 1px 15px;
+	padding-left: 20px !important;
 } 
 
 .searchTitle a:visited, .searchTitle a:link {

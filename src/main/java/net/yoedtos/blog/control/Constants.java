@@ -19,6 +19,7 @@ class Constants {
 	public static final String PARAM_VIEW_REDIRECT = "view?faces-redirect=true&includeViewParams=true";
 	public static final String MEDIAS_REDIRECT = "/home/files?faces-redirect=true";
 	public static final String MEDIA = "/media";
+	public static final String SEARCH = "search.jsf";
 	
 	public static final String SESSION_KEY_USER = "username";
 	public static final String SESSION_KEY_ROLE = "role";

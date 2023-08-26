@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui">
+
+<div class="w3-center">
+  <div class="w3-bar w3-border">
+    <h:form id="search-form">
+    	<p:message id="m_keyword" for="keyword" />
+        <h:inputText id="keyword" value="#{search.keyword}" required="true" 
+                      styleClass="w3-bar-item w3-input w3-white w3-mobile search-icon" 
+                      a:placeholder="#{text['ph.search']}">
+	        <f:validateLength minimum="2" maximum="20" />
+			<f:ajax event="blur" execute="keyword" render="m_keyword" />
+		</h:inputText>
+         <h:commandButton id="search-btn" value="#{text['lb.search']}" action="#{search.doSearch}" 
+                      styleClass="w3-bar-item w3-button w3-mobile button-color w3-hover-green" />
+    </h:form>
+  </div>
+</div>
+
+</ui:composition>
