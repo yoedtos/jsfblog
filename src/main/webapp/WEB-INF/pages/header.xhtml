@@ -2,7 +2,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-	<div id="header" class="w3-container">
-		
+	<div id="header" class="w3-center">
+		<a href="#{request.contextPath}/index.jsf">
+			<span>#{setting.dto.siteName}</span>
+		</a>
 	</div>
 </ui:composition>

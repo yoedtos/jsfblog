@@ -3,6 +3,15 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 	<div id="footer" class="w3-container">
-
+		<h6>
+			Powered by
+			<h:graphicImage library="images" name="tomcat.jpg" />
+			<h:graphicImage library="images" name="jsflogo.png" />
+		</h6>
+		<h6>
+			Copyright 2011 - 
+			<script type="text/javascript">getActualYear()</script>
+			<a href="#{setting.dto.siteAddress}">#{setting.dto.siteName}</a> - All rights reserved.
+		</h6>
 	</div>
 </ui:composition>

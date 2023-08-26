@@ -1,20 +1,32 @@
+@font-face {
+	font-family: Quebab-Shadow;
+	src: url("#{resource['fonts:Quebab-Shadow.ttf']}") format('truetype');
+}
+
+@media only screen and (max-width:900px) {
+	#header span {
+		font-size: 35px !important;
+	}
+}
+
 /* header styles  */
 div#header {
 	width: auto;
 	height: 100px;
 	margin: 0px auto 10px auto;
+	padding: 15px 0px;
  	border-bottom: 1px solid #D0D0D0; 
 	background-image: url("#{resource['images:hgrad.png']}");
 	background-repeat: repeat-x;
 }
 
-div#header img {
-	max-width: 100%;
-	height: auto;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 15px;
+div#header span {
+	font-family: Quebab-Shadow;
+	font-size: 50px;
+}
+
+div#header a {
+	text-decoration: none;
 }
 
 div#nojsview {
