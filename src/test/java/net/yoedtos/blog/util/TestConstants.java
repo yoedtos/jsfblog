@@ -200,5 +200,9 @@ public class TestConstants {
 	public final static String SEARCH_TITLE = "Etiam";
 	public final static String SEARCH_META = "Lorem";
 	public final static String SEARCH_TITLE_NEW = "Vestibulum";
+	
+	public final static String RESULT_TITLE= "Aenean commodo ligula eget dolor aenean";
+	public final static String RESULT_DESC = "Lorem ipsum dolor sit amet, consectetuer";
+	public final static String RESULT_LINK = TEST_CONTEXT + "/view.jsf?postId=1";
 }
 
