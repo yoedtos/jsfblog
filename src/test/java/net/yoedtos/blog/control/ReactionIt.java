@@ -27,12 +27,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ReactionIt extends AbstractIT {
-	private By commentSrc = By.xpath("//form/div[4]//span[2]/span[1]/span[3]/a");
-	private By commentTxt = By.xpath("//form/div[4]/div/div/textarea");
-	private By replySrc = By.xpath("//div[5]//form/div[2]//span[1]/span[3]/a");
-	private By replyTxt = By.xpath("//div[5]/div[2]/form//div[2]//textarea");
-	private By commentTds = By.xpath("//div[3]/table[1]/tbody/tr/td");
-	private By replyTds = By.xpath("//div[3]/table[2]/tbody/tr/td");
+	private By commentSrc = By.xpath("//*[@id=\"cke_comment:comment\"]/div//span[1]/span[3]/a");
+	private By commentTxt = By.xpath("//*[@id=\"cke_comment:comment\"]//div/textarea");
+	private By replySrc = By.xpath("//*[@id=\"cke_reply:reply\"]/div//span[1]/span[3]/a");
+	private By replyTxt = By.xpath("//*[@id=\"cke_reply:reply\"]//div/textarea");
+	private By commentTds = By.xpath("//*[@id=\"comments\"]/table[1]//td");
+	private By replyTds = By.xpath("//*[@id=\"comments\"]/table[2]//td");
 	
 	private WebDriverWait driveWait;
 	

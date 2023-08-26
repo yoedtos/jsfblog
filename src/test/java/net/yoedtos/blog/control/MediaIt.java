@@ -26,9 +26,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MediaIt extends AbstractIT {
-	
-	private By uploadMenu = By.xpath("//div[2]/div[2]//div/a[1]");
-	private By listMenu = By.xpath("//div[2]/div[2]//div/a[2]");
+	private By uploadMenu = By.xpath("//*[@id=\"media-menu\"]/div/a[1]");
+	private By listMenu = By.xpath("//*[@id=\"media-menu\"]/div/a[2]");
 	
 	@Before
 	public void setup() {
