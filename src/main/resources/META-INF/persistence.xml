@@ -14,10 +14,10 @@
     	<class>net.yoedtos.blog.model.entity.Media</class>
     	<properties>
 		   	<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:~/data/blogdb;MODE=MYSQL" />
-			<property name="javax.persistence.jdbc.user" value="bloguser" />
-			<property name="javax.persistence.jdbc.password" value="bloguser" />
-		
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;MODE=MYSQL" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="sa" />
+			
 			<property name="hibernate.c3p0.min_size" value="5"/>
             <property name="hibernate.c3p0.max_size" value="20"/>
             <property name="hibernate.c3p0.timeout" value="300"/>
@@ -28,13 +28,11 @@
 	
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.show_sql" value="false" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.jdbc.batch_size" value="20" />
 	
 			<property name="javax.persistence.sharedCache.mode" value="ALL" />
-
-			<property name="hibernate.search.default.directory_provider" value="filesystem" />
-			<property name="hibernate.search.default.indexBase" value="./data/jsfblog/lucene/indexes" />
+			<property name="hibernate.search.default.directory_provider" value="ram" />
 		</properties>
 	</persistence-unit>
 </persistence>
