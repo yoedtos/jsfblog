@@ -5,7 +5,6 @@ public class Constants {
 	
 	public static final String PASS_MASK = "*******";
 	public static final String PERSIST_UNIT = "blogdb";
-	public static final String PROPERTY_FILE_NAME = "jsfblog.properties";
 	public static final String PROPERTY_FILE_HEADER = "jsfblog settings";
 	public static final String IMAGES = "images";
 	public static final String VIDEOS = "videos";
@@ -22,5 +21,6 @@ public class Constants {
 	public final static String SCRIPT_ADMIN = "INSERT IGNORE INTO user(user_id, username, password, role, active) "
 			+ "VALUES ('0', 'admin-user', 'dMI3KYBrFlUr48MfjwowhC0yMqWoqpR97bYWs7CZd9B0bG0hxiSsBv92xo5SGUpB', 'ADMINISTRATOR', true);";
 	public final static String DEMO_DATA = DATA_PATH + "/demo-data.sql";
-	public static final String APP_PROPS = "configuration.properties";
+	public static final String APP_PROPS = DATA_PATH + "/configuration.properties";
+	public static final String PROPERTY_FILE_NAME = DATA_PATH + "/jsfblog.properties";
 }
