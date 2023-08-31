@@ -48,6 +48,8 @@ public class DaoHandler {
 		PropertiesHelper propertiesHelper = new PropertiesHelper(config);
 		try {
 			Properties properties = propertiesHelper.read();
+			String value = properties.getProperty(Constants.KEY_SEARCH_INDEX);
+			properties.replace(Constants.KEY_SEARCH_INDEX, Constants.DATA_PATH + value);
 			return Maps.fromProperties(properties);
 		} catch (FileNotFoundException e) {
 			LOGGER.info(e.getMessage());
