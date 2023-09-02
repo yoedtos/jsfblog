@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<CATEGORY category_id="1" value="Lorem" />
-	<CATEGORY category_id="2" value="Nullam" />
+	<Category category_id="1" value="Lorem" />
+	<Category category_id="2" value="Nullam" />
 
-	<USER 
+	<User 
 		user_id="1" 
 		username="userone" 
 		password="drowssap" 
@@ -13,7 +13,7 @@
 		role="MEMBER" 
 		active="true" 
 		createat="2012-09-01 18:29:33.633"/>
-	<USER 
+	<User 
 		user_id="2" 
 		username="usertwo" 
 		password="drowssap" 
@@ -24,7 +24,7 @@
 		active="true" 
 		createat="2012-09-01 20:31:39.94"/>
 
-	<POST
+	<Post
 		post_id="1"
 		createdat="2012-09-01 18:29:33.633"
 		title="Etiam sit amet orci"
@@ -34,7 +34,7 @@
 		metadesc="Lorem ipsum dolor sit amet, consectetuer"
 		metakey="Lorem, Ipsum"
 		author_user_id="1"/>
-	<POST
+	<Post
 		post_id="2"
 		createdat="2012-09-01 20:31:39.94"
 		title="Vivamus elementum semper"
@@ -45,7 +45,7 @@
 		metakey="Lorem, Ipsum"
 		author_user_id="2"/>
 
-	<COMMENT
+	<Comment
 		comment_id="1" 
 		createat="2012-09-01 18:29:33.633"
 		author="Visitor One" 
@@ -53,7 +53,7 @@
 		email="userone@domain.com" 
 		hostaddress="127.0.0.1" 
 		post_id="1"/>
-	<COMMENT 
+	<Comment 
 		comment_id="2" 
 		createat="2012-09-01 20:31:39.94" 
 		author="Vistor Two" 
@@ -62,21 +62,21 @@
 		hostaddress="127.0.0.1" 
 		post_id="1"/>
 
-	<REPLY 
+	<Reply 
 		reply_id="1" 
 		createat="2012-09-01 18:29:33.633"
 		content="Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc" 
 		hostaddress="127.0.0.1" 
 		author_user_id="1" 
 		comment_id="1"/>
-	<REPLY 
+	<Reply 
 		reply_id="2" 
 		createat="2012-09-01 20:31:39.94" 
 		content=" Donec vitae sapien ut libero venenatis faucibus.Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt." 
 		hostaddress="127.0.0.1" 
 		author_user_id="1" 
 		comment_id="2"/>
-	<MEDIA 
+	<Media 
 		media_id="1" 
 		createat="2012-09-01 18:29:33.633"
 		owner_user_id="1"
@@ -84,7 +84,7 @@
 		description="List of best blogs in 2012"
 		contenttype="application/zip"
 		urn="/files/2012/9/bestblogs.zip"/>
-	<MEDIA 
+	<Media 
 		media_id="2" 
 		createat="2012-09-01 20:31:39.944"
 		owner_user_id="2"

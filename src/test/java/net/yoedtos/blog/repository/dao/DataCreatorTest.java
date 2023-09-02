@@ -36,7 +36,7 @@ public class DataCreatorTest extends AbstractDaoTest {
 		assertTrue((boolean)userData.getValue(0, Columns.ACTIVE));
 	
 		dataCreator.createDemoData();
-		ITable postData = connection.createQueryTable(Table.POST, "SELECT * FROM POST");
+		ITable postData = connection.createQueryTable(Table.POST, "SELECT * FROM Post");
 		assertThat(postData.getRowCount(), equalTo(6));
 	}
 	
