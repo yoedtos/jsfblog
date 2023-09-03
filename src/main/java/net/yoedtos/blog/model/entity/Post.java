@@ -201,8 +201,15 @@ public class Post implements Serializable {
 	}
 
 	@Override
+	public String toString() {
+		return "Post [id=" + id + ", createdAt=" + createdAt + ", title=" + title + ", author=" + author + ", category="
+				+ category + ", intro=" + intro + ", content=" + content + ", metaDesc=" + metaDesc + ", metaKey="
+				+ metaKey + "]";
+	}
+
+	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(author, category, content, createdAt, id, intro, metaDesc, metaKey, title);
 	}
 
 	@Override
@@ -214,6 +221,10 @@ public class Post implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(author, other.author) && Objects.equals(category, other.category)
+				&& Objects.equals(content, other.content) && Objects.equals(createdAt.getTime()/1000, other.createdAt.getTime()/1000)
+				&& Objects.equals(id, other.id) && Objects.equals(intro, other.intro)
+				&& Objects.equals(metaDesc, other.metaDesc) && Objects.equals(metaKey, other.metaKey)
+				&& Objects.equals(title, other.title);
 	}
 }

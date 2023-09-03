@@ -2,31 +2,27 @@ package net.yoedtos.blog.repository.dao;
 
 import static net.yoedtos.blog.util.TestConstants.BEGIN_ZERO;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_NEW;
-import static net.yoedtos.blog.util.TestConstants.CONTENT_TWO;
+import static net.yoedtos.blog.util.TestConstants.CONTENT_ONE;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.CREATE_ONE;
-import static net.yoedtos.blog.util.TestConstants.CREATE_TWO;
 import static net.yoedtos.blog.util.TestConstants.INTRO_NEW;
-import static net.yoedtos.blog.util.TestConstants.INTRO_TWO;
+import static net.yoedtos.blog.util.TestConstants.INTRO_ONE;
 import static net.yoedtos.blog.util.TestConstants.INTRO_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.MAX_PAGES;
 import static net.yoedtos.blog.util.TestConstants.META_DESC;
 import static net.yoedtos.blog.util.TestConstants.META_KEY;
 import static net.yoedtos.blog.util.TestConstants.POST_NEW_ID;
 import static net.yoedtos.blog.util.TestConstants.POST_ONE_ID;
-import static net.yoedtos.blog.util.TestConstants.POST_TWO_ID;
 import static net.yoedtos.blog.util.TestConstants.TITLE_NEW;
-import static net.yoedtos.blog.util.TestConstants.TITLE_TWO;
+import static net.yoedtos.blog.util.TestConstants.TITLE_ONE;
 import static net.yoedtos.blog.util.TestConstants.TITLE_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestUtil.createCategory;
 import static net.yoedtos.blog.util.TestUtil.createDate;
 import static net.yoedtos.blog.util.TestUtil.createPostOne;
 import static net.yoedtos.blog.util.TestUtil.createUserOne;
-import static net.yoedtos.blog.util.TestUtil.createUserTwo;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertThat;
 
 import java.sql.SQLException;
@@ -69,24 +65,18 @@ public class PostDaoTest extends AbstractDaoTest {
 	
 	@Test
 	public void whenFindAllShouldReturnTwoPosts() throws DaoException {
-		Date createTwo = createDate(CREATE_TWO);
-		User userTwo = createUserTwo(createTwo);
-		
-		Post postTwo = new Post.Builder()
-				.id(POST_TWO_ID)
-				.createdAt(createTwo)
-				.title(TITLE_TWO)
-				.author(userTwo)
-				.category(category)
-				.intro(INTRO_TWO)
-				.content(CONTENT_TWO)
-				.metaDesc(META_DESC)
-				.metaKey(META_KEY)
-				.build();
-		
 		List<Post> posts = postDao.findAll();
 		assertThat(posts.size(), equalTo(2));
-		assertThat(posts, hasItems(new Post[] {postOne, postTwo}));
+		
+		assertThat(posts.get(0).getId(), equalTo(POST_ONE_ID));
+		assertThat(posts.get(0).getCreatedAt(), equalTo(Timestamp.valueOf(CREATE_ONE)));
+		assertThat(posts.get(0).getTitle(), equalTo(TITLE_ONE));
+		assertThat(posts.get(0).getAuthor(), equalTo(userOne));
+		assertThat(posts.get(0).getCategory(), equalTo(category));
+		assertThat(posts.get(0).getIntro(), equalTo(INTRO_ONE));
+		assertThat(posts.get(0).getContent(), equalTo(CONTENT_ONE));
+		assertThat(posts.get(0).getMetaDesc(), equalTo(META_DESC));
+		assertThat(posts.get(0).getMetaKey(), equalTo(META_KEY));
 	}
 	
 	@Test
@@ -149,7 +139,20 @@ public class PostDaoTest extends AbstractDaoTest {
 	public void whenGetLatestBetweenShouldReturnTwo() throws DaoException {
 		List<Post> posts = postDao.getLatestBetween(BEGIN_ZERO, MAX_PAGES);
 		assertThat(posts.size(), equalTo(2));
-		assertThat(posts, hasItem(postOne));
+		
+		Post lightPost = new Post.Builder()
+				.id(POST_ONE_ID)
+				.createdAt(createOne)
+				.title(TITLE_ONE)
+				.author(userOne)
+				.category(new Category())
+				.intro(INTRO_ONE)
+				.content("")
+				.metaDesc("")
+				.metaKey("")
+				.build();
+		
+		assertThat(posts, hasItem(lightPost));
 	}
 	
 	@Test
