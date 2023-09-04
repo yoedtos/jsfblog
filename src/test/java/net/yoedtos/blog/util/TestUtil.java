@@ -8,7 +8,6 @@ import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_ONE;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_TWO;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_TYPE_ONE;
-import static net.yoedtos.blog.util.TestConstants.CREATE_TWO;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_ONE;
@@ -148,10 +147,10 @@ public class TestUtil {
 	public static Post createPostTwo(Date createtAt, User userTwo, Category category) {
 		return new Post.Builder()
 				.id(POST_TWO_ID)
-				.createdAt(createDate(CREATE_TWO))
+				.createdAt(createtAt)
 				.title(TITLE_TWO)
-				.author(createUserTwo(createDate(CREATE_TWO)))
-				.category(createCategory())
+				.author(userTwo)
+				.category(category)
 				.intro(INTRO_TWO)
 				.content(CONTENT_TWO)
 				.metaDesc(META_DESC)

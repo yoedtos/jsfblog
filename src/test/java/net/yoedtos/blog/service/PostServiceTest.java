@@ -118,6 +118,9 @@ public class PostServiceTest {
 
 	@Test(expected = ServiceException.class)
 	public void whenCreateShouldThrowsException() throws DaoException, ServiceException {
+		when(categoryDao.findById(CATEGORY_ONE_ID)).thenReturn(category);
+		when(userDao.findByUsername(postDTO.getAuthor())).thenReturn(userOne);
+		
 		doThrow(new DaoException()).when(postDaoMock).persist(postOne);
 		postService.create(postDTO);
 		verify(postDaoMock, times(1)).persist(postOne);
@@ -163,7 +166,8 @@ public class PostServiceTest {
 				.build();
 		
 		postDTO = new PostDTO.Builder(postDTO.getAuthor())
-				.postId(postDTO.getId()).createdAt(today)
+				.postId(postDTO.getId())
+				.createdAt(today)
 				.title(TITLE_UPDATE)
 				.categoryId(postDTO.getCategoryId())
 				.intro(INTRO_UPDATE)
@@ -173,7 +177,7 @@ public class PostServiceTest {
 				.build();
 
 		when(postDaoMock.findById(postDTO.getId())).thenReturn(postOne);
-		when(postDaoMock.merge(postOne)).thenReturn(postUpdate);
+		when(postDaoMock.merge(postUpdate)).thenReturn(postUpdate);
 
 		PostDTO dbPostDTO = postService.update(postDTO);
 
@@ -188,7 +192,7 @@ public class PostServiceTest {
 		assertThat(dbPostDTO.getMetaKey(), equalTo(META_KEY));
 
 		verify(postDaoMock, times(1)).findById(postDTO.getId());
-		verify(postDaoMock, times(1)).merge(postOne);
+		verify(postDaoMock, times(1)).merge(postUpdate);
 	}
 
 	@Test(expected = ServiceException.class)
