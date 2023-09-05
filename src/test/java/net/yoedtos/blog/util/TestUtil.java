@@ -56,6 +56,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import net.yoedtos.blog.model.Role;
 import net.yoedtos.blog.model.dto.CommentDTO;
 import net.yoedtos.blog.model.dto.MediaDTO;
+import net.yoedtos.blog.model.dto.MessageDTO;
 import net.yoedtos.blog.model.dto.PostDTO;
 import net.yoedtos.blog.model.dto.ReplyDTO;
 import net.yoedtos.blog.model.dto.SettingDTO;
@@ -63,6 +64,7 @@ import net.yoedtos.blog.model.dto.UserDTO;
 import net.yoedtos.blog.model.entity.Category;
 import net.yoedtos.blog.model.entity.Comment;
 import net.yoedtos.blog.model.entity.Media;
+import net.yoedtos.blog.model.entity.Message;
 import net.yoedtos.blog.model.entity.Post;
 import net.yoedtos.blog.model.entity.Reply;
 import net.yoedtos.blog.model.entity.User;
@@ -302,5 +304,27 @@ public class TestUtil {
 	
 	public static Found createFoundTwo() {
 		return new Found(POST_TWO_ID, TITLE_TWO, META_DESC);
+	}
+	
+	public static MessageDTO createMessageDTO() {
+		return new MessageDTO.Builder()
+				.senderName(FULLNAME_ONE)
+				.senderEmail(EMAIL_ONE)
+				.subject(TITLE_ONE)
+				.content(CONTENT_ONE)
+				.hostAddress(HOST_ADDRESS)
+				.build();
+	}
+	
+	public static Message createMessageOne(Date createAt, Long id) {
+		return new Message.Builder()
+				.id(id)
+				.createAt(createAt)
+				.senderName(FULLNAME_ONE)
+				.senderEmail(EMAIL_ONE)
+				.subject(TITLE_ONE)
+				.content(CONTENT_ONE)
+				.hostAddress(HOST_ADDRESS)
+				.build();
 	}
 }
