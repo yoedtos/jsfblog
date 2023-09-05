@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 import net.yoedtos.blog.model.dto.MessageDTO;
@@ -19,6 +20,7 @@ import net.yoedtos.blog.model.dto.MessageDTO;
  *
  */
 @Entity
+@NamedQuery(name="Message.loadAll", query="SELECT m FROM Message m")
 public class Message {
 	
 	@Id
