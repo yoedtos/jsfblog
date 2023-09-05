@@ -327,4 +327,16 @@ public class TestUtil {
 				.hostAddress(HOST_ADDRESS)
 				.build();
 	}
+	
+	public static Message createMessageTwo(Date createAt, Long id) {
+		return new Message.Builder()
+				.id(id)
+				.createAt(createAt)
+				.senderName(FULLNAME_TWO)
+				.senderEmail(EMAIL_TWO)
+				.subject(TITLE_TWO)
+				.content(CONTENT_TWO)
+				.hostAddress(HOST_ADDRESS)
+				.build();
+	}
 }

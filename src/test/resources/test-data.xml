@@ -92,4 +92,20 @@
 		description="Amazing nature wallpaper"
 		contenttype="image/png"
 		urn="/images/2012/9/wallpaper.png"/>
+	<Message
+		message_id="1"
+		createat="2012-09-01 18:29:33.633"
+		sendername="User One" 
+		senderemail="userone@domain.com" 
+		subject="Etiam sit amet orci"
+		content="Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis"
+		hostaddress="127.0.0.1"/>
+	<Message
+		message_id="2"
+		createat="2012-09-01 20:31:39.94"
+		sendername="User Two" 
+		senderemail="usertwo@domain.com" 
+		subject="Vivamus elementum semper"
+		content="Curabitur ullamcorper ultricies nisi. Nam eget dui."
+		hostaddress="127.0.0.1"/>
 </dataset>

@@ -146,6 +146,7 @@ public class TestConstants {
 	
 	public final static long MESSAGE_ONE_ID = 1L;
 	public final static long MESSAGE_TWO_ID = 2L;
+	public final static long MESSAGE_NEW_ID = 3L;
 	
 	public final static String TEST_CONTEXT = "http://localhost:8080/jsfblog";
 	public final static String INVALID_URI = "/index.xhtml";
