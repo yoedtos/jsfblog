@@ -3,7 +3,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-
+	
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{message.loadMessages}" />
+	</f:metadata>
+	
 	<ui:define name="windowTitle">
   		#{text['lb.user']} | #{text['lb.home']}
   	</ui:define>
@@ -17,6 +21,74 @@
 			<div class="w3-container w3-card w3-padding-16">
 				<h3 class="w3-center">#{text['lb.welcome']} #{sessionScope.username}!</h3>
 			</div>
+			<h:panelGroup rendered="#{message.messages.rowCount > 0}">
+				<div class="w3-container w3-card w3-padding-16">
+					<h:form id="messageForm">
+						<div class="w3-responsive">
+							<h:dataTable id="message-table" value="#{message.messages}"
+								var="m" styleClass="w3-table w3-striped w3-bordered w3-centered">
+								<h:column>
+									<f:facet name="header">#</f:facet>
+									<h:outputText value="#{message.messages.rowIndex +1}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">#{text['lb.name']}</f:facet>
+									<h:outputText value="#{m.senderName}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">#{text['lb.subject']}</f:facet>
+									<h:outputText value="#{m.subject}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">#{text['lb.show']}</f:facet>
+									<h:graphicImage styleClass="icon-size" library="images"
+										name="icons/view.png" onclick="openModal()" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">#{text['lb.erase']}</f:facet>
+									<h:commandButton id="mdelete"
+										image="../resources/images/icons/remove.gif"
+										action="#{message.delete}" immediate="true">
+										<f:param name="message_id" value="#{m.id}" />
+									</h:commandButton>
+								</h:column>
+								<h:column>
+									<div id="messageModal" class="w3-modal">
+										<div class="w3-modal-content w3-card-4">
+											<header class="w3-container w3-light-grey">
+												<span class="w3-button w3-display-topright"
+													onclick="closeModal()">X</span>
+												<table class="w3-table w3-small">
+													<tr>
+														<th>#{text['lb.date']}</th>
+														<th>#{text['lb.name']}</th>
+														<th>#{text['lb.email']}</th>
+														<th>#{text['lb.ip_address']}</th>
+													</tr>
+													<tr>
+														<td><h:outputText value="#{m.createAt}">
+																<f:convertDateTime type="both"
+																	locale="#{setting.locale}" dateStyle="medium" />
+															</h:outputText></td>
+														<td>#{m.senderName}</td>
+														<td>#{m.senderEmail}</td>
+														<td>#{m.hostAddress}</td>
+													</tr>
+												</table>
+											</header>
+											<div style="text-align: left;" class="w3-container">
+												<h5>#{m.subject}</h5>
+												<p>#{m.content}</p>
+											</div>
+											<button class="w3-button" onclick="closeModal()">Ok</button>
+										</div>
+									</div>
+								</h:column>
+							</h:dataTable>
+						</div>
+					</h:form>
+				</div>
+			</h:panelGroup>
 		</div>
 	</ui:define>
 

@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/pages/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="windowTitle">
+  		#{text['title.contact']}
+    </ui:define>
+
+	<ui:define name="contentView">
+		<div class="w3-row w3-panel">
+			<h:form id="contactForm"
+				styleClass="w3-container w3-card w3-padding-16"
+				acceptcharset="UTF-8">
+				<div class="input-form">
+					<h3 class="w3-center">#{text['lb.contact']}</h3>
+					<h:outputLabel for="sender" value="#{text['lb.name']}" />
+					<p:message id="m_sender" for="sender" />
+					<h:inputText id="sender" value="#{message.dto.senderName}" required="true"
+							styleClass="w3-input w3-border">
+						<f:validateLength minimum="5" maximum="40" />
+						<f:ajax event="blur" execute="sender" render="m_sender" />
+					</h:inputText>
+					<h:outputLabel for="email" value="#{text['lb.email']}" />
+					<p:message id="m_email" for="email" />
+					<h:inputText id="email" value="#{message.dto.senderEmail}" required="true"
+							styleClass="w3-input w3-border">
+						<f:validator validatorId="emailValidator" />
+						<f:ajax event="blur" execute="email" render="m_email" />
+					</h:inputText>
+					<h:outputLabel for="subject" value="#{text['lb.subject']}" />
+					<p:message id="m_subject" for="subject" />
+					<h:inputText id="subject" value="#{message.dto.subject}" required="true"
+							styleClass="w3-input w3-border">
+						<f:validateLength minimum="5" maximum="50" />
+						<f:ajax event="blur" execute="subject" render="m_subject" />
+					</h:inputText>
+					<h:outputLabel value="#{text['lb.message']}" />
+					<p:message id="m_content" for="content" />
+					<h:inputTextarea id="content" value="#{message.dto.content}" required="true" 
+							rows="4" styleClass="w3-input w3-border">
+						<f:validateLength minimum="5" maximum="300" />
+						<f:ajax event="blur" execute="content" render="m_content" />
+					</h:inputTextarea>
+					<div class="w3-bar w3-padding-16">
+						<h:commandButton id="send-btn" value="#{text['lb.send']}" 
+							action="#{message.send}" styleClass="w3-button button-color" />
+						<h:button value="#{text['lb.clear']}" immediate="true" 
+							onclick="formReset('contactForm');" styleClass="w3-button button-color" />
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

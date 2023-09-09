@@ -28,6 +28,7 @@ class Constants {
 	public static final String USER_ID = "user_id";
 	public static final String POST_ID = "post_id";
 	public static final String FILE_ID = "file_id";
+	public static final String MESSAGE_ID = "message_id";
 	public static final String FIRST_PG = "1";
 	public static final String POST_PAR_ID = "postId";
 	public static final String COMMENT_PAR_ID = "commentId";
