@@ -208,5 +208,8 @@ public class TestConstants {
 	public final static String RESULT_TITLE= "Aenean commodo ligula eget dolor aenean";
 	public final static String RESULT_DESC = "Lorem ipsum dolor sit amet, consectetuer";
 	public final static String RESULT_LINK = TEST_CONTEXT + "/view.jsf?postId=1";
+	
+	public final static String MESSAGE_URI = "/contact.jsf";
+	public final static String MESSAGE_PG_TITLE = "Contact";
 }
 
