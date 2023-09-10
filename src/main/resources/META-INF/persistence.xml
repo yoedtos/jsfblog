@@ -13,6 +13,7 @@
     	<class>net.yoedtos.blog.model.entity.Reply</class>
     	<class>net.yoedtos.blog.model.entity.Media</class>
     	<class>net.yoedtos.blog.model.entity.Message</class>
+    	<class>net.yoedtos.blog.model.entity.Token</class>
     	<properties>
 		   	<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;MODE=MYSQL" />
