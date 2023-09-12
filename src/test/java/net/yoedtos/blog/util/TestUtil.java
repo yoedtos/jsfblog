@@ -40,6 +40,7 @@ import static net.yoedtos.blog.util.TestConstants.SMTP_USER;
 import static net.yoedtos.blog.util.TestConstants.SMTP_USE_TLS;
 import static net.yoedtos.blog.util.TestConstants.TITLE_ONE;
 import static net.yoedtos.blog.util.TestConstants.TITLE_TWO;
+import static net.yoedtos.blog.util.TestConstants.TOKEN_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.USER_ONE_ID;
@@ -67,6 +68,7 @@ import net.yoedtos.blog.model.entity.Media;
 import net.yoedtos.blog.model.entity.Message;
 import net.yoedtos.blog.model.entity.Post;
 import net.yoedtos.blog.model.entity.Reply;
+import net.yoedtos.blog.model.entity.Token;
 import net.yoedtos.blog.model.entity.User;
 import net.yoedtos.blog.repository.fs.PropsKey;
 import net.yoedtos.blog.search.Found;
@@ -337,6 +339,15 @@ public class TestUtil {
 				.subject(TITLE_TWO)
 				.content(CONTENT_TWO)
 				.hostAddress(HOST_ADDRESS)
+				.build();
+	}
+	
+	public static Token createTokenOne(Date date, Long id) {
+		return new Token.Builder()
+				.id(id)
+				.createAt(date)
+				.value(TOKEN_ONE)
+				.creator(createUserOne(date))
 				.build();
 	}
 }

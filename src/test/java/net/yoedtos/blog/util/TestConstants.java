@@ -148,6 +148,11 @@ public class TestConstants {
 	public final static long MESSAGE_TWO_ID = 2L;
 	public final static long MESSAGE_NEW_ID = 3L;
 	
+	public final static long TOKEN_ONE_ID = 1L;
+	public final static String TOKEN_ONE = "3e817ae3-c770-4e43-afc3-4076e7bf1917";
+	public final static String TOKEN_NEW = "8fde8770-7776-4171-9b9f-22fde1db5ab5";
+	public final static String TOKEN_UNKNOWN = "000000000-0000-0000-0000-000000000000";
+	
 	public final static String TEST_CONTEXT = "http://localhost:8080/jsfblog";
 	public final static String INVALID_URI = "/index.xhtml";
 	public final static String UNAVAILABLE_URI = "/category2.jsf";
