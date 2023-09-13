@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -20,6 +22,10 @@ import javax.persistence.Temporal;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Token.loadAll", query="SELECT t FROM Token t"),
+	@NamedQuery(name="Token.findByUsername", query="SELECT t FROM Token t WHERE t.creator.username = :user")
+})
 public class Token implements Serializable {
 	
 	@Id
