@@ -58,6 +58,8 @@ public class TokenService implements Service {
 				LOGGER.error("Invalid token!");
 				throw new ServiceException("Invalid token!");
 			}
+			token.getCreator().setPassword(reset.getCodedpass());
+			tokenDao.merge(token);
 			tokenDao.remove(token.getId());
 		} catch (DaoException e) {
 			LOGGER.error(e.getMessage());
