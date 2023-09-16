@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Token implements Serializable {
 	private Date createAt;
 	@Column(length = 36)
 	private String value;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.MERGE)
 	private User creator;
 	
 	public Token() {}
