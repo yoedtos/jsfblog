@@ -156,6 +156,18 @@ public class TestConstants {
 	public final static String TOKEN_NEW = "8fde8770-7776-4171-9b9f-22fde1db5ab5";
 	public final static String TOKEN_UNKNOWN = "000000000-0000-0000-0000-000000000000";
 	
+	public final static String LOCAL_PORT = "25000";
+	public final static String LOCAL_SERVER = "localhost";
+	public final static String NOREPLY_SENDER = "noreply@" + SITE_EMAIL.split("@")[1];
+	public final static String RESET_SUBJECT = "You request a link to reset your password";
+	public final static String RESET_TXT_MSG = "This message require support of HTML messages";
+	public final static String RESET_HTML_MSG = "<html><p>Hello, User One!</p>\n"
+			+ "<p>We received a request to reset your login password.</p>\n"
+			+ "<p>Click the link below to change your password:</p>\n"
+			+ "<p><a href=https://blogapp.com/reset?token=3e817ae3-c770-4e43-afc3-4076e7bf1917>Change my login password</a></p>\n"
+			+ "<br>\n"
+			+ "<p style=\"color: red;\">Ignore this email if you have not made the request.</p></html";
+	
 	public final static String TEST_CONTEXT = "http://localhost:8080/jsfblog";
 	public final static String INVALID_URI = "/index.xhtml";
 	public final static String UNAVAILABLE_URI = "/category2.jsf";
