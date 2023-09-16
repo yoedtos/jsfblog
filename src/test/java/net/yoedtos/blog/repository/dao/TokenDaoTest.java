@@ -78,6 +78,16 @@ public class TokenDaoTest extends AbstractDaoTest {
 	}
 	
 	@Test
+	public void whenUpdateTokenShouldHaveOne() throws DaoException {
+		tokenOne.getCreator().setPassword(ENC_UPDATE);
+		
+		Token token = tokenDao.findByUsername(USERNAME_ONE);
+		token.getCreator().setPassword(ENC_UPDATE);
+		Token tokenUpdated = tokenDao.merge(token);
+		assertThat(tokenUpdated, equalTo(tokenOne));
+	}
+	
+	@Test
 	public void whenRemoveTokenShouldHaveOne() throws DaoException {
 		tokenDao.remove(TOKEN_TWO_ID);
 		List<Token> tokens = tokenDao.findAll();
