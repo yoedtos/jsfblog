@@ -10,6 +10,7 @@ import static net.yoedtos.blog.util.TestConstants.CONTENT_TWO;
 import static net.yoedtos.blog.util.TestConstants.CONTENT_TYPE_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_ONE;
 import static net.yoedtos.blog.util.TestConstants.EMAIL_TWO;
+import static net.yoedtos.blog.util.TestConstants.ENC_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
@@ -60,6 +61,7 @@ import net.yoedtos.blog.model.dto.MediaDTO;
 import net.yoedtos.blog.model.dto.MessageDTO;
 import net.yoedtos.blog.model.dto.PostDTO;
 import net.yoedtos.blog.model.dto.ReplyDTO;
+import net.yoedtos.blog.model.dto.Reset;
 import net.yoedtos.blog.model.dto.SettingDTO;
 import net.yoedtos.blog.model.dto.UserDTO;
 import net.yoedtos.blog.model.entity.Category;
@@ -349,5 +351,16 @@ public class TestUtil {
 				.value(TOKEN_ONE)
 				.creator(createUserOne(date))
 				.build();
+	}
+
+	public static Reset createResetOneMake() {
+		return new Reset.Builder().username(USERNAME_ONE).build();
+	}
+	
+	public static Reset createResetOneExpire() {
+		return new Reset.Builder()
+				.username(USERNAME_ONE)
+				.codedpass(ENC_UPDATE)
+				.token(TOKEN_ONE).build();
 	}
 }

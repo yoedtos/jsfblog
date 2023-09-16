@@ -1,11 +1,14 @@
 package net.yoedtos.blog.service;
 
+import static net.yoedtos.blog.util.TestConstants.ENC_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.TOKEN_NEW;
 import static net.yoedtos.blog.util.TestConstants.TOKEN_ONE;
 import static net.yoedtos.blog.util.TestConstants.TOKEN_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.TOKEN_UNKNOWN;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.USER_UNKNOWN;
+import static net.yoedtos.blog.util.TestUtil.createResetOneExpire;
+import static net.yoedtos.blog.util.TestUtil.createResetOneMake;
 import static net.yoedtos.blog.util.TestUtil.createTokenOne;
 import static net.yoedtos.blog.util.TestUtil.createUserOne;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -70,7 +73,7 @@ public class TokenServiceTest {
 		when(tokenDaoMock.findByUsername(USERNAME_ONE)).thenReturn(null);
 		when(tokenHelperMock.generate()).thenReturn(TOKEN_ONE);
 		
-		tokenService.make(new Reset(USERNAME_ONE, null));
+		tokenService.make(createResetOneMake());
 		
 		verify(tokenDaoMock).persist((Token) captor.capture());
 		Token captured = (Token) captor.getValue();
@@ -94,7 +97,7 @@ public class TokenServiceTest {
 		when(tokenDaoMock.findByUsername(USERNAME_ONE)).thenReturn(token);
 		when(tokenHelperMock.generate()).thenReturn(TOKEN_NEW);
 		
-		tokenService.make(new Reset(USERNAME_ONE, null));
+		tokenService.make(createResetOneMake());
 		
 		verify(tokenDaoMock).merge((Token) captor.capture());
 		Token captured = (Token) captor.getValue();
@@ -105,31 +108,37 @@ public class TokenServiceTest {
 	@Test(expected = ServiceException.class)
 	public void whenWrongUserMakeTokenShouldThrowException() throws DaoException, ServiceException {
 		Token token = createTokenOne(today, null);
-		
 		doThrow(new DaoException()).when(userDaoMock).findByUsername(USER_UNKNOWN);
 		
-		tokenService.make(new Reset(USER_UNKNOWN, null));
+		Reset invalid = new Reset.Builder().username(USER_UNKNOWN).build();
+		tokenService.make(invalid);
 		
 		verify(tokenDaoMock, never()).persist(token);;
 	}
 	
 	@Test
-	public void whenExpireSuccessShouldRemove() throws DaoException, ServiceException {
+	public void whenExpireSuccessShouldRemoveAndUpdateUser() throws DaoException, ServiceException {
 		Token token = createTokenOne(today, TOKEN_ONE_ID);
 		
 		when(tokenDaoMock.findByUsername(USERNAME_ONE)).thenReturn(token);
-		tokenService.expire(new Reset(USERNAME_ONE, TOKEN_ONE));
+		tokenService.expire(createResetOneExpire());
 		
-		verify(tokenDaoMock).remove((Long)captor.capture());
+		verify(tokenDaoMock).merge((Token) captor.capture());
+		Token tokenCaptured = (Token) captor.getValue();
+		assertEquals(ENC_UPDATE, tokenCaptured.getCreator().getPassword());
+		
+		verify(tokenDaoMock).remove((Long) captor.capture());
 		assertEquals(TOKEN_ONE_ID, captor.getValue());
 	}
 	
 	@Test(expected = ServiceException.class)
 	public void whenExpireWithWrongTokenShouldThrowException() throws DaoException, ServiceException {
 		Token token = createTokenOne(today, TOKEN_ONE_ID);
+		Reset unknown = createResetOneExpire();
+		unknown.setToken(TOKEN_UNKNOWN);
 		
 		when(tokenDaoMock.findByUsername(USERNAME_ONE)).thenReturn(token);
-		tokenService.expire(new Reset(USERNAME_ONE, TOKEN_UNKNOWN));
+		tokenService.expire(unknown);
 		
 		verify(tokenDaoMock, never()).remove(TOKEN_ONE_ID);
 	}

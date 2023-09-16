@@ -30,6 +30,7 @@ public class TestConstants {
 	
 	public final static String PASSWORD = "password";
 	public final static String ENCODED = "drowssap";
+	public final static String ENC_UPDATE = "1drowssap";
 	public final static String HOST_ADDRESS= "127.0.0.1";
 	
 	public final static long CATEGORY_ONE_ID = 1L;
