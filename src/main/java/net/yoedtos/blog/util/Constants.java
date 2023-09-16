@@ -24,4 +24,5 @@ public class Constants {
 	public static final String APP_PROPS = DATA_PATH + "/configuration.properties";
 	public static final String PROPERTY_FILE_NAME = DATA_PATH + "/jsfblog.properties";
 	public static final String KEY_SEARCH_INDEX = "hibernate.search.default.indexBase";
+	public static final String RESET_URI_PARAM = "/reset?token=";
 }
