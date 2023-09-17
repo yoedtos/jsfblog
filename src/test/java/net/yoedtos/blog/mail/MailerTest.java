@@ -8,11 +8,11 @@ import static net.yoedtos.blog.util.TestConstants.NOREPLY_SENDER;
 import static net.yoedtos.blog.util.TestConstants.RESET_HTML_MSG;
 import static net.yoedtos.blog.util.TestConstants.RESET_SUBJECT;
 import static net.yoedtos.blog.util.TestConstants.RESET_TXT_MSG;
-import static net.yoedtos.blog.util.TestConstants.SITE_ADDRESS;
 import static net.yoedtos.blog.util.TestConstants.SITE_EMAIL;
 import static net.yoedtos.blog.util.TestConstants.SITE_NAME;
 import static net.yoedtos.blog.util.TestConstants.SMTP_PASSWORD;
 import static net.yoedtos.blog.util.TestConstants.SMTP_USER;
+import static net.yoedtos.blog.util.TestConstants.TEST_CONTEXT;
 import static net.yoedtos.blog.util.TestUtil.createTokenOne;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
@@ -70,10 +70,11 @@ public class MailerTest implements MessageHandler {
 	
 	@Before
 	public void init() {
+		String siteAddress = TEST_CONTEXT;
 		settingDTO = new SettingDTO.Builder()
 				.language(LANGUAGE)
 				.siteName(SITE_NAME)
-				.siteAddress(SITE_ADDRESS)
+				.siteAddress(siteAddress)
 				.siteEmail(SITE_EMAIL)
 				.smtpServer(LOCAL_SERVER)
 				.smtpPort(LOCAL_PORT)

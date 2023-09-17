@@ -165,7 +165,7 @@ public class TestConstants {
 	public final static String RESET_HTML_MSG = "<html><p>Hello, User One!</p>\n"
 			+ "<p>We received a request to reset your login password.</p>\n"
 			+ "<p>Click the link below to change your password:</p>\n"
-			+ "<p><a href=https://blogapp.com/reset?token=3e817ae3-c770-4e43-afc3-4076e7bf1917>Change my login password</a></p>\n"
+			+ "<p><a href=http://localhost:8080/jsfblog/reset.jsf?token=3e817ae3-c770-4e43-afc3-4076e7bf1917>Change my login password</a></p>\n"
 			+ "<br>\n"
 			+ "<p style=\"color: red;\">Ignore this email if you have not made the request.</p></html";
 	
