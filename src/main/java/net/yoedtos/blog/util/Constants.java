@@ -25,4 +25,5 @@ public class Constants {
 	public static final String PROPERTY_FILE_NAME = DATA_PATH + "/jsfblog.properties";
 	public static final String KEY_SEARCH_INDEX = "hibernate.search.default.indexBase";
 	public static final String RESET_URI_PARAM = "/reset.jsf?token=";
+	public static final int TOKEN_SIZE = 36;
 }

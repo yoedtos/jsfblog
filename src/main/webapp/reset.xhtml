@@ -1,0 +1,58 @@
+<ui:composition template="/WEB-INF/pages/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<f:metadata>
+		<f:viewParam id="idtoken" name="token" value="#{reset.token}" />
+	</f:metadata>
+
+	<ui:define name="windowTitle">
+  		#{text['title.reset']}
+ 	</ui:define>
+
+	<ui:define name="contentView">
+		<div class="w3-row w3-panel">
+			<div class="w3-container w3-card w3-padding-16">
+				<div class="input-form">
+					<h:panelGroup>
+						<h3 class="w3-center">#{text['msg.entry_desc']}</h3>
+						<h:form id="reset">
+							<h:outputLabel for="userLogin" value="#{text['lb.user']}" />
+							<p:message id="m_userLogin" for="userLogin" />
+							<h:inputText id="userLogin" value="#{reset.dto.username}"
+								required="true" styleClass="w3-input w3-border user">
+								<f:validator validatorId="userNameValidator" />
+								<f:ajax event="blur" execute="userLogin" render="m_userLogin" />
+							</h:inputText>
+							<h:outputLabel for="password" value="#{text['lb.password']}" />
+							<p:message id="m_password" for="password" />
+							<h:inputSecret id="password" value="#{reset.dto.password}"
+								required="true" styleClass="w3-input w3-border">
+								<f:validator validatorId="passwordValidator" />
+								<f:attribute name="confirm"
+									value="#{confirmPassword.submittedValue}" />
+								<f:ajax event="blur" execute="password confirm"
+									render="m_password" />
+							</h:inputSecret>
+							<h:outputLabel for="confirm" value="#{text['lb.rentry_pass']}" />
+							<p:message id="m_confirm" for="confirm" />
+							<h:inputSecret id="confirm" binding="#{confirmPassword}"
+								required="true" styleClass="w3-input w3-border">
+								<f:ajax event="blur" execute="password confirm"
+									render="m_password m_confirm" />
+							</h:inputSecret>
+							<h:commandButton id="bchange" value="#{text['lb.change']}"
+								action="#{reset.conclude}" styleClass="w3-button button-color">
+								<f:ajax />
+							</h:commandButton>
+						</h:form>
+					</h:panelGroup>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

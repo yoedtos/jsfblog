@@ -41,18 +41,18 @@
 							</h:commandButton>
 						</h:form>
 						<br />
-						<h:form>
+						<h:form id="lg-reset">
 							<div class="w3-bar w3-padding-16">
 								<h:outputLabel for="passlost" value="#{text['msg.lost_pass']}" />
 								<p:message id="m_passlost" for="passlost" />
-								<h:inputText id="passlost" required="true"
-									pt:placeholder="#{text['msg.enter_email']}"
+								<h:inputText id="passlost" required="true" value="#{reset.dto.username}"
+									pt:placeholder="#{text['msg.enter_user']}"
 									styleClass="w3-input w3-bar-item w3-border">
-									<f:validator validatorId="emailValidator" />
+									<f:validator validatorId="userNameValidator" />
 									<f:ajax event="blur" execute="passlost" render="m_passlost" />
 								</h:inputText>
-								<h:commandButton value="#{text['msg.get_pass']}"
-									styleClass="w3-button w3-bar-item button-color" />
+								<h:commandButton id="breset_send" value="#{text['msg.reset_send']}" 
+									action="#{reset.initiate}" styleClass="w3-button w3-bar-item button-color" />
 							</div>
 						</h:form>
 					</h:panelGroup>
