@@ -232,5 +232,8 @@ public class TestConstants {
 	
 	public final static String MESSAGE_URI = "/contact.jsf";
 	public final static String MESSAGE_PG_TITLE = "Contact";
+	
+	public final static String RESET_EMAIL_FILE = "email-test.html";
+	
 }
 
