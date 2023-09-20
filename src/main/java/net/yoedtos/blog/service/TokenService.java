@@ -53,6 +53,7 @@ public class TokenService implements Service {
 
 	public void expire(Reset reset) throws ServiceException {
 		try {
+			tokenHelper.validate(reset.getToken());
 			Token token = tokenDao.findByUsername(reset.getUsername());
 			if(!token.getValue().equals(reset.getToken())) {
 				LOGGER.error("Invalid token!");
@@ -61,7 +62,7 @@ public class TokenService implements Service {
 			token.getCreator().setPassword(reset.getCodedpass());
 			tokenDao.merge(token);
 			tokenDao.remove(token.getId());
-		} catch (DaoException e) {
+		} catch (IllegalArgumentException | DaoException e) {
 			LOGGER.error(e.getMessage());
 			throw new ServiceException(e.getMessage());
 		}
