@@ -5,6 +5,7 @@ import static net.yoedtos.blog.util.TestConstants.TOKEN_NEW;
 import static net.yoedtos.blog.util.TestConstants.TOKEN_ONE;
 import static net.yoedtos.blog.util.TestConstants.TOKEN_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.TOKEN_UNKNOWN;
+import static net.yoedtos.blog.util.TestConstants.TOKEN_INVALID;
 import static net.yoedtos.blog.util.TestConstants.USERNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.USER_UNKNOWN;
 import static net.yoedtos.blog.util.TestUtil.createResetOneExpire;
@@ -139,6 +140,17 @@ public class TokenServiceTest {
 		
 		when(tokenDaoMock.findByUsername(USERNAME_ONE)).thenReturn(token);
 		tokenService.expire(unknown);
+		
+		verify(tokenDaoMock, never()).remove(TOKEN_ONE_ID);
+	}
+	
+	@Test(expected = ServiceException.class)
+	public void whenExpireWithInvalidTokenShouldThrowException() throws DaoException, ServiceException {
+		Reset invalid = createResetOneExpire();
+		invalid.setToken(TOKEN_INVALID);
+		
+		doThrow(new IllegalArgumentException()).when(tokenHelperMock).validate(TOKEN_INVALID);
+		tokenService.expire(invalid);
 		
 		verify(tokenDaoMock, never()).remove(TOKEN_ONE_ID);
 	}

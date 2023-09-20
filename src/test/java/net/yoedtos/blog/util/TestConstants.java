@@ -156,6 +156,7 @@ public class TestConstants {
 	public final static String TOKEN_TWO = "3c0b6030-64e4-4c73-a1d7-f56eaa6ecfa0";
 	public final static String TOKEN_NEW = "8fde8770-7776-4171-9b9f-22fde1db5ab5";
 	public final static String TOKEN_UNKNOWN = "000000000-0000-0000-0000-000000000000";
+	public final static String TOKEN_INVALID = "rbrsbkW9doWL9C6RbIfBWgh4NPyNywxqzAX3";
 	
 	public final static String LOCAL_PORT = "25000";
 	public final static String LOCAL_SERVER = "localhost";
