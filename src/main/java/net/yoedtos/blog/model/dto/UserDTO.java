@@ -1,6 +1,7 @@
 package net.yoedtos.blog.model.dto;
 
 import java.util.Date;
+import java.util.Objects;
 
 import net.yoedtos.blog.model.Role;
 import net.yoedtos.blog.model.entity.User;
@@ -169,5 +170,32 @@ public final class UserDTO {
 		public UserDTO build() {
 			return new UserDTO(this);
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "UserDTO [id=" + id + ", userName=" + userName + ", fullName=" + fullName + ", email=" + email
+				+ ", active=" + active + ", role=" + role + ", hostAddress=" + hostAddress + ", createdAt=" + createdAt
+				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(active, createdAt, email, fullName, hostAddress, id, role, userName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserDTO other = (UserDTO) obj;
+		return active == other.active && Objects.equals(createdAt, other.createdAt)
+				&& Objects.equals(email, other.email) && Objects.equals(fullName, other.fullName)
+				&& Objects.equals(hostAddress, other.hostAddress) && Objects.equals(id, other.id) && role == other.role
+				&& Objects.equals(userName, other.userName);
 	}
 }

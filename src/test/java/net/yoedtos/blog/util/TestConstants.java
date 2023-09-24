@@ -169,6 +169,13 @@ public class TestConstants {
 			+ "<p><a href=http://localhost:8080/jsfblog/reset.jsf?token=3e817ae3-c770-4e43-afc3-4076e7bf1917>Change my login password</a></p>\n"
 			+ "<br>\n"
 			+ "<p style=\"color: red;\">Ignore this email if you have not made the request.</p></html";
+
+	public final static String INDEX_ONE = "TvCLHTlcb83ke3sctpU3HMMAe4j40b5T";
+	public final static String INDEX_TWO = "XHz/fDLnkIoHkbfjzZwEacqswL8f9ppw";
+	public final static String BADGE_ONE = "4Cd0Zbs3MTU8edkgO9eNT8xehXydR2GMaKVGeLB9hsXDNOf26v";
+	public final static String BADGE_TWO = "DYvOIwZT9HUTj0Vudfp90ZSfluaTJhf1Q1onzGIDhurdq4cU20";
+	public final static String INDEX_CLR = "1695392439|userone";
+	public final static long REMEMBER_ONE_ID = 1L;
 	
 	public final static String TEST_CONTEXT = "http://localhost:8080/jsfblog";
 	public final static String INVALID_URI = "/index.xhtml";

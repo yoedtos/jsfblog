@@ -1,6 +1,7 @@
 package net.yoedtos.blog.util;
 
 import static net.yoedtos.blog.util.TestConstants.AUTHOR_ONE;
+import static net.yoedtos.blog.util.TestConstants.BADGE_ONE;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE;
 import static net.yoedtos.blog.util.TestConstants.CATEGORY_ONE_ID;
 import static net.yoedtos.blog.util.TestConstants.COMMENT_ONE;
@@ -14,6 +15,7 @@ import static net.yoedtos.blog.util.TestConstants.ENC_UPDATE;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_ONE;
 import static net.yoedtos.blog.util.TestConstants.FULLNAME_TWO;
 import static net.yoedtos.blog.util.TestConstants.HOST_ADDRESS;
+import static net.yoedtos.blog.util.TestConstants.INDEX_ONE;
 import static net.yoedtos.blog.util.TestConstants.INTRO_ONE;
 import static net.yoedtos.blog.util.TestConstants.INTRO_TWO;
 import static net.yoedtos.blog.util.TestConstants.LANGUAGE;
@@ -60,6 +62,7 @@ import net.yoedtos.blog.model.dto.CommentDTO;
 import net.yoedtos.blog.model.dto.MediaDTO;
 import net.yoedtos.blog.model.dto.MessageDTO;
 import net.yoedtos.blog.model.dto.PostDTO;
+import net.yoedtos.blog.model.dto.RememberData;
 import net.yoedtos.blog.model.dto.ReplyDTO;
 import net.yoedtos.blog.model.dto.Reset;
 import net.yoedtos.blog.model.dto.SettingDTO;
@@ -69,6 +72,7 @@ import net.yoedtos.blog.model.entity.Comment;
 import net.yoedtos.blog.model.entity.Media;
 import net.yoedtos.blog.model.entity.Message;
 import net.yoedtos.blog.model.entity.Post;
+import net.yoedtos.blog.model.entity.Remember;
 import net.yoedtos.blog.model.entity.Reply;
 import net.yoedtos.blog.model.entity.Token;
 import net.yoedtos.blog.model.entity.User;
@@ -362,5 +366,22 @@ public class TestUtil {
 				.username(USERNAME_ONE)
 				.codedpass(ENC_UPDATE)
 				.token(TOKEN_ONE).build();
+	}
+	
+	public static RememberData createRememberDataOne() {
+		return  new RememberData.Builder()
+				.username(USERNAME_ONE)
+				.index(INDEX_ONE)
+				.badge(BADGE_ONE)
+				.build();
+	}
+	
+	public static Remember createRememberOne(Date date, Long id) {
+		return new Remember.Builder()
+				.id(id)
+				.createAt(date)
+				.value(BADGE_ONE)
+				.user(createUserOne(date))
+				.build();
 	}
 }
