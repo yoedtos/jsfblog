@@ -1,14 +1,42 @@
 package net.yoedtos.blog.model.entity;
 
+import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.TemporalType.TIMESTAMP;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+
 @SuppressWarnings("serial")
+/**
+ * Entity implementation class for Entity: Remember
+ *
+ */
+@Entity
+@NamedQueries({
+	@NamedQuery(name="Remember.loadAll", query="SELECT r FROM Remember r"),
+	@NamedQuery(name="Remember.findByUsername", query="SELECT r FROM Remember r WHERE r.user.username = :user")
+})
 public class Remember implements Serializable {
+	
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "remember_id")
 	private Long id;
+	@Temporal(TIMESTAMP)
 	private Date createAt;
+	@Column(length = 50)
 	private String value;
+	@OneToOne
 	private User user;
 	
 	public Remember() {}
