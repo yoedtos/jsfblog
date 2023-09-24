@@ -118,4 +118,14 @@
 		createat="2012-09-01 20:31:39.94"
 		value="3c0b6030-64e4-4c73-a1d7-f56eaa6ecfa0"
 		creator_user_id="2"/>
+	<Remember
+		remember_id="1"
+		createat="2012-09-01 18:29:33.633"
+		value="4Cd0Zbs3MTU8edkgO9eNT8xehXydR2GMaKVGeLB9hsXDNOf26v"
+		user_user_id="1"/>
+	<Remember
+		remember_id="2"
+		createat="2012-09-01 20:31:39.94"
+		value="DYvOIwZT9HUTj0Vudfp90ZSfluaTJhf1Q1onzGIDhurdq4cU20"
+		user_user_id="2"/>
 </dataset>
