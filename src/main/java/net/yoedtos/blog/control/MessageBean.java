@@ -3,6 +3,7 @@ package net.yoedtos.blog.control;
 import static net.yoedtos.blog.control.Constants.HOME_REDIRECT;
 import static net.yoedtos.blog.control.Constants.INDEX_REDIRECT;
 import static net.yoedtos.blog.control.Constants.MESSAGE_ID;
+import static net.yoedtos.blog.control.Session.SESSION_KEY_ROLE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class MessageBean extends AbstractBean {
 	}
 	
 	public void loadMessages() {
-		int roleValue = (int) getSessionAttribute(Constants.SESSION_KEY_ROLE);
+		int roleValue = (int) getSessionAttribute(SESSION_KEY_ROLE);
 		List<MessageDTO> messagesDto = new ArrayList<>();
 		if(roleValue == Role.ADMINISTRATOR.getValue()) {
 			try {

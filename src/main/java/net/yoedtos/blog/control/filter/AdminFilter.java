@@ -1,9 +1,9 @@
 package net.yoedtos.blog.control.filter;
 
-import static net.yoedtos.blog.control.filter.Constants.LOGIN;
-import static net.yoedtos.blog.control.filter.Constants.SESSION_KEY_ROLE;
-import static net.yoedtos.blog.control.filter.Constants.SESSION_KEY_USER;
-import static net.yoedtos.blog.control.filter.Constants.USER_HOME;
+import static net.yoedtos.blog.control.Session.SESSION_KEY_ROLE;
+import static net.yoedtos.blog.control.Session.SESSION_KEY_USER;
+import static net.yoedtos.blog.control.filter.HomeFilter.LOGIN;
+import static net.yoedtos.blog.control.filter.LoginFilter.USER_HOME;
 
 import java.io.IOException;
 

@@ -2,8 +2,8 @@ package net.yoedtos.blog.control;
 
 import static net.yoedtos.blog.control.Constants.HOME_REDIRECT;
 import static net.yoedtos.blog.control.Constants.INDEX_REDIRECT;
-import static net.yoedtos.blog.control.Constants.SESSION_KEY_ROLE;
-import static net.yoedtos.blog.control.Constants.SESSION_KEY_USER;
+import static net.yoedtos.blog.control.Session.SESSION_KEY_ROLE;
+import static net.yoedtos.blog.control.Session.SESSION_KEY_USER;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

@@ -1,7 +1,6 @@
 package net.yoedtos.blog.control.filter;
 
-import static net.yoedtos.blog.control.filter.Constants.LOGIN;
-import static net.yoedtos.blog.control.filter.Constants.SESSION_KEY_USER;
+import static net.yoedtos.blog.control.Session.SESSION_KEY_USER;
 
 import java.io.IOException;
 
@@ -18,6 +17,8 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter(filterName="homeFilter", urlPatterns={"/home/*"})
 public class HomeFilter implements Filter {
+	
+	protected static final String LOGIN = "../login.jsf";
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
