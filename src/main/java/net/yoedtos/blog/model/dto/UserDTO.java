@@ -1,5 +1,6 @@
 package net.yoedtos.blog.model.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -7,7 +8,8 @@ import net.yoedtos.blog.model.Role;
 import net.yoedtos.blog.model.entity.User;
 import net.yoedtos.blog.util.Constants;
 
-public final class UserDTO {
+@SuppressWarnings("serial")
+public final class UserDTO implements Serializable {
 	
 	private Long id;
 	private String userName;
