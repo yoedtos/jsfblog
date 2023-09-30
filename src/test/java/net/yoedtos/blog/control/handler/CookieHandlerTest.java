@@ -2,7 +2,6 @@ package net.yoedtos.blog.control.handler;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
@@ -28,6 +27,8 @@ public class CookieHandlerTest {
 	private final static String KEY = "IfBWgh4N";
 	private final static String VALUE = "rbrsbkW9doWL9C6RbIfBWgh4NPyNywxqzAX3";
 	private final static int MAX_AGE = 5;
+	private final static String CTX_PATH = "/";
+	private final static String SRV_NAME = "localhost";
 	
 	@Mock 
 	private HttpServletRequest mockRequest;
@@ -46,11 +47,14 @@ public class CookieHandlerTest {
 	public void init() {
 		cookie = new Cookie(KEY, VALUE);
 		cookie.setMaxAge(MAX_AGE);
+		
+		when(mockRequest.getContextPath()).thenReturn(CTX_PATH);
+		when(mockRequest.getServerName()).thenReturn(SRV_NAME);
 	}
 	
 	@Test
 	public void whenCreateCookieShouldCreateOne() {
-		Cookie result = cookieHandler.createCookie(KEY, VALUE, MAX_AGE);
+		cookieHandler.createCookie(KEY, VALUE, MAX_AGE);
 		
 		verify(mockResponse).addCookie(captor.capture());
 		
@@ -58,16 +62,14 @@ public class CookieHandlerTest {
 		assertEquals(MAX_AGE, atual.getMaxAge());
 		assertEquals(KEY, atual.getName());
 		assertEquals(VALUE, atual.getValue());
-		assertNotNull(result);
+		assertEquals(CTX_PATH, atual.getPath());
+		assertEquals(SRV_NAME, atual.getDomain());
 		
 		verify(mockResponse, times(1)).addCookie(any());
 	}
 	
 	@Test
-	public void whenRemoveCookieShouldCreateEmptyOne() {
-		cookie = new Cookie(KEY, "");
-		cookie.setMaxAge(0);
-		
+	public void whenRemoveCookieShouldCreateEmptyOne() {		
 		cookieHandler.removeCookie(KEY);
 		
 		verify(mockResponse).addCookie(captor.capture());
@@ -76,6 +78,8 @@ public class CookieHandlerTest {
 		assertEquals(0, atual.getMaxAge());
 		assertEquals(KEY, atual.getName());
 		assertEquals("", atual.getValue());
+		assertEquals(CTX_PATH, atual.getPath());
+		assertEquals(SRV_NAME, atual.getDomain());
 		
 		verify(mockResponse, times(1)).addCookie(any());
 	}

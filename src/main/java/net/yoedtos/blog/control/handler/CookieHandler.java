@@ -14,16 +14,20 @@ public class CookieHandler {
 		this.response = response;
 	}
 
-	public Cookie createCookie(String name, String value, int maxAge) {
+	public CookieHandler createCookie(String name, String value, int maxAge) {
 		Cookie cookie = new Cookie(name, value);
 		cookie.setMaxAge(maxAge);
+		cookie.setHttpOnly(true);
+		
+		cookie.setPath(request.getContextPath());
+		cookie.setDomain(request.getServerName());
 		
 		response.addCookie(cookie);
-		return cookie;
+		return this;
 	}
 	
-	public void removeCookie(String name) {
-		createCookie(name, "", 0);
+	public CookieHandler removeCookie(String name) {
+		return createCookie(name, "", 0);
 	}
 	
 	public String getCookieValue(String name) {
