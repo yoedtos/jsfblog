@@ -246,5 +246,6 @@ public class TestConstants {
 	
 	public final static String RESET_EMAIL_FILE = "email-test.html";
 	
+	public final static String GREETING = "Hello, " + USERNAME_NEW +"!";
 }
 

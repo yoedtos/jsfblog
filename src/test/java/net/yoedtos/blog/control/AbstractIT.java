@@ -13,6 +13,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public abstract class AbstractIT {
 
+	private boolean remember;
 	protected String[] ids;
 	protected String[] data; 
 			
@@ -34,10 +35,17 @@ public abstract class AbstractIT {
 		return options;
 	}
 	
+	protected void login(String username, String password, boolean remember) {
+		this.remember = remember;
+		login(username, password);
+	}
+	
 	protected void login(String username, String password) {
 		driver.get(TEST_CONTEXT + LOGIN_URI);
 		driver.findElement(By.id("login:userLogin")).sendKeys(username);
-		driver.findElement(By.id("login:userPassword")).sendKeys(password);	
+		driver.findElement(By.id("login:userPassword")).sendKeys(password);
+		if(remember)
+			driver.findElement(By.id("login:remember")).click();
 		driver.findElement(By.id("login:blogin")).click();
 	}
 	
