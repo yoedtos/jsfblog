@@ -10,4 +10,6 @@ public class Session {
 	
 	public static final String INDEX = "fk43Vb8L";
 	public static final String BADGE = "xT2d5lvG";
+	
+	public static final int MAX_AGE = 720*3600; //30 days
 }

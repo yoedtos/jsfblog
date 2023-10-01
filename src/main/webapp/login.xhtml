@@ -31,13 +31,13 @@
 								<f:validator validatorId="passwordValidator" />
 								<f:ajax event="blur" execute="userPassword" render="m_userPassword" />
 							</h:inputSecret>
-							<p:selectBooleanCheckbox id="remember" styleClass="w3-padding-16" />
+							<p:selectBooleanCheckbox id="remember" value="#{auth.dto.remember}" 
+								styleClass="w3-padding-16" />
 							<h:outputLabel for="remember" value="#{text['lb.remember']}"
 								styleClass="remember" />
 							<br />
-							<h:commandButton id="blogin" value="#{text['lb.login']}"
-								action="#{auth.login}" styleClass="w3-button button-color">
-								<f:ajax />
+							<h:commandButton id="blogin" value="#{text['lb.login']}" action="#{auth.login}" 
+								styleClass="w3-button button-color">
 							</h:commandButton>
 						</h:form>
 						<br />

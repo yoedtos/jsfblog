@@ -4,6 +4,7 @@ public final class Login {
 
 	private String username;
 	private String password;
+	private boolean remember;
 	
 	public Login() {}
 	
@@ -26,5 +27,13 @@ public final class Login {
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isRemember() {
+		return remember;
+	}
+
+	public void setRemember(boolean remember) {
+		this.remember = remember;
 	}
 }

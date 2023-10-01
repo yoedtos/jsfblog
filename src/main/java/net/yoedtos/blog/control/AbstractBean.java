@@ -5,6 +5,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.yoedtos.blog.view.AlertMsg;
@@ -74,9 +75,12 @@ public abstract class AbstractBean {
 		return request.getParameter(param);
 	}
 
-	private HttpServletRequest getHttpRequest() {
-		ExternalContext ec = getExContext();
-		return (HttpServletRequest) ec.getRequest();
+	protected HttpServletRequest getHttpRequest() {
+		return (HttpServletRequest) getExContext().getRequest();
+	}
+	
+	protected HttpServletResponse getHttpResponse() {
+		return (HttpServletResponse) getExContext().getResponse();
 	}
 }
 
