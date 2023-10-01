@@ -94,12 +94,12 @@ public class TestConstants {
 	
 	public final static Language LANGUAGE = Language.EN;
 	public final static String SITE_NAME = "Web Blog App";
-	public final static String SITE_ADDRESS = "https://blogapp.com";
-	public final static String SITE_EMAIL = "master@blogapp.com";
+	public final static String SITE_ADDRESS = "http://localhost:8080/jsfblog";
+	public final static String SITE_EMAIL = "master@localhost";
 	public final static String SITE_META_DESC = "Web blog with cool stuffs";
 	public final static String SITE_META_KEY = "Tecnology, Computer";
-	public final static String SMTP_SERVER = "smtp.blogapp.com";
-	public final static String SMTP_PORT = "25";
+	public final static String SMTP_SERVER = "localhost";
+	public final static String SMTP_PORT = "25000";
 	public final static boolean SMTP_USE_TLS = true;
 	public final static String SMTP_USER = "blogapp";
 	public final static String SMTP_PASSWORD = "secret";
