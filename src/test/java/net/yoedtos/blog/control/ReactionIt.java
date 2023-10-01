@@ -19,13 +19,16 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ReactionIt extends AbstractIT {
 	private By commentSrc = By.xpath("//*[@id=\"cke_comment:comment\"]/div//span[1]/span[3]/a");
 	private By commentTxt = By.xpath("//*[@id=\"cke_comment:comment\"]//div/textarea");

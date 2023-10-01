@@ -67,7 +67,7 @@ public class ResetIt extends AbstractIT {
 	
 	@Before
 	public void setup() {
-		driver = new FirefoxDriver();
+		driver = new FirefoxDriver(getFirefoxOptions());
 	}
 
 	@After
